@@ -54,8 +54,28 @@
   position: relative;
 }
 .preview-widget .preview-column .preview-item > h3 {
+  color: #00a0f0;
+  text-align: center;
+  border-bottom: 1px solid rgba(51, 62, 72, 0.1);
+  padding-bottom: 24px;
+}
+.preview-widget .preview-column h1 {
+  text-align: center;
   margin-top: 0;
-  color: #007ebd;
+}
+.preview-widget .preview-column .circle {
+  height: 64px;
+  width: 64px;
+  -webkit-border-radius: 9999px;
+  -moz-border-radius: 9999px;
+  border-radius: 9999px;
+  background: rgba(51, 62, 72, 0.1);
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 8px;
+  text-align: center;
+  line-height: 64px;
+  color: rgba(51, 62, 72, 0.6);
 }
 .preview-widget .scroll-container {
   position: absolute;
@@ -354,7 +374,7 @@
   height: 316px;
 }
 .search-widget .widget-members .scroll-container > div {
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
   padding: 0 0 0 16px;
   height: 40px;
   line-height: 40px;
@@ -366,6 +386,9 @@
 .search-widget .widget-members .scroll-container > div.selected {
   background: #00a0f0;
   color: white;
+}
+.search-widget .widget-members .scroll-container > div:hover {
+  background: rgba(0, 160, 240, 0.1);
 }
 .search-widget .widget-members .scroll-container .btn {
   color: rgba(0, 0, 0, 0.25);

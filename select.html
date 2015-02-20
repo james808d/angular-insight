@@ -206,9 +206,15 @@
 		</div>
 	</div>
 
-	<div class="col-sm-5 preview-column" ng-if="preview" ng-class="{'bold-theme':currentSelection }">
+	<div class="col-sm-5 preview-column" ng-if="preview" ng-class="{'':currentSelection }">
+
 		<div class="scroll-container">
 			<div class="preview-item" ng-repeat="group in assignedGroups | filter:{selected:true}" ng-if="!query">
+
+				<h1>
+					<span class="circle glyphicon glyphicon-user"></span>
+				</h1>
+
 
 				<h3>{{ group.name }}</h3>
 				<p>{{ group.description }}</p>

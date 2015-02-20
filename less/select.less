@@ -14,7 +14,7 @@
 
 		border-left: 1px solid rgba(0, 0, 0, 0.1);
 		height: 100%;
-		
+
 		&.bold-theme {
 			background: @accentColor;
 			color: white;
@@ -33,12 +33,33 @@
 			position: relative;
 
 			> h3 {
-				margin-top: 0;
-				color: @accentDark;
+				color: @accentColor;
+				text-align: center;
+				border-bottom: 1px solid @borderColor;
+				padding-bottom: 24px;
 			}
 
 
 		}
+
+		h1 {
+			text-align: center;
+			margin-top: 0;
+		}
+
+		.circle {
+			height:64px;
+			width: 64px;
+			.Round();
+			background: @borderColor;
+			display: inline-block;
+			vertical-align: middle;
+			margin-right: 8px;
+			text-align: center;
+			line-height: 64px;
+			color: @color1Fade;
+		}
+
 	}
 
 	.scroll-container {
@@ -345,8 +366,6 @@
 			opacity:1;
 			max-height:40px;
 		}
-
-
 	}
 
 	.widget-members {
@@ -376,7 +395,7 @@
 			height: 316px;
 
 			> div {
-				border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+				border-bottom: 1px solid rgba(0, 0, 0, 0.05);
 				padding: 0 0 0 16px;
 				height: 40px;
 				line-height: 40px;
@@ -388,6 +407,9 @@
 				&.selected {
 					background: rgb(0, 160, 240);
 					color: white;
+				}
+				&:hover {
+					background: rgba(0, 160, 240, 0.1);
 				}
 			}
 
