@@ -25,17 +25,23 @@
 				<div class="widget-options animate-if" ng-if="query && showOptions">
 					<div class="scroll-container" ng-if="inputOptions === 'all'">
 						<div ng-repeat="group in groups | filter:query | orderBy: 'name'"
+						     class="widget-item"
 						     ng-class="{assigned:group.assigned}"
 								ng-click="toggleItem(group)">
-
-							{{ group.name }}
-
-							<button class="btn btn-link pull-right" ng-show="group.assigned">
-								<span class="glyphicons ok_2"></span>
-							</button>
-							<button class="btn btn-link pull-right" ng-hide="group.assigned">
-								<span class="glyphicons circle_plus"></span>
-							</button>
+							<div>
+								<span class="circle glyphicon glyphicon-user"></span>
+							</div>
+							<div class="flex-fill">
+								<span ng-bind-html="group.name | highlight:query.name"></span>
+							</div>
+							<div>
+								<button class="btn btn-link pull-right" ng-show="group.assigned">
+									<span class="glyphicons ok_2"></span>
+								</button>
+								<button class="btn btn-link pull-right" ng-hide="group.assigned">
+									<span class="glyphicons circle_plus"></span>
+								</button>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -128,12 +134,12 @@
 					</div>
 
 					<div ng-repeat="group in assignedGroups | filter:query | orderBy: 'name'"
-					     class="widget-member"
+					     class="widget-item"
 					     selection-model-cleanup-strategy="deselect"
 					     selection-model>
 
 						<div>
-							<span class="circle"></span>
+							<span class="circle glyphicon glyphicon-user"></span>
 						</div>
 						<div class="flex-fill">
 							{{ group.name }}

@@ -28,6 +28,7 @@
 	}
 }
 
+.ui-match { background: yellow; }
 
 .search-widget {
 
@@ -58,6 +59,7 @@
 		right: 0;
 		bottom: 0;
 		background: rgba(0,0,0,0.05);
+		z-index: 1;
 	}
 
 	.search-input {
@@ -274,6 +276,32 @@
 		}
 	}
 
+
+	.widget-item {
+		.flexContainer();
+
+		> div {
+			.flexItem();
+
+			&.flex-fill {
+				.flexItem(1 1 auto);
+			}
+
+			.circle {
+				height:30px;
+				width: 30px;
+				.Round();
+				background: @borderColor;
+				display: inline-block;
+				vertical-align: middle;
+				margin-right: 8px;
+				text-align: center;
+				line-height: 28px;
+				color: @color1Fade;
+			}
+		}
+	}
+
 	.widget-members {
 		position: relative;
 		z-index: 0;
@@ -324,19 +352,6 @@
 				height: 40px;
 				padding-left: 16px;
 				width: 50px;
-			}
-
-			.widget-member {
-				.flexContainer();
-
-				> div {
-					.flexItem();
-
-					&.flex-fill {
-						.flexItem(1 1 auto);
-					}
-
-				}
 			}
 		}
 	}
