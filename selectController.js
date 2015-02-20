@@ -48,6 +48,17 @@ function selectController($scope, GroupList){
 		}
 	};
 
+	$scope.selection = function(item){
+
+		if (item.selected) {
+			$scope.currentSelection = item;
+		} else {
+			$scope.currentSelection = null;
+		}
+
+
+	};
+
 	$scope.closeOptions = function() {
 		$scope.showOptions = false;
 		$scope.query = '';

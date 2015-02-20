@@ -38,10 +38,22 @@
   background: #fafafa;
   height: 436px;
 }
-.preview-widget .preview-item {
+.preview-widget .preview-column {
+  border-left: 1px solid rgba(0, 0, 0, 0.1);
+  height: 100%;
+}
+.preview-widget .preview-column.bold-theme {
+  background: #00a0f0;
+  color: white;
+  border-left: none;
+}
+.preview-widget .preview-column.bold-theme .preview-item > h3 {
+  color: white;
+}
+.preview-widget .preview-column .preview-item {
   position: relative;
 }
-.preview-widget .preview-item > h3 {
+.preview-widget .preview-column .preview-item > h3 {
   margin-top: 0;
   color: #007ebd;
 }
@@ -61,7 +73,6 @@
   width: 100%;
   position: relative;
   height: 436px;
-  border-right: 1px solid rgba(0, 0, 0, 0.1);
 }
 .search-widget:after {
   visibility: hidden;
@@ -221,6 +232,8 @@
   -webkit-border-radius: 6px;
   -moz-border-radius: 6px;
   border-radius: 6px;
+  -webkit-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
 }
 .search-widget .widget-options .scroll-container .btn-close {
   position: absolute;
@@ -303,6 +316,24 @@
   text-align: center;
   line-height: 28px;
   color: rgba(51, 62, 72, 0.6);
+}
+.search-widget .widget-item.ng-move,
+.search-widget .widget-item.ng-enter,
+.search-widget .widget-item.ng-leave {
+  -webkit-transition: all linear 0.25s;
+  transition: all linear 0.25s;
+}
+.search-widget .widget-item.ng-leave.ng-leave-active,
+.search-widget .widget-item.ng-move,
+.search-widget .widget-item.ng-enter {
+  opacity: 0;
+  max-height: 0;
+}
+.search-widget .widget-item.ng-leave,
+.search-widget .widget-item.ng-move.ng-move-active,
+.search-widget .widget-item.ng-enter.ng-enter-active {
+  opacity: 1;
+  max-height: 40px;
 }
 .search-widget .widget-members {
   position: relative;
