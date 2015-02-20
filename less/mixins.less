@@ -1,0 +1,237 @@
+@import "variables";
+
+@defaultRadius: 2px;
+
+.RoundedShape(@radius:@defaultRadius) {
+	-webkit-border-radius: @radius;
+	-moz-border-radius: @radius;
+	border-radius: @radius;
+}
+
+.RoundedTopShape(@radius:@defaultRadius) {
+	-webkit-border-top-left-radius: @radius;
+	-moz-border-radius-topleft: @radius;
+	border-top-left-radius: @radius;
+	-webkit-border-top-right-radius: @radius;
+	-moz-border-radius-topright: @radius;
+	border-top-right-radius: @radius;
+
+	-webkit-border-bottom-left-radius: 0;
+	-moz-border-radius-bottomleft: 0;
+	border-bottom-left-radius: 0;
+	-webkit-border-bottom-right-radius: 0;
+	-moz-border-radius-bottomright: 0;
+	border-bottom-right-radius: 0;
+}
+
+.RoundedBottomShape(@radius:@defaultRadius) {
+	-webkit-border-bottom-left-radius: @radius;
+	-moz-border-radius-bottomleft: @radius;
+	border-bottom-left-radius: @radius;
+	-webkit-border-bottom-right-radius: @radius;
+	-moz-border-radius-bottomright: @radius;
+	border-bottom-right-radius: @radius;
+
+	-webkit-border-top-left-radius: 0;
+	-moz-border-radius-topleft: 0;
+	border-top-left-radius: 0;
+	-webkit-border-top-right-radius: 0;
+	-moz-border-radius-topright: 0;
+	border-top-right-radius: 0;
+}
+
+.RoundedRightShape(@radius:@defaultRadius) {
+	-webkit-border-bottom-right-radius: @radius;
+	-moz-border-radius-bottomright: @radius;
+	border-bottom-right-radius: @radius;
+	-webkit-border-top-right-radius: @radius;
+	-moz-border-radius-topright: @radius;
+	border-top-right-radius: @radius;
+
+	-webkit-border-top-left-radius: 0;
+	-moz-border-radius-topleft: 0;
+	border-top-left-radius: 0;
+	-webkit-border-bottom-left-radius: 0;
+	-moz-border-radius-bottomleft: 0;
+	border-bottom-left-radius: 0;
+}
+
+.RoundedLeftShape(@radius:@defaultRadius) {
+	-webkit-border-bottom-left-radius: @radius;
+	-moz-border-radius-bottomleft: @radius;
+	border-bottom-left-radius: @radius;
+	-webkit-border-top-left-radius: @radius;
+	-moz-border-radius-topleft: @radius;
+	border-top-left-radius: @radius;
+
+	-webkit-border-top-right-radius: 0;
+	-moz-border-radius-topright: 0;
+	border-top-right-radius: 0;
+	-webkit-border-bottom-right-radius: 0;
+	-moz-border-radius-bottomright: 0;
+	border-bottom-right-radius: 0;
+}
+.Round {
+	.RoundedShape(9999px)
+}
+
+.RoundedButton {
+	.RoundedShape()
+}
+
+@defaultShadow: 0 0 2px black;
+.BoxShadow(@values:@defaultShadow, ...) {
+	-webkit-box-shadow: @arguments;
+	-moz-box-shadow: @arguments;
+	box-shadow: @arguments;
+}
+
+.PointerCursor {
+	cursor: default;
+	cursor: hand;
+	cursor: pointer;
+}
+
+.TextClip {
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
+
+	-webkit-hyphens: auto;
+	-moz-hyphens: auto;
+	-ms-hyphens: auto;
+	hyphens: auto;
+
+}
+
+@defaultTransitionAll: all linear 0.25s;
+.TransitionAll(@values:@defaultTransitionAll) {
+	-moz-transition: @values;
+	-webkit-transition: @values;
+	transition: @values;
+
+}
+
+.ButtonGlyphicons {
+	font-size: @glyphiconSizeBase;
+	top: 3px;
+}
+
+@defaultBlur: 1px;
+@defaultBlurOpacity: 0.9;
+.Blur(
+	@blur: @defaultBlur;
+	@opacity: @defaultBlurOpacity;
+) {
+	-webkit-filter: blur(@blur);
+	-moz-filter: blur(@blur);
+	-o-filter: blur(@blur);
+	-ms-filter: blur(@blur);
+	filter: blur(@blur);
+	opacity: @opacity;
+}
+
+@defaultFlexWrap: nowrap;
+@defaultFlexAlignItems: stretch;
+@defaultFlexjustify: space-between;
+.flexContainer (
+	@wrap:@defaultFlexWrap;
+	  @stretch:@defaultFlexAlignItems;
+	  @justify:@defaultFlexjustify;
+) {
+
+	display: -webkit-box;
+	display: -moz-box;
+	display: -ms-flexbox;
+	-ms-box-orient: horizontal;
+
+	display: -webkit-flex;
+	display: -moz-flex;
+	display: -ms-flex;
+	display: flex;
+
+	-webkit-flex-flow: row @wrap;
+	-moz-flex-flow: row @wrap;
+	-ms-flex-flow: row @wrap;
+	flex-flow: row @wrap;
+
+	-webkit-align-items: @stretch;
+	align-items: @stretch;
+	justify-content: @justify;
+}
+
+@defaultFlexItem: 0 0 auto;
+.flexItem(@flex:@defaultFlexItem) {
+	-ms-flex: @flex;
+	-webkit-flex: @flex;
+	-moz-flex: @flex;
+	-ms-flex: @flex;
+	flex: @flex;
+}
+
+.Gradient (@startColor: white, @endColor: black) {
+	background-color: @startColor;
+	background: -webkit-gradient(linear, left top, left bottom, from(@startColor), to(@endColor));
+	background: -webkit-linear-gradient(top, @startColor, @endColor);
+	background: -moz-linear-gradient(top, @startColor, @endColor);
+	background: -ms-linear-gradient(top, @startColor, @endColor);
+	background: -o-linear-gradient(top, @startColor, @endColor);
+}
+
+.TextShadow (@string: 0 1px 3px rgba(0, 0, 0, 0.25)) {
+	text-shadow: @string;
+}
+
+
+@defaultTriangleSize: 8px;
+@defaultTriangleColor: @white;
+
+.TriangleTop(@size:@defaultTriangleSize, @color:@defaultTriangleColor){
+	border-style: solid;
+	border-width: 0 @size @size @size;
+	border-color: transparent transparent @color transparent;
+}
+
+.TriangleBottom(@size:@defaultTriangleSize, @color:@defaultTriangleColor) {
+	border-style: solid;
+	border-width: @size @size 0 @size;
+	border-color: @color transparent transparent  transparent;
+}
+
+.TriangleRight(@size:@defaultTriangleSize, @color:@defaultTriangleColor) {
+	border-style: solid;
+	border-width: @size 0 @size @size;
+	border-color: transparent transparent transparent @color;
+}
+
+.TriangleLeft(@size:@defaultTriangleSize, @color:@defaultTriangleColor) {
+	border-style: solid;
+	border-width: @size @size @size 0;
+	border-color: transparent @color transparent transparent;
+}
+
+.loopLightenColor(@i, @color, @luma, @limit, @name) when (@luma < @limit ) {
+	.loopLightenColor( (@i + 1), lighten(@color, 1%), luma(lighten(@color, 1%)), @limit, @name );
+}
+
+.loopLightenColor(@i, @color, @luma, @limit, @name) when (@luma >= @limit) and (@name = 'edit' ) {
+	@edit-light: @color;
+}
+.loopLightenColor(@i, @color, @luma, @limit, @name) when (@luma >= @limit) and (@name = 'color1' ) {
+	@color1-light: @color;
+}
+.loopLightenColor(@i, @color, @luma, @limit, @name) when (@luma >= @limit) and (@name = 'color2' ) {
+	@color2-light: @color;
+}
+.loopLightenColor(@i, @color, @luma, @limit, @name) when (@luma >= @limit) and (@name = 'accent' ) {
+	@accent-light: @color;
+}
+.makeLightColors(@limit) {
+	// lighten colors until it reaches luma of @limit
+	.loopLightenColor(0, @color1, luma(@color1), @limit, "color1");
+	.loopLightenColor(0, @color2, luma(@color2), @limit, "color2");
+	.loopLightenColor(0, @accentColor, luma(@accentColor), @limit, "accent");
+	.loopLightenColor(0, @edit, luma(@edit), @limit, "edit");
+}
+
+.makeLightColors(98%);

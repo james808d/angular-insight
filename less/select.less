@@ -1,0 +1,351 @@
+@import "mixins";
+@import "variables";
+
+.preview-widget {
+
+	padding: 0;
+	border: 1px solid rgba(0, 0, 0, 0.1);
+	background: #fafafa;
+	height: 436px;
+
+	.preview-item {
+		position: relative;
+
+		> h3 {
+			margin-top: 0;
+			color: @accentDark;
+		}
+	}
+
+	.scroll-container {
+		position: absolute;
+		top: 16px;
+		right: 16px;
+		left: 16px;
+		bottom: 0;
+		overflow-y: scroll;
+		height: 332px;
+	}
+}
+
+
+.search-widget {
+
+	width: 100%;
+	position: relative;
+
+	height: 436px;
+	border-right: 1px solid rgba(0, 0, 0, 0.1);
+
+
+	&:after {
+		visibility: hidden;
+		display: block;
+		content: "";
+		clear: both;
+		height: 0;
+	}
+
+	.assigned .btn .ok_2 {
+		color: rgb(0,160,240);
+	}
+
+
+	.overlay {
+		position: fixed;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		background: rgba(0,0,0,0.05);
+	}
+
+	.search-input {
+		height: 64px;
+		z-index: 20;
+		position: absolute;
+		top: 16px;
+		left: 0;
+		right: 0;
+		padding: 0 16px;
+		border-bottom: 1px solid @borderColor;
+
+		input {
+			border:1px solid transparent;
+		}
+	}
+
+	.radio {
+		margin: 0;
+		padding-left: 16px;
+		padding-top: 4px;
+		padding-bottom: 4px;
+		color: rgba(0,0,0,0.5);
+		border-top: 1px solid rgba(0,0,0,0.1);
+
+		font-size: 11px;
+
+		input[type="radio"] {
+			margin: 0 0 0 -20px;
+		}
+	}
+
+	.search-field {
+		position: absolute;
+		top: 0;
+		left: 16px;
+		right: 16px;
+		height: 48px;
+		background: white;
+		z-index: 1;
+
+		border: 1px solid rgba(0, 0, 0, 0.25);
+		border-radius: 4px;
+		box-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
+
+
+		.icon {
+			position: absolute;
+			left: 12px;
+			top: 12px;
+			color: rgba(0, 0, 0, 0.25);
+			font-family: 'Glyphicons Regular';
+			font-style: normal;
+			font-size: 24px;
+		}
+
+		.input {
+			background: none;
+			width: 100%;
+			padding: 0 16px;
+			line-height: 36px;
+			height: 48px;
+			text-align: center;
+			color: @accentDark;
+
+
+			&:focus {
+				outline: none;
+			}
+
+		}
+
+		&.focus {
+
+			border: 1px solid rgba(0, 0, 0, 0.35);
+
+			.icon {
+				color: rgba(0,0,0,0.5);
+				color: @accentColor;
+			}
+
+		}
+
+		.btn-close {
+			position: absolute;
+			top: 4px;
+			right: 4px;
+			height: 38px;
+			z-index: 100;
+			background: rgba(0, 0, 0, 0.1);
+			color: rgba(0,0,0,0.5);
+			border: 1px solid rgba(0,0,0,0.1);
+
+			background: @accentColor;
+			color: white;
+		}
+	}
+
+	.widget-options {
+
+		position: absolute;
+		top: 48px;
+		left: 16px;
+		right: 16px;
+		z-index: 21;
+		//bottom: 16px;
+		height: 336px;
+
+
+		&:before {
+			content: '';
+			position: absolute;
+			left: 10px;
+			top: -11px;
+			.TriangleTop(@size:14px, @color: rgba(0,0,0,0.35));
+		}
+
+		&:after {
+			content: '';
+			position: absolute;
+			left: 12px;
+			top: -9px;
+			.TriangleTop(@size:12px, @color: white);
+		}
+
+		&.animate-if.ng-enter,
+		&.animate-if.ng-leave
+		{
+			overflow: hidden;
+		}
+
+		&.animate-if.ng-enter,
+		&.animate-if.ng-leave,
+		&.animate-if.ng-enter .scroll-container,
+		&.animate-if.ng-leave .scroll-container {
+			-webkit-transition: all linear 0.1s;
+			transition: all linear 0.1s;
+			z-index: 0;
+
+		}
+
+		&.animate-if.ng-enter .scroll-container,
+		&.animate-if.ng-leave.ng-leave-active .scroll-container {
+			opacity: 0;
+			top: -336px;
+		}
+
+		&.animate-if.ng-leave .scroll-container,
+		&.animate-if.ng-enter.ng-enter-active .scroll-container {
+			top: 0;
+			opacity:1;
+		}
+
+
+		.scroll-container {
+			position: relative;
+			right: 0;
+			left: 0;
+			top: auto;
+			overflow-y: scroll;
+			height: 332px;
+			margin-top: 2px;
+
+			border: 1px solid rgba(0, 0, 0, 0.35);
+			box-shadow: 0 0 10px rgba(0,0,0,0.5);
+			background: #fcfcfc;
+
+			.RoundedShape(6px);
+
+			.btn-close {
+				position: absolute;
+				top: 5px;
+				right: 5px;
+				z-index: 100;
+
+			}
+
+
+			> div {
+				border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+				padding: 0 0 0 16px;
+				cursor: pointer;
+				position: relative;
+				height: 40px;
+				line-height: 40px;
+
+				&.subhead {
+					font-size: 10px;
+					color: #aaa;
+					padding: 0 16px;
+					cursor: default;
+					line-height: 36px;
+					height: 24px;
+					border-bottom: 0;
+					text-transform: uppercase;
+				}
+
+				&.assigned {
+					background: rgba(0, 160, 240, 0.1);
+					color: @accentDark1;
+					border-color: transparent;
+				}
+				.btn {
+					color: rgba(0, 0, 0, 0.5);
+					position: relative;
+					top: 0;
+					right: 0;
+					border-radius: 0;
+					padding-left: 16px;
+					height: 40px;
+					width: 50px;
+				}
+			}
+		}
+	}
+
+	.widget-members {
+		position: relative;
+		z-index: 0;
+		height: 348px;
+		top: 64px;
+
+
+		&.focus  {
+
+			.scroll-container {
+				>div.selected {
+					background: rgba(0,0,0,0.35);
+				}
+			}
+		}
+
+		.scroll-container {
+
+			position: absolute;
+			top: 16px;
+			right: 0;
+			left: 0;
+			bottom: 0;
+			overflow-y: scroll;
+			height: 316px;
+
+			> div {
+				border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+				padding: 0 0 0 16px;
+				height: 40px;
+				line-height: 40px;
+				cursor: pointer;
+
+				&:last-child {
+					border: none;
+				}
+				&.selected {
+					background: rgb(0, 160, 240);
+					color: white;
+				}
+			}
+
+			.btn {
+				color: rgba(0, 0, 0, 0.25);
+				position: relative;
+				top: 0;
+				right: 0;
+				height: 40px;
+				padding-left: 16px;
+				width: 50px;
+			}
+
+			.widget-member {
+				.flexContainer();
+
+				> div {
+					.flexItem();
+
+					&.flex-fill {
+						.flexItem(1 1 auto);
+					}
+
+				}
+			}
+		}
+	}
+}
+
+.btn:focus,
+.btn:active,
+.btn:focus:active
+{
+	outline: none;
+}
+

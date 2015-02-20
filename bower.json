@@ -1,0 +1,16 @@
+{
+  "name": "angular-select-widget",
+  "version": "0.0.0",
+  "description": "directive to select things",
+  "authors": [
+    "James Durham"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

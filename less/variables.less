@@ -1,0 +1,132 @@
+@import "mixins";
+
+@white: white;
+@whiteFade: fade(white, 50%);
+@whiteFadeMore: fade(white, 15%);
+@whiteFadeMore2: fade(white, 10%);
+
+// default colors
+@background: white;
+@backgroundFade: fade(@background, 50%);
+
+// need something to get to #666
+@color1: #333E48;
+@color1Light0: lighten(@color1, 25%);
+@color1Light: lighten(@color1, 20%);
+@color1Light1: lighten(@color1, 5%);
+@color1Light2: lighten(@color1, 10%);
+@color1Light20: lighten(@color1, 20%);
+@color1Light40: lighten(@color1, 40%);
+@color1Light50: lighten(@color1, 50%);
+@color1Light75: lighten(@color1, 75%);
+@color1Fade0: fade(@color1, 75%);
+@color1Fade: fade(@color1, 60%);
+@color1Fade2: fade(@color1, 25%);
+@color1Fade3: fade(@color1, 10%);
+@color1Fade4: fade(@color1, 20%);
+@color1Dark: darken(@color1, 15%);
+@color1Dark1: darken(@color1, 10%);
+
+@color1Fade10: fade(@color1, 10%);
+@color1Fade25: fade(@color1, 25%);
+@color1Fade40: fade(@color1, 40%);
+@color1Fade50: fade(@color1, 50%);
+@color1Fade75: fade(@color1, 75%);
+
+@color2: #e9e9e9;
+@color2Light: lighten(@color2, 20%);
+@color2Light1: lighten(@color2, 10%);
+@color2VeryLight: lighten(@color2, 4%);
+@color2Fade: fade(@color2, 50%);
+@color2Fade2: fade(@color2, 25%);
+@color2Dark: darken(@color2, 10%);
+@color2Dark2: darken(@color2, 20%);
+.color2 {
+	color: @color2;
+}
+.color2:hover {
+	color: @color2;
+}
+
+@color3: #f5f5f5;
+
+@buttonBorder: @color1Fade4;
+@borderColor: @color1Fade3;
+@borderColorLight: rgba(0,0,0,0.05);
+
+@darkButtonBackground: fade(white, 5%);
+@darkButtonColor: fade(white, 65%);
+@darkBorderColor: black;
+
+
+@accentColor: #00A0F0;
+@accentDark: darken(@accentColor, 10%);
+@accentDark1: darken(@accentColor, 20%);
+@accentLight: lighten(@accentColor, 40%);
+@accentLight1: lighten(@accentColor, 30%);
+@accentLight2: lighten(@accentColor, 20%);
+@accentLight3: lighten(@accentColor, 10%);
+@accentFade: fade(@accentColor, 50%);
+@accentFade2: fade(@accentColor, 25%);
+@accentFade3: fade(@accentColor, 10%);
+
+@accentDarken20: darken(@accentColor, 20%);
+@accentFade20: fade(@accentColor, 20%);
+@accentLighten25: lighten(@accentColor, 25%);
+@accentLighten33: lighten(@accentColor, 33%);
+@accentLighten45: lighten(@accentColor, 45%);
+@accentLighten50: lighten(@accentColor, 50%);
+
+
+@accentLightFade: fade(@accentLighten45 , 50%);
+
+@leftViewport: #222930;
+
+// new
+
+@actionColor: saturate(@accentColor, 30%);
+@actionColor: @accentColor;
+
+
+@edit: rgb(252, 255, 143);
+@editFade50: fade(rgb(252, 255, 143), 50%);
+@editLighten50: lighten(@edit, 50%);
+
+
+
+@fontFamily: 'Karla', Helvetica Neue, Helvetica, Arial, sans-serif;
+@fontSizeSmall: 10px;
+@fontSizeBase: 12px;
+@fontSizeBasePlus1: 16px;
+@fontSizeBasePlus2: 24px;
+
+@glyphiconSizeBase: 16px;
+
+@typeUnit1-4x: @typeUnit1x / 4;
+@typeUnit1-2x: @typeUnit1x / 2;
+@typeUnit1x: 16px;
+@typeUnit1x5x: @typeUnit1x * 1.5;
+@typeUnit2x: @typeUnit1x * 2;
+@typeUnit3x: @typeUnit1x * 3;
+@typeUnit4x: @typeUnit1x * 4;
+@typeUnit5x: @typeUnit1x * 5;
+@typeUnit6x: @typeUnit1x * 6;
+
+@colUnit1-8x: @colUnit1x / 8;
+@colUnit1-4x: @colUnit1x / 4;
+@colUnit1-2x: @colUnit1x / 2;
+@colUnit1x: 160px;
+@colUnit2x: @colUnit1x * 2;
+@colUnit3x: @colUnit1x * 3;
+@colUnit4x: @colUnit1x * 4;
+
+
+@gridUnit1-4x: @gridUnit1x / 4;
+@gridUnit1-2x: @gridUnit1x / 2;
+@gridUnit1x: 256px;
+@gridUnit2x: @gridUnit1x * 2;
+@gridUnit3x: @gridUnit1x * 3;
+@gridUnit4x: @gridUnit1x * 4;
+
+@formWarning: #880000;
+@leftNavWidth: @colUnit1x;
