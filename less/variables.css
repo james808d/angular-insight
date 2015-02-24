@@ -1,0 +1,34 @@
+.Round {
+  -webkit-border-radius: 9999px;
+  -moz-border-radius: 9999px;
+  border-radius: 9999px;
+}
+.RoundedButton {
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  border-radius: 2px;
+}
+.PointerCursor {
+  cursor: default;
+  cursor: hand;
+  cursor: pointer;
+}
+.TextClip {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  -webkit-hyphens: auto;
+  -moz-hyphens: auto;
+  -ms-hyphens: auto;
+  hyphens: auto;
+}
+.ButtonGlyphicons {
+  font-size: 16px;
+  top: 3px;
+}
+.color2 {
+  color: #e9e9e9;
+}
+.color2:hover {
+  color: #e9e9e9;
+}

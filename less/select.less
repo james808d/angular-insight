@@ -8,13 +8,58 @@
 	background: #fafafa;
 	height: 436px;
 
-	.preview-item {
-		position: relative;
 
-		> h3 {
-			margin-top: 0;
-			color: @accentDark;
+
+	.preview-column {
+
+		border-left: 1px solid rgba(0, 0, 0, 0.1);
+		height: 100%;
+
+		&.bold-theme {
+			background: @accentColor;
+			color: white;
+
+			border-left: none;
+
+			.preview-item {
+				> h3 {
+					color: white;
+				}
+			}
+
 		}
+
+		.preview-item {
+			position: relative;
+
+			> h3 {
+				color: @accentColor;
+				text-align: center;
+				border-bottom: 1px solid @borderColor;
+				padding-bottom: 24px;
+			}
+
+
+		}
+
+		h1 {
+			text-align: center;
+			margin-top: 0;
+		}
+
+		.circle {
+			height:64px;
+			width: 64px;
+			.Round();
+			background: @borderColor;
+			display: inline-block;
+			vertical-align: middle;
+			margin-right: 8px;
+			text-align: center;
+			line-height: 64px;
+			color: @color1Fade;
+		}
+
 	}
 
 	.scroll-container {
@@ -36,7 +81,7 @@
 	position: relative;
 
 	height: 436px;
-	border-right: 1px solid rgba(0, 0, 0, 0.1);
+
 
 
 	&:after {
@@ -46,11 +91,6 @@
 		clear: both;
 		height: 0;
 	}
-
-	.assigned .btn .ok_2 {
-		color: rgb(0,160,240);
-	}
-
 
 	.overlay {
 		position: fixed;
@@ -168,7 +208,6 @@
 		//bottom: 16px;
 		height: 336px;
 
-
 		&:before {
 			content: '';
 			position: absolute;
@@ -213,7 +252,6 @@
 			opacity:1;
 		}
 
-
 		.scroll-container {
 			position: relative;
 			right: 0;
@@ -228,6 +266,8 @@
 			background: #fcfcfc;
 
 			.RoundedShape(6px);
+			-webkit-transform: translate3d(0,0,0);
+			transform: translate3d(0,0,0);
 
 			.btn-close {
 				position: absolute;
@@ -240,7 +280,7 @@
 
 			> div {
 				border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-				padding: 0 0 0 16px;
+				padding: 0;
 				cursor: pointer;
 				position: relative;
 				height: 40px;
@@ -251,26 +291,50 @@
 					color: #aaa;
 					padding: 0 16px;
 					cursor: default;
-					line-height: 36px;
+					line-height: 24px;
 					height: 24px;
 					border-bottom: 0;
+					margin-top: 8px;
 					text-transform: uppercase;
+
+					&:hover {
+						background: none;
+					}
 				}
 
-				&.assigned {
-					background: rgba(0, 160, 240, 0.1);
-					color: @accentDark1;
-					border-color: transparent;
+				&:hover {
+					background: @accentFade3;
 				}
+
+
+				&.assigned,
+				&.assigned:hover
+				{
+					//background: rgba(0,160,240,0.05);
+					color: @accentDark;
+					//border-color: transparent;
+
+					.btn {
+						color: @accentColor;
+					}
+
+					.circle {
+						background: @accentFade3;
+						color: @accentColor;
+					}
+				}
+
+
+
 				.btn {
 					color: rgba(0, 0, 0, 0.5);
 					position: relative;
 					top: 0;
 					right: 0;
 					border-radius: 0;
-					padding-left: 16px;
 					height: 40px;
 					width: 50px;
+					z-index: 10;
 				}
 			}
 		}
@@ -298,7 +362,29 @@
 				text-align: center;
 				line-height: 28px;
 				color: @color1Fade;
+				margin-top: -4px;
 			}
+		}
+
+		&.ng-move,
+		&.ng-enter,
+		&.ng-leave {
+			-webkit-transition:all linear 0.25s;
+			transition:all linear 0.25s;
+		}
+
+		&.ng-leave.ng-leave-active,
+		&.ng-move,
+		&.ng-enter {
+			opacity:0;
+			max-height:0;
+		}
+
+		&.ng-leave,
+		&.ng-move.ng-move-active,
+		&.ng-enter.ng-enter-active {
+			opacity:1;
+			max-height:40px;
 		}
 	}
 
@@ -329,7 +415,7 @@
 			height: 316px;
 
 			> div {
-				border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+				border-bottom: 1px solid rgba(0, 0, 0, 0.05);
 				padding: 0 0 0 16px;
 				height: 40px;
 				line-height: 40px;
@@ -338,9 +424,14 @@
 				&:last-child {
 					border: none;
 				}
-				&.selected {
-					background: rgb(0, 160, 240);
+				&.selected,
+				&.selected:hover
+				{
+					background: @accentColor;
 					color: white;
+				}
+				&:hover {
+					background: rgba(0, 160, 240, 0.1);
 				}
 			}
 
