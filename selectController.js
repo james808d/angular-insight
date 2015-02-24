@@ -63,6 +63,13 @@ function selectController($scope, GroupList){
 		}
 	};
 
+
+	$scope.selectAndToggle = function(item) {
+
+		$scope.selection(item);
+		$scope.toggleItem(item);
+	};
+
 	$scope.selection = function(item){
 
 		if (item.selected) {

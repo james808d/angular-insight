@@ -46,27 +46,29 @@
 							<div class="flex-fill">
 								<span ng-bind-html="group.name | highlight:query.name"></span>
 							</div>
+							<div>
+								<span class="badge remove-group" ng-show="group.assigned"
+								      toggleItem="group">Remove Group</span>
+								<span class="badge add-group" ng-hide="group.assigned"
+								      toggleItem="group">Add Group</span>
+							</div>
 						</div>
 
 						<div ng-repeat="group in groups | filter:query | orderBy: 'name'"
 						     ng-if="preview"
 						     selection-model-cleanup-strategy="deselect"
-						     selection-model-on-change="selection(group)"
 						     selection-model
 						     class="widget-item"
+						     ng-click="toggleItem(group)"
 						     ng-class="{assigned:group.assigned}">
 
 							<div>
 								<button class="btn btn-link pull-right"
-								        ng-click="toggleItem(group)"
-								        ng-show="group.assigned"
-								        selection-model-ignore>
+								        ng-show="group.assigned">
 									<span class="glyphicons ok_2"></span>
 								</button>
 								<button class="btn btn-link pull-right"
-								        ng-click="toggleItem(group)"
-								        ng-hide="group.assigned"
-								        selection-model-ignore>
+								        ng-hide="group.assigned">
 									<span class="glyphicons plus"></span>
 								</button>
 							</div>
@@ -75,6 +77,10 @@
 							</div>
 							<div class="flex-fill">
 								<span ng-bind-html="group.name | highlight:query.name"></span>
+							</div>
+							<div>
+								<span class="badge remove-group" ng-show="group.assigned">Remove Group</span>
+								<span class="badge add-group" ng-hide="group.assigned">Add Group</span>
 							</div>
 						</div>
 					</div>
@@ -90,15 +96,14 @@
 						<div class="widget-item"
 						     ng-repeat="group in favoriteGroups"
 						     ng-class="{assigned:group.assigned}"
+						     ng-click="toggleItem(group)"
 						     selection-model-cleanup-strategy="deselect"
-						     selection-model-on-change="selection(group)"
 						     selection-model>
 							<div>
-								<button class="btn btn-link pull-right" ng-show="group.assigned" ng-click="removeItem(group)">
+								<button class="btn btn-link pull-right" ng-show="group.assigned">
 									<span class="glyphicons ok_2"></span>
 								</button>
-								<button class="btn btn-link pull-right" ng-hide="group.assigned"
-								        ng-click="addOption(group)">
+								<button class="btn btn-link pull-right" ng-hide="group.assigned">
 									<span class="glyphicons plus"></span>
 								</button>
 							</div>
@@ -107,6 +112,10 @@
 							</div>
 							<div class="flex-fill">
 								{{ group.name }}
+							</div>
+							<div>
+								<span class="badge remove-group" ng-show="group.assigned">Remove Group</span>
+								<span class="badge add-group" ng-hide="group.assigned">Add Group</span>
 							</div>
 						</div>
 
@@ -115,15 +124,14 @@
 						<div class="widget-item"
 						     ng-repeat="group in recentGroups"
 						     ng-class="{assigned:group.assigned}"
+						     ng-click="toggleItem(group)"
 						     selection-model-cleanup-strategy="deselect"
-						     selection-model-on-change="selection(group)"
 						     selection-model>
 							<div>
-								<button class="btn btn-link pull-right" ng-show="group.assigned" ng-click="removeItem(group)">
+								<button class="btn btn-link pull-right" ng-show="group.assigned">
 									<span class="glyphicons ok_2"></span>
 								</button>
-								<button class="btn btn-link pull-right" ng-hide="group.assigned"
-								        ng-click="addOption(group)">
+								<button class="btn btn-link pull-right" ng-hide="group.assigned">
 									<span class="glyphicons plus"></span>
 								</button>
 							</div>
@@ -132,6 +140,10 @@
 							</div>
 							<div class="flex-fill">
 								{{ group.name }}
+							</div>
+							<div>
+								<span class="badge remove-group" ng-show="group.assigned">Remove Group</span>
+								<span class="badge add-group" ng-hide="group.assigned">Add Group</span>
 							</div>
 						</div>
 					</div>
@@ -144,11 +156,10 @@
 						     ng-class="{assigned:group.assigned}"
 						     ng-click="toggleItem(group)">
 							<div>
-								<button class="btn btn-link pull-right" ng-show="group.assigned" ng-click="removeItem(group)">
+								<button class="btn btn-link pull-right" ng-show="group.assigned">
 									<span class="glyphicons ok_2"></span>
 								</button>
-								<button class="btn btn-link pull-right" ng-hide="group.assigned"
-								        ng-click="addOption(group)">
+								<button class="btn btn-link pull-right" ng-hide="group.assigned">
 									<span class="glyphicons plus"></span>
 								</button>
 							</div>
@@ -158,8 +169,11 @@
 							<div class="flex-fill">
 								{{ group.name }}
 							</div>
+							<div>
+								<span class="badge remove-group" ng-show="group.assigned">Remove Group</span>
+								<span class="badge add-group" ng-hide="group.assigned">Add Group</span>
+							</div>
 						</div>
-
 
 						<div class="subhead">Recent</div>
 
@@ -168,11 +182,10 @@
 						     ng-class="{assigned:group.assigned}"
 						     ng-click="toggleItem(group)">
 							<div>
-								<button class="btn btn-link pull-right" ng-show="group.assigned" ng-click="removeItem(group)">
+								<button class="btn btn-link pull-right" ng-show="group.assigned">
 									<span class="glyphicons ok_2"></span>
 								</button>
-								<button class="btn btn-link pull-right" ng-hide="group.assigned"
-								        ng-click="addOption(group)">
+								<button class="btn btn-link pull-right" ng-hide="group.assigned">
 									<span class="glyphicons plus"></span>
 								</button>
 							</div>
@@ -181,6 +194,10 @@
 							</div>
 							<div class="flex-fill">
 								{{ group.name }}
+							</div>
+							<div>
+								<span class="badge remove-group" ng-show="group.assigned">Remove Group</span>
+								<span class="badge add-group" ng-hide="group.assigned">Add Group</span>
 							</div>
 						</div>
 					</div>
