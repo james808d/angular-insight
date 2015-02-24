@@ -38,6 +38,8 @@ function selectController($scope, GroupList){
 
 	$scope.toggleItem = function(item) {
 
+		$scope.showMessage = false;
+
 		if (!item.assigned) {
 			item.assigned = true;
 			$scope.assignedGroups.push(item);
@@ -46,7 +48,12 @@ function selectController($scope, GroupList){
 		}
 	};
 
-
+	$scope.change = function(item){
+		if(item.assigned === false) {
+			$scope.showMessage = true;
+			$scope.messageItem = item;
+		}
+	};
 
 	$scope.selectItem = function(item){
 

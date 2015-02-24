@@ -58,6 +58,7 @@
 						     ng-if="preview"
 						     selection-model-cleanup-strategy="deselect"
 						     selection-model
+						     selection-model-on-change="change(group)"
 						     class="widget-item"
 						     ng-click="toggleItem(group)"
 						     ng-class="{assigned:group.assigned}">
@@ -98,6 +99,7 @@
 						     ng-class="{assigned:group.assigned}"
 						     ng-click="toggleItem(group)"
 						     selection-model-cleanup-strategy="deselect"
+						     selection-model-on-change="change(group)"
 						     selection-model>
 							<div>
 								<button class="btn btn-link pull-right" ng-show="group.assigned">
@@ -126,6 +128,7 @@
 						     ng-class="{assigned:group.assigned}"
 						     ng-click="toggleItem(group)"
 						     selection-model-cleanup-strategy="deselect"
+						     selection-model-on-change="change(group)"
 						     selection-model>
 							<div>
 								<button class="btn btn-link pull-right" ng-show="group.assigned">
@@ -236,7 +239,7 @@
 	<div class="col-sm-5 preview-column" ng-if="preview" ng-class="{'':currentSelection }">
 
 		<div class="scroll-container">
-			<div class="preview-item" ng-repeat="group in assignedGroups | filter:{selected:true}" ng-if="!query">
+			<div class="preview-item" ng-repeat="group in assignedGroups | filter:{selected:true} | limitTo:1 | orderBy:reverse" ng-if="!query">
 
 				<h1>
 					<span class="circle glyphicon glyphicon-user"></span>
@@ -254,7 +257,7 @@
 			</div>
 
 
-			<div class="preview-item" ng-repeat="group in groups | filter:{selected:true}" ng-if="query">
+			<div class="preview-item" ng-repeat="group in groups | filter:{selected:true} | limitTo:1 | orderBy:reverse" ng-if="query">
 
 				<h3>{{ group.name }}</h3>
 				<p>{{ group.description }}</p>
@@ -265,6 +268,11 @@
 				<p ng-if="group.users.length" ng-repeat="user in group.users track by $index">{{ user }}</p>
 				<p ng-if="!group.users.length">No assigned users.</p>
 			</div>
+
+			<div ng-show="showMessage">
+				{{ messageItem.name }} was removed.
+			</div>
+
 		</div>
 	</div>
 </div>
