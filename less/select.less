@@ -92,11 +92,6 @@
 		height: 0;
 	}
 
-	.assigned .btn .ok_2 {
-		color: rgb(0,160,240);
-	}
-
-
 	.overlay {
 		position: fixed;
 		top: 0;
@@ -285,7 +280,7 @@
 
 			> div {
 				border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-				padding: 0 0 0 16px;
+				padding: 0;
 				cursor: pointer;
 				position: relative;
 				height: 40px;
@@ -296,26 +291,50 @@
 					color: #aaa;
 					padding: 0 16px;
 					cursor: default;
-					line-height: 36px;
+					line-height: 24px;
 					height: 24px;
 					border-bottom: 0;
+					margin-top: 8px;
 					text-transform: uppercase;
+
+					&:hover {
+						background: none;
+					}
 				}
 
-				&.assigned {
-					background: rgba(0, 160, 240, 0.1);
-					color: @accentDark1;
-					border-color: transparent;
+				&:hover {
+					background: @accentFade3;
 				}
+
+
+				&.assigned,
+				&.assigned:hover
+				{
+					//background: rgba(0,160,240,0.05);
+					color: @accentDark;
+					//border-color: transparent;
+
+					.btn {
+						color: @accentColor;
+					}
+
+					.circle {
+						background: @accentFade3;
+						color: @accentColor;
+					}
+				}
+
+
+
 				.btn {
 					color: rgba(0, 0, 0, 0.5);
 					position: relative;
 					top: 0;
 					right: 0;
 					border-radius: 0;
-					padding-left: 16px;
 					height: 40px;
 					width: 50px;
+					z-index: 10;
 				}
 			}
 		}
@@ -343,6 +362,7 @@
 				text-align: center;
 				line-height: 28px;
 				color: @color1Fade;
+				margin-top: -4px;
 			}
 		}
 
@@ -404,8 +424,10 @@
 				&:last-child {
 					border: none;
 				}
-				&.selected {
-					background: rgb(0, 160, 240);
+				&.selected,
+				&.selected:hover
+				{
+					background: @accentColor;
 					color: white;
 				}
 				&:hover {
