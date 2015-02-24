@@ -291,8 +291,8 @@
 					color: #aaa;
 					padding: 0 16px;
 					cursor: default;
-					line-height: 24px;
-					height: 24px;
+					line-height: 32px;
+					height: 32px;
 					border-bottom: 0;
 					margin-top: 8px;
 					text-transform: uppercase;
@@ -302,13 +302,31 @@
 					}
 				}
 
+
+				&.selected,
+				&.selected:hover
+				{
+					background: @accentColor;
+					color: white;
+
+					.ui-match {
+						background: rgba(0,0,0,0.5);
+						color: @white;
+					}
+
+					.btn {
+						color: @white;
+					}
+
+				}
+
 				&:hover {
 					background: @accentFade3;
 				}
 
 
-				&.assigned,
-				&.assigned:hover
+				&.assigned:not(.selected),
+				&.assigned:hover:not(.selected)
 				{
 					//background: rgba(0,160,240,0.05);
 					color: @accentDark;

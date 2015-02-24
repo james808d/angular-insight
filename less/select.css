@@ -271,8 +271,8 @@
   color: #aaa;
   padding: 0 16px;
   cursor: default;
-  line-height: 24px;
-  height: 24px;
+  line-height: 32px;
+  height: 32px;
   border-bottom: 0;
   margin-top: 8px;
   text-transform: uppercase;
@@ -280,19 +280,33 @@
 .search-widget .widget-options .scroll-container > div.subhead:hover {
   background: none;
 }
+.search-widget .widget-options .scroll-container > div.selected,
+.search-widget .widget-options .scroll-container > div.selected:hover {
+  background: #00a0f0;
+  color: white;
+}
+.search-widget .widget-options .scroll-container > div.selected .ui-match,
+.search-widget .widget-options .scroll-container > div.selected:hover .ui-match {
+  background: rgba(0, 0, 0, 0.5);
+  color: #ffffff;
+}
+.search-widget .widget-options .scroll-container > div.selected .btn,
+.search-widget .widget-options .scroll-container > div.selected:hover .btn {
+  color: #ffffff;
+}
 .search-widget .widget-options .scroll-container > div:hover {
   background: rgba(0, 160, 240, 0.1);
 }
-.search-widget .widget-options .scroll-container > div.assigned,
-.search-widget .widget-options .scroll-container > div.assigned:hover {
+.search-widget .widget-options .scroll-container > div.assigned:not(.selected),
+.search-widget .widget-options .scroll-container > div.assigned:hover:not(.selected) {
   color: #007ebd;
 }
-.search-widget .widget-options .scroll-container > div.assigned .btn,
-.search-widget .widget-options .scroll-container > div.assigned:hover .btn {
+.search-widget .widget-options .scroll-container > div.assigned:not(.selected) .btn,
+.search-widget .widget-options .scroll-container > div.assigned:hover:not(.selected) .btn {
   color: #00a0f0;
 }
-.search-widget .widget-options .scroll-container > div.assigned .circle,
-.search-widget .widget-options .scroll-container > div.assigned:hover .circle {
+.search-widget .widget-options .scroll-container > div.assigned:not(.selected) .circle,
+.search-widget .widget-options .scroll-container > div.assigned:hover:not(.selected) .circle {
   background: rgba(0, 160, 240, 0.1);
   color: #00a0f0;
 }

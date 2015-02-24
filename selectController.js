@@ -6,6 +6,20 @@ function selectController($scope, GroupList){
 	$scope.state = {};
 
 	$scope.groups = GroupList.groups;
+	$scope.groups.$promise.then(function(response){
+		$scope.favoriteGroups = [];
+		$scope.recentGroups = [];
+
+		$scope.favoriteGroups.push(response[3]);
+		$scope.favoriteGroups.push(response[6]);
+		$scope.favoriteGroups.push(response[7]);
+
+		$scope.recentGroups.push(response[1]);
+		$scope.recentGroups.push(response[2]);
+		$scope.recentGroups.push(response[8]);
+	});
+
+
 	$scope.preview = false;
 
 	$scope.assignedGroups = [];
@@ -31,6 +45,7 @@ function selectController($scope, GroupList){
 			$scope.removeItem(item);
 		}
 	};
+
 
 
 	$scope.selectItem = function(item){
