@@ -26,16 +26,18 @@
 				<div class="widget-options animate-if" ng-if="query && showOptions">
 					<div class="scroll-container" ng-if="inputOptions === 'all'">
 
+						<div ng-if="!filtered.length">No results found.</div>
+
 						<div ng-if="!preview"
 						     option-row
-						     ng-repeat="item in data | filter:query | orderBy: 'name'"
+						     ng-repeat="item in filtered = ( data | filter:query | orderBy: 'name' )"
 						     class="selekt-option-row"
 						     ng-class="{assigned:item.assigned}"
 						     ng-click="toggleItem(item)">
 						</div>
 
 						<div ng-if="preview" option-row
-						     ng-repeat="item in data | filter:query | orderBy: 'name'"
+						     ng-repeat="item in filtered = ( data | filter:query | orderBy: 'name' )"
 						     class="selekt-option-row"
 						     ng-class="{assigned:item.assigned}"
 						     ng-click="toggleItem(item)"

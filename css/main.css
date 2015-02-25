@@ -418,6 +418,9 @@
   right: 5px;
   z-index: 100;
 }
+.search-widget .widget-options .scroll-container > div:not(.selekt-option-row):not(.subhead) {
+  padding: 16px;
+}
 .search-widget .widget-members {
   position: relative;
   z-index: 0;
