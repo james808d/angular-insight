@@ -1,0 +1,18 @@
+<div>
+	<button class="btn btn-link pull-right" ng-show="item.assigned">
+		<span class="glyphicons ok_2"></span>
+	</button>
+	<button class="btn btn-link pull-right" ng-hide="item.assigned">
+		<span class="glyphicons plus"></span>
+	</button>
+</div>
+<div>
+	<span class="circle glyphicon glyphicon-user"></span>
+</div>
+<div class="flex-fill">
+	{{ item.name }}
+</div>
+<div>
+	<span class="badge remove-item" ng-show="item.assigned">Remove item</span>
+	<span class="badge add-item" ng-hide="item.assigned">Add item</span>
+</div>

@@ -93,59 +93,25 @@
 						<div class="subhead">Favorites</div>
 
 						<div class="widget-item"
+						     option-row
 						     ng-repeat="item in favorites"
 						     ng-class="{assigned:item.assigned}"
 						     ng-click="toggleItem(item)"
 						     selection-model-cleanup-strategy="deselect"
 						     selection-model-on-change="change(item)"
 						     selection-model>
-							<div>
-								<button class="btn btn-link pull-right" ng-show="item.assigned">
-									<span class="glyphicons ok_2"></span>
-								</button>
-								<button class="btn btn-link pull-right" ng-hide="item.assigned">
-									<span class="glyphicons plus"></span>
-								</button>
-							</div>
-							<div>
-								<span class="circle glyphicon glyphicon-user"></span>
-							</div>
-							<div class="flex-fill">
-								{{ item.name }}
-							</div>
-							<div>
-								<span class="badge remove-item" ng-show="item.assigned">Remove item</span>
-								<span class="badge add-item" ng-hide="item.assigned">Add item</span>
-							</div>
 						</div>
 
 						<div class="subhead">Recent</div>
 
 						<div class="widget-item"
+						     option-row
 						     ng-repeat="item in recents"
 						     ng-class="{assigned:item.assigned}"
 						     ng-click="toggleItem(item)"
 						     selection-model-cleanup-strategy="deselect"
 						     selection-model-on-change="change(item)"
 						     selection-model>
-							<div>
-								<button class="btn btn-link pull-right" ng-show="item.assigned">
-									<span class="glyphicons ok_2"></span>
-								</button>
-								<button class="btn btn-link pull-right" ng-hide="item.assigned">
-									<span class="glyphicons plus"></span>
-								</button>
-							</div>
-							<div>
-								<span class="circle glyphicon glyphicon-user"></span>
-							</div>
-							<div class="flex-fill">
-								{{ item.name }}
-							</div>
-							<div>
-								<span class="badge remove-item" ng-show="item.assigned">Remove item</span>
-								<span class="badge add-item" ng-hide="item.assigned">Add item</span>
-							</div>
 						</div>
 					</div>
 
@@ -153,53 +119,19 @@
 						<div class="subhead">Favorites</div>
 
 						<div class="widget-item"
+						     option-row
 						     ng-repeat="item in favorites"
 						     ng-class="{assigned:item.assigned}"
 						     ng-click="toggleItem(item)">
-							<div>
-								<button class="btn btn-link pull-right" ng-show="item.assigned">
-									<span class="glyphicons ok_2"></span>
-								</button>
-								<button class="btn btn-link pull-right" ng-hide="item.assigned">
-									<span class="glyphicons plus"></span>
-								</button>
-							</div>
-							<div>
-								<span class="circle glyphicon glyphicon-user"></span>
-							</div>
-							<div class="flex-fill">
-								{{ item.name }}
-							</div>
-							<div>
-								<span class="badge remove-item" ng-show="item.assigned">Remove item</span>
-								<span class="badge add-item" ng-hide="item.assigned">Add item</span>
-							</div>
 						</div>
 
 						<div class="subhead">Recent</div>
 
 						<div class="widget-item"
+						     option-row
 						     ng-repeat="item in recents"
 						     ng-class="{assigned:item.assigned}"
 						     ng-click="toggleItem(item)">
-							<div>
-								<button class="btn btn-link pull-right" ng-show="item.assigned">
-									<span class="glyphicons ok_2"></span>
-								</button>
-								<button class="btn btn-link pull-right" ng-hide="item.assigned">
-									<span class="glyphicons plus"></span>
-								</button>
-							</div>
-							<div>
-								<span class="circle glyphicon glyphicon-user"></span>
-							</div>
-							<div class="flex-fill">
-								{{ item.name }}
-							</div>
-							<div>
-								<span class="badge remove-item" ng-show="item.assigned">Remove item</span>
-								<span class="badge add-item" ng-hide="item.assigned">Add item</span>
-							</div>
 						</div>
 					</div>
 				</div>
@@ -237,12 +169,11 @@
 	<div class="col-sm-5 preview-column" ng-if="preview" ng-class="{'':currentSelection }">
 
 		<div class="scroll-container">
+			<!-- preview has to be specific to data type -->
 			<div class="preview-item" ng-repeat="item in assignedItems | filter:{selected:true} | limitTo:1 | orderBy:reverse" ng-if="!query">
-
 				<h1>
 					<span class="circle glyphicon glyphicon-user"></span>
 				</h1>
-
 
 				<h3>{{ item.name }}</h3>
 				<p>{{ item.description }}</p>
@@ -278,7 +209,7 @@
 <div class="row" style="margin-top: 15px;">
 	<div class="col-sm-12">
 		<label>Show Preview</label><br>
-		<div class="btn-item">
+		<div class="btn-group">
 			<label class="btn btn-primary" ng-model="preview" btn-radio="true">On</label>
 			<label class="btn btn-primary" ng-model="preview" btn-radio="false">Off</label>
 		</div>
