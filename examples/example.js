@@ -1,3 +1,2 @@
-angular.module('example', ['ngSanitize', 'ui.highlight', 'ui.bootstrap'])
-.controller('SelectController', selectController)
+angular.module('example', ['selekt'])
 .factory('GroupList', groupList);
