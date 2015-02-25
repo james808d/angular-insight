@@ -27,32 +27,15 @@
 					<div class="scroll-container" ng-if="inputOptions === 'all'">
 
 						<div ng-repeat="item in data | filter:query | orderBy: 'name'"
+						     option-row
 						     ng-if="!preview"
 						     class="widget-item"
 						     ng-class="{assigned:item.assigned}"
 						     ng-click="toggleItem(item)">
-
-							<div>
-								<button class="btn btn-link pull-right" ng-show="item.assigned">
-									<span class="glyphicons ok_2"></span>
-								</button>
-								<button class="btn btn-link pull-right" ng-hide="item.assigned">
-									<span class="glyphicons plus"></span>
-								</button>
-							</div>
-							<div>
-								<span class="circle glyphicon glyphicon-user"></span>
-							</div>
-							<div class="flex-fill">
-								<span ng-bind-html="item.name | highlight:query.name"></span>
-							</div>
-							<div>
-								<span class="badge remove-item" ng-show="item.assigned">Remove item</span>
-								<span class="badge add-item" ng-hide="item.assigned">Add item</span>
-							</div>
 						</div>
 
 						<div ng-repeat="item in data | filter:query | orderBy: 'name'"
+						     option-row
 						     ng-if="preview"
 						     selection-model-cleanup-strategy="deselect"
 						     selection-model
@@ -60,27 +43,6 @@
 						     class="widget-item"
 						     ng-click="toggleItem(item)"
 						     ng-class="{assigned:item.assigned}">
-
-							<div>
-								<button class="btn btn-link pull-right"
-								        ng-show="item.assigned">
-									<span class="glyphicons ok_2"></span>
-								</button>
-								<button class="btn btn-link pull-right"
-								        ng-hide="item.assigned">
-									<span class="glyphicons plus"></span>
-								</button>
-							</div>
-							<div>
-								<span class="circle glyphicon glyphicon-user"></span>
-							</div>
-							<div class="flex-fill">
-								<span ng-bind-html="item.name | highlight:query.name"></span>
-							</div>
-							<div>
-								<span class="badge remove-item" ng-show="item.assigned">Remove item</span>
-								<span class="badge add-item" ng-hide="item.assigned">Add item</span>
-							</div>
 						</div>
 					</div>
 				</div>
