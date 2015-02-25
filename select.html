@@ -19,24 +19,24 @@
 
 					<input class="input" ng-model="query.name"
 					       ng-click="showOptions = true"
-					       placeholder="Find groups ...">
+					       placeholder="Find items ...">
 				</div>
 
 				<!-- user is searching -->
 				<div class="widget-options animate-if" ng-if="query && showOptions">
 					<div class="scroll-container" ng-if="inputOptions === 'all'">
 
-						<div ng-repeat="group in groups | filter:query | orderBy: 'name'"
+						<div ng-repeat="item in data | filter:query | orderBy: 'name'"
 						     ng-if="!preview"
 						     class="widget-item"
-						     ng-class="{assigned:group.assigned}"
-						     ng-click="toggleItem(group)">
+						     ng-class="{assigned:item.assigned}"
+						     ng-click="toggleItem(item)">
 
 							<div>
-								<button class="btn btn-link pull-right" ng-show="group.assigned">
+								<button class="btn btn-link pull-right" ng-show="item.assigned">
 									<span class="glyphicons ok_2"></span>
 								</button>
-								<button class="btn btn-link pull-right" ng-hide="group.assigned">
+								<button class="btn btn-link pull-right" ng-hide="item.assigned">
 									<span class="glyphicons plus"></span>
 								</button>
 							</div>
@@ -44,32 +44,30 @@
 								<span class="circle glyphicon glyphicon-user"></span>
 							</div>
 							<div class="flex-fill">
-								<span ng-bind-html="group.name | highlight:query.name"></span>
+								<span ng-bind-html="item.name | highlight:query.name"></span>
 							</div>
 							<div>
-								<span class="badge remove-group" ng-show="group.assigned"
-								      toggleItem="group">Remove Group</span>
-								<span class="badge add-group" ng-hide="group.assigned"
-								      toggleItem="group">Add Group</span>
+								<span class="badge remove-item" ng-show="item.assigned">Remove item</span>
+								<span class="badge add-item" ng-hide="item.assigned">Add item</span>
 							</div>
 						</div>
 
-						<div ng-repeat="group in groups | filter:query | orderBy: 'name'"
+						<div ng-repeat="item in data | filter:query | orderBy: 'name'"
 						     ng-if="preview"
 						     selection-model-cleanup-strategy="deselect"
 						     selection-model
-						     selection-model-on-change="change(group)"
+						     selection-model-on-change="change(item)"
 						     class="widget-item"
-						     ng-click="toggleItem(group)"
-						     ng-class="{assigned:group.assigned}">
+						     ng-click="toggleItem(item)"
+						     ng-class="{assigned:item.assigned}">
 
 							<div>
 								<button class="btn btn-link pull-right"
-								        ng-show="group.assigned">
+								        ng-show="item.assigned">
 									<span class="glyphicons ok_2"></span>
 								</button>
 								<button class="btn btn-link pull-right"
-								        ng-hide="group.assigned">
+								        ng-hide="item.assigned">
 									<span class="glyphicons plus"></span>
 								</button>
 							</div>
@@ -77,11 +75,11 @@
 								<span class="circle glyphicon glyphicon-user"></span>
 							</div>
 							<div class="flex-fill">
-								<span ng-bind-html="group.name | highlight:query.name"></span>
+								<span ng-bind-html="item.name | highlight:query.name"></span>
 							</div>
 							<div>
-								<span class="badge remove-group" ng-show="group.assigned">Remove Group</span>
-								<span class="badge add-group" ng-hide="group.assigned">Add Group</span>
+								<span class="badge remove-item" ng-show="item.assigned">Remove item</span>
+								<span class="badge add-item" ng-hide="item.assigned">Add item</span>
 							</div>
 						</div>
 					</div>
@@ -95,17 +93,17 @@
 						<div class="subhead">Favorites</div>
 
 						<div class="widget-item"
-						     ng-repeat="group in favoriteGroups"
-						     ng-class="{assigned:group.assigned}"
-						     ng-click="toggleItem(group)"
+						     ng-repeat="item in favorites"
+						     ng-class="{assigned:item.assigned}"
+						     ng-click="toggleItem(item)"
 						     selection-model-cleanup-strategy="deselect"
-						     selection-model-on-change="change(group)"
+						     selection-model-on-change="change(item)"
 						     selection-model>
 							<div>
-								<button class="btn btn-link pull-right" ng-show="group.assigned">
+								<button class="btn btn-link pull-right" ng-show="item.assigned">
 									<span class="glyphicons ok_2"></span>
 								</button>
-								<button class="btn btn-link pull-right" ng-hide="group.assigned">
+								<button class="btn btn-link pull-right" ng-hide="item.assigned">
 									<span class="glyphicons plus"></span>
 								</button>
 							</div>
@@ -113,28 +111,28 @@
 								<span class="circle glyphicon glyphicon-user"></span>
 							</div>
 							<div class="flex-fill">
-								{{ group.name }}
+								{{ item.name }}
 							</div>
 							<div>
-								<span class="badge remove-group" ng-show="group.assigned">Remove Group</span>
-								<span class="badge add-group" ng-hide="group.assigned">Add Group</span>
+								<span class="badge remove-item" ng-show="item.assigned">Remove item</span>
+								<span class="badge add-item" ng-hide="item.assigned">Add item</span>
 							</div>
 						</div>
 
 						<div class="subhead">Recent</div>
 
 						<div class="widget-item"
-						     ng-repeat="group in recentGroups"
-						     ng-class="{assigned:group.assigned}"
-						     ng-click="toggleItem(group)"
+						     ng-repeat="item in recents"
+						     ng-class="{assigned:item.assigned}"
+						     ng-click="toggleItem(item)"
 						     selection-model-cleanup-strategy="deselect"
-						     selection-model-on-change="change(group)"
+						     selection-model-on-change="change(item)"
 						     selection-model>
 							<div>
-								<button class="btn btn-link pull-right" ng-show="group.assigned">
+								<button class="btn btn-link pull-right" ng-show="item.assigned">
 									<span class="glyphicons ok_2"></span>
 								</button>
-								<button class="btn btn-link pull-right" ng-hide="group.assigned">
+								<button class="btn btn-link pull-right" ng-hide="item.assigned">
 									<span class="glyphicons plus"></span>
 								</button>
 							</div>
@@ -142,11 +140,11 @@
 								<span class="circle glyphicon glyphicon-user"></span>
 							</div>
 							<div class="flex-fill">
-								{{ group.name }}
+								{{ item.name }}
 							</div>
 							<div>
-								<span class="badge remove-group" ng-show="group.assigned">Remove Group</span>
-								<span class="badge add-group" ng-hide="group.assigned">Add Group</span>
+								<span class="badge remove-item" ng-show="item.assigned">Remove item</span>
+								<span class="badge add-item" ng-hide="item.assigned">Add item</span>
 							</div>
 						</div>
 					</div>
@@ -155,14 +153,14 @@
 						<div class="subhead">Favorites</div>
 
 						<div class="widget-item"
-						     ng-repeat="group in favoriteGroups"
-						     ng-class="{assigned:group.assigned}"
-						     ng-click="toggleItem(group)">
+						     ng-repeat="item in favorites"
+						     ng-class="{assigned:item.assigned}"
+						     ng-click="toggleItem(item)">
 							<div>
-								<button class="btn btn-link pull-right" ng-show="group.assigned">
+								<button class="btn btn-link pull-right" ng-show="item.assigned">
 									<span class="glyphicons ok_2"></span>
 								</button>
-								<button class="btn btn-link pull-right" ng-hide="group.assigned">
+								<button class="btn btn-link pull-right" ng-hide="item.assigned">
 									<span class="glyphicons plus"></span>
 								</button>
 							</div>
@@ -170,25 +168,25 @@
 								<span class="circle glyphicon glyphicon-user"></span>
 							</div>
 							<div class="flex-fill">
-								{{ group.name }}
+								{{ item.name }}
 							</div>
 							<div>
-								<span class="badge remove-group" ng-show="group.assigned">Remove Group</span>
-								<span class="badge add-group" ng-hide="group.assigned">Add Group</span>
+								<span class="badge remove-item" ng-show="item.assigned">Remove item</span>
+								<span class="badge add-item" ng-hide="item.assigned">Add item</span>
 							</div>
 						</div>
 
 						<div class="subhead">Recent</div>
 
 						<div class="widget-item"
-						     ng-repeat="group in recentGroups"
-						     ng-class="{assigned:group.assigned}"
-						     ng-click="toggleItem(group)">
+						     ng-repeat="item in recents"
+						     ng-class="{assigned:item.assigned}"
+						     ng-click="toggleItem(item)">
 							<div>
-								<button class="btn btn-link pull-right" ng-show="group.assigned">
+								<button class="btn btn-link pull-right" ng-show="item.assigned">
 									<span class="glyphicons ok_2"></span>
 								</button>
-								<button class="btn btn-link pull-right" ng-hide="group.assigned">
+								<button class="btn btn-link pull-right" ng-hide="item.assigned">
 									<span class="glyphicons plus"></span>
 								</button>
 							</div>
@@ -196,11 +194,11 @@
 								<span class="circle glyphicon glyphicon-user"></span>
 							</div>
 							<div class="flex-fill">
-								{{ group.name }}
+								{{ item.name }}
 							</div>
 							<div>
-								<span class="badge remove-group" ng-show="group.assigned">Remove Group</span>
-								<span class="badge add-group" ng-hide="group.assigned">Add Group</span>
+								<span class="badge remove-item" ng-show="item.assigned">Remove item</span>
+								<span class="badge add-item" ng-hide="item.assigned">Add item</span>
 							</div>
 						</div>
 					</div>
@@ -209,23 +207,23 @@
 
 			<div class="widget-members"  ng-class="{focus:focus && showOptions && inputOptions === 'all'}">
 				<div class="scroll-container">
-					<div ng-if="assignedGroups.length === 0" style="color: gray">
-						No groups assigned.
+					<div ng-if="assignedItems.length === 0" style="color: gray">
+						No items assigned.
 					</div>
 
-					<div ng-repeat="group in assignedGroups | filter:query | orderBy: 'name'"
+					<div ng-repeat="item in assignedItems | filter:query | orderBy: 'name'"
 					     class="widget-item"
 					     selection-model-cleanup-strategy="deselect"
-					     selection-model-on-change="selection(group)"
+					     selection-model-on-change="selection(item)"
 					     selection-model>
 						<div>
 							<span class="circle glyphicon glyphicon-user"></span>
 						</div>
 						<div class="flex-fill">
-							{{ group.name }}
+							{{ item.name }}
 						</div>
 						<div>
-							<button class="btn btn-link pull-right" ng-click="removeItem(group)" selection-model-ignore>
+							<button class="btn btn-link pull-right" ng-click="removeItem(item)" selection-model-ignore>
 								<span class="glyphicons remove_2"></span>
 							</button>
 						</div>
@@ -239,34 +237,34 @@
 	<div class="col-sm-5 preview-column" ng-if="preview" ng-class="{'':currentSelection }">
 
 		<div class="scroll-container">
-			<div class="preview-item" ng-repeat="group in assignedGroups | filter:{selected:true} | limitTo:1 | orderBy:reverse" ng-if="!query">
+			<div class="preview-item" ng-repeat="item in assignedItems | filter:{selected:true} | limitTo:1 | orderBy:reverse" ng-if="!query">
 
 				<h1>
 					<span class="circle glyphicon glyphicon-user"></span>
 				</h1>
 
 
-				<h3>{{ group.name }}</h3>
-				<p>{{ group.description }}</p>
+				<h3>{{ item.name }}</h3>
+				<p>{{ item.description }}</p>
 
-				<p ng-if="group.roles.length" ng-repeat="role in group.roles track by $index">{{ role.name }}</p>
-				<p ng-if="!group.roles.length">No assigned roles.</p>
+				<p ng-if="item.roles.length" ng-repeat="role in item.roles track by $index">{{ role.name }}</p>
+				<p ng-if="!item.roles.length">No assigned roles.</p>
 
-				<p ng-if="group.users.length" ng-repeat="user in group.users track by $index">{{ user }}</p>
-				<p ng-if="!group.users.length">No assigned users.</p>
+				<p ng-if="item.users.length" ng-repeat="user in item.users track by $index">{{ user }}</p>
+				<p ng-if="!item.users.length">No assigned users.</p>
 			</div>
 
 
-			<div class="preview-item" ng-repeat="group in groups | filter:{selected:true} | limitTo:1 | orderBy:reverse" ng-if="query">
+			<div class="preview-item" ng-repeat="item in data | filter:{selected:true} | limitTo:1 | orderBy:reverse" ng-if="query">
 
-				<h3>{{ group.name }}</h3>
-				<p>{{ group.description }}</p>
+				<h3>{{ item.name }}</h3>
+				<p>{{ item.description }}</p>
 
-				<p ng-if="group.roles.length" ng-repeat="role in group.roles track by $index">{{ role.name }}</p>
-				<p ng-if="!group.roles.length">No assigned roles.</p>
+				<p ng-if="item.roles.length" ng-repeat="role in item.roles track by $index">{{ role.name }}</p>
+				<p ng-if="!item.roles.length">No assigned roles.</p>
 
-				<p ng-if="group.users.length" ng-repeat="user in group.users track by $index">{{ user }}</p>
-				<p ng-if="!group.users.length">No assigned users.</p>
+				<p ng-if="item.users.length" ng-repeat="user in item.users track by $index">{{ user }}</p>
+				<p ng-if="!item.users.length">No assigned users.</p>
 			</div>
 
 			<div ng-show="showMessage">
@@ -280,7 +278,7 @@
 <div class="row" style="margin-top: 15px;">
 	<div class="col-sm-12">
 		<label>Show Preview</label><br>
-		<div class="btn-group">
+		<div class="btn-item">
 			<label class="btn btn-primary" ng-model="preview" btn-radio="true">On</label>
 			<label class="btn btn-primary" ng-model="preview" btn-radio="false">Off</label>
 		</div>

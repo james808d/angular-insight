@@ -1,28 +1,28 @@
 function selectController($scope, GroupList){
 
 
-	// this needs integration with list directive, virtual scroll, and search
+	// this needs integration with list directive, infinite scroll, and search
 
 	$scope.state = {};
 
-	$scope.groups = GroupList.groups;
-	$scope.groups.$promise.then(function(response){
-		$scope.favoriteGroups = [];
-		$scope.recentGroups = [];
+	$scope.data = GroupList.groups;
+	$scope.data.$promise.then(function(response){
+		$scope.favorites = [];
+		$scope.recents = [];
 
-		$scope.favoriteGroups.push(response[3]);
-		$scope.favoriteGroups.push(response[6]);
-		$scope.favoriteGroups.push(response[7]);
+		$scope.favorites.push(response[3]);
+		$scope.favorites.push(response[6]);
+		$scope.favorites.push(response[7]);
 
-		$scope.recentGroups.push(response[1]);
-		$scope.recentGroups.push(response[2]);
-		$scope.recentGroups.push(response[8]);
+		$scope.recents.push(response[1]);
+		$scope.recents.push(response[2]);
+		$scope.recents.push(response[8]);
 	});
 
 
 	$scope.preview = false;
 
-	$scope.assignedGroups = [];
+	$scope.assignedItems = [];
 
 	$scope.addOption = function(item) {
 
@@ -30,9 +30,9 @@ function selectController($scope, GroupList){
 			item.assigned = true;
 			item.selected = false;
 
-			_.each($scope.assignedGroups, function(group){ group.selected = false;});
+			_.each($scope.assignedItems, function(group){ group.selected = false;});
 
-			$scope.assignedGroups.push(item);
+			$scope.assignedItems.push(item);
 		}
 	};
 
@@ -42,7 +42,7 @@ function selectController($scope, GroupList){
 
 		if (!item.assigned) {
 			item.assigned = true;
-			$scope.assignedGroups.push(item);
+			$scope.assignedItems.push(item);
 		} else {
 			$scope.removeItem(item);
 		}
@@ -57,7 +57,7 @@ function selectController($scope, GroupList){
 
 	$scope.selectItem = function(item){
 
-		_.each($scope.groups, function(group){ group.selected = false;});
+		_.each($scope.data, function(group){ group.selected = false;});
 		item.selected = true;
 	};
 
@@ -92,7 +92,7 @@ function selectController($scope, GroupList){
 		$scope.showOptions = false;
 		$scope.query = '';
 		$scope.focus = false;
-		_.each($scope.groups, function(group){ group.selected = false;});
+		_.each($scope.data, function(group){ group.selected = false;});
 	};
 
 	$scope.removeItem = function(group) {
@@ -101,12 +101,12 @@ function selectController($scope, GroupList){
 
 		var found, index;
 
-		found =  $scope.assignedGroups.filter(function(obj) {
+		found =  $scope.assignedItems.filter(function(obj) {
 			return obj._id === group._id;
 		});
 
-		index = $scope.assignedGroups.indexOf(found[0]);
-		$scope.assignedGroups.splice(index,1);
+		index = $scope.assignedItems.indexOf(found[0]);
+		$scope.assignedItems.splice(index,1);
 	};
 
 	$scope.groupOptions = {};
