@@ -4,7 +4,7 @@
 		<div class="search-widget"
 		     ng-mouseenter="focus = true">
 
-			<div class="search-input" ng-class="{focus:focus && showOptions && inputOptions === 'all'}">
+			<div class="search-field-wrapper" ng-class="{focus:focus && showOptions && inputOptions === 'all'}">
 
 				<div class="search-field" ng-class="{focus:focus && showOptions }">
 
@@ -25,7 +25,7 @@
 				<div class="widget-options animate-if" ng-if="query && showOptions">
 					<div class="scroll-container" ng-if="inputOptions === 'all'">
 						<div ng-repeat="group in groups | filter:query | orderBy: 'name'"
-						     class="widget-item"
+						     class="selekt-option-row"
 						     ng-class="{assigned:group.assigned}"
 								ng-click="toggleItem(group)">
 							<div>
@@ -134,7 +134,7 @@
 					</div>
 
 					<div ng-repeat="group in assignedGroups | filter:query | orderBy: 'name'"
-					     class="widget-item"
+					     class="selekt-option-row"
 					     selection-model-cleanup-strategy="deselect"
 					     selection-model>
 

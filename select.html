@@ -4,7 +4,7 @@
 		<div class="search-widget"
 		     ng-mouseenter="focus = true">
 
-			<div class="search-input" ng-class="{focus:focus && showOptions && inputOptions === 'all'}">
+			<div class="search-field-wrapper" ng-class="{focus:focus && showOptions && inputOptions === 'all'}">
 
 				<div class="search-field" ng-class="{focus:focus && showOptions }">
 
@@ -26,39 +26,39 @@
 				<div class="widget-options animate-if" ng-if="query && showOptions">
 					<div class="scroll-container" ng-if="inputOptions === 'all'">
 
-						<div ng-repeat="item in data | filter:query | orderBy: 'name'"
+						<div ng-if="!preview"
 						     option-row
-						     ng-if="!preview"
-						     class="widget-item"
+						     ng-repeat="item in data | filter:query | orderBy: 'name'"
+						     class="selekt-option-row"
 						     ng-class="{assigned:item.assigned}"
 						     ng-click="toggleItem(item)">
 						</div>
 
-						<div ng-repeat="item in data | filter:query | orderBy: 'name'"
-						     option-row
-						     ng-if="preview"
+						<div ng-if="preview" option-row
+						     ng-repeat="item in data | filter:query | orderBy: 'name'"
+						     class="selekt-option-row"
+						     ng-class="{assigned:item.assigned}"
+						     ng-click="toggleItem(item)"
+
 						     selection-model-cleanup-strategy="deselect"
 						     selection-model
-						     selection-model-on-change="change(item)"
-						     class="widget-item"
-						     ng-click="toggleItem(item)"
-						     ng-class="{assigned:item.assigned}">
+						     selection-model-on-change="change(item)">
 						</div>
 					</div>
 				</div>
 
 				<!-- safari style browse options -->
-
 				<div class="widget-options animate-if" ng-if="!query && showOptions">
 					<div class="scroll-container" ng-if="preview">
 
 						<div class="subhead">Favorites</div>
 
-						<div class="widget-item"
-						     option-row
+						<div option-row
 						     ng-repeat="item in favorites"
+						     class="selekt-option-row"
 						     ng-class="{assigned:item.assigned}"
 						     ng-click="toggleItem(item)"
+
 						     selection-model-cleanup-strategy="deselect"
 						     selection-model-on-change="change(item)"
 						     selection-model>
@@ -66,11 +66,12 @@
 
 						<div class="subhead">Recent</div>
 
-						<div class="widget-item"
-						     option-row
+						<div option-row
 						     ng-repeat="item in recents"
+						     class="selekt-option-row"
 						     ng-class="{assigned:item.assigned}"
 						     ng-click="toggleItem(item)"
+
 						     selection-model-cleanup-strategy="deselect"
 						     selection-model-on-change="change(item)"
 						     selection-model>
@@ -80,18 +81,18 @@
 					<div class="scroll-container" ng-if="!preview">
 						<div class="subhead">Favorites</div>
 
-						<div class="widget-item"
-						     option-row
+						<div option-row
 						     ng-repeat="item in favorites"
+						     class="selekt-option-row"
 						     ng-class="{assigned:item.assigned}"
 						     ng-click="toggleItem(item)">
 						</div>
 
 						<div class="subhead">Recent</div>
 
-						<div class="widget-item"
-						     option-row
+						<div option-row
 						     ng-repeat="item in recents"
+						     class="selekt-option-row"
 						     ng-class="{assigned:item.assigned}"
 						     ng-click="toggleItem(item)">
 						</div>
@@ -106,7 +107,7 @@
 					</div>
 
 					<div ng-repeat="item in assignedItems | filter:query | orderBy: 'name'"
-					     class="widget-item"
+					     class="selekt-option-row"
 					     selection-model-cleanup-strategy="deselect"
 					     selection-model-on-change="selection(item)"
 					     selection-model>
