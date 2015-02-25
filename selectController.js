@@ -70,9 +70,7 @@ function selectController($scope, GroupList){
 		}
 	};
 
-
 	$scope.selectAndToggle = function(item) {
-
 		$scope.selection(item);
 		$scope.toggleItem(item);
 	};
@@ -84,8 +82,6 @@ function selectController($scope, GroupList){
 		} else {
 			$scope.currentSelection = null;
 		}
-
-
 	};
 
 	$scope.closeOptions = function() {
@@ -120,8 +116,6 @@ function selectController($scope, GroupList){
 			{label: 'Delete'}
 		]}
 	];
-
-	$scope.inputOptions = "all";
 
 	$scope.groupOptions.actions = [
 		{label:'Edit', callback: GroupList.get},

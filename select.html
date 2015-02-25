@@ -4,7 +4,7 @@
 		<div class="search-widget"
 		     ng-mouseenter="focus = true">
 
-			<div class="search-field-wrapper" ng-class="{focus:focus && showOptions && inputOptions === 'all'}">
+			<div class="search-field-wrapper" ng-class="{focus:focus && showOptions}">
 
 				<div class="search-field" ng-class="{focus:focus && showOptions }">
 
@@ -12,7 +12,7 @@
 					<span class="glyphicons refresh icon" ng-show="state.loading"></span>
 
 					<button class="btn btn-close"
-					        ng-if="(showOptions && inputOptions === 'all') || (showOptions && query)"
+					        ng-if="showOptions"
 					        ng-click="closeOptions()">
 						Done
 					</button>
@@ -24,7 +24,7 @@
 
 				<!-- user is searching -->
 				<div class="widget-options animate-if" ng-if="query && showOptions">
-					<div class="scroll-container" ng-if="inputOptions === 'all'">
+					<div class="scroll-container">
 
 						<div ng-if="!filtered.length">No results found.</div>
 
@@ -36,8 +36,9 @@
 						     ng-click="toggleItem(item)">
 						</div>
 
-						<div ng-if="preview" option-row
-						     ng-repeat="item in filtered = ( data | filter:query | orderBy: 'name' )"
+						<div ng-if="preview"
+						     option-row
+						     ng-repeat="item in data | filter:query | orderBy: 'name'"
 						     class="selekt-option-row"
 						     ng-class="{assigned:item.assigned}"
 						     ng-click="toggleItem(item)"
@@ -52,6 +53,10 @@
 				<!-- safari style browse options -->
 				<div class="widget-options animate-if" ng-if="!query && showOptions">
 					<div class="scroll-container" ng-if="preview">
+
+						<!-- TODO: right now you can select an item in BOTH lists
+							 How to prevent this?
+						-->
 
 						<div class="subhead">Favorites</div>
 
@@ -102,7 +107,7 @@
 				</div>
 			</div>
 
-			<div class="widget-members"  ng-class="{focus:focus && showOptions && inputOptions === 'all'}">
+			<div class="widget-members"  ng-class="{focus:focus && showOptions}">
 				<div class="scroll-container">
 					<div ng-if="assignedItems.length === 0" style="color: gray">
 						No items assigned.
@@ -131,7 +136,7 @@
 		</div>
 	</div>
 
-	<div class="col-sm-5 preview-column" ng-if="preview" ng-class="{'':currentSelection }">
+	<div class="col-sm-5 preview-column" ng-if="preview" ng-class="{ 'show-preview': showOptions }">
 
 		<div class="scroll-container">
 			<!-- preview has to be specific to data type -->
