@@ -7,7 +7,7 @@ angular.module('selekt')
 	$scope.state = {};
 
 	var data = $scope.data = GroupList.groups;
-	//$scope.data.$promise.then(function(response){
+	$scope.data.$promise.then(function(response){
 		$scope.favorites = [];
 		$scope.recents = [];
 
@@ -18,7 +18,7 @@ angular.module('selekt')
 		$scope.recents.push(data[1]);
 		$scope.recents.push(data[2]);
 		$scope.recents.push(data[8]);
-	//});
+	});
 
 
 	$scope.preview = false;
