@@ -1,4 +1,4 @@
-# Angular Selekt
+# Angular Insight
 
 A simple Angular directive to select things
 

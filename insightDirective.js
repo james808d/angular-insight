@@ -1,11 +1,11 @@
-angular.module('selekt')
+angular.module('insight')
 
 .directive('optionRow', [function() {
 
 		return {
 			transclude: true,
 			templateUrl: function(tElement, tAttrs) {
-				return tAttrs.templateUrl || '/bower_components/angular-select-widget/option-row.html';
+				return tAttrs.templateUrl || '/bower_components/angular-insight/option-row.html';
 			}
 		}
 

@@ -31,7 +31,7 @@
 						<div ng-if="!preview"
 						     option-row
 						     ng-repeat="item in filtered = ( data | filter:query | orderBy: 'name' )"
-						     class="selekt-option-row"
+						     class="insight-option-row"
 						     ng-class="{assigned:item.assigned}"
 						     ng-click="toggleItem(item)">
 						</div>
@@ -39,7 +39,7 @@
 						<div ng-if="preview"
 						     option-row
 						     ng-repeat="item in data | filter:query | orderBy: 'name'"
-						     class="selekt-option-row"
+						     class="insight-option-row"
 						     ng-class="{assigned:item.assigned}"
 						     ng-click="toggleItem(item)"
 
@@ -62,7 +62,7 @@
 
 						<div option-row
 						     ng-repeat="item in favorites"
-						     class="selekt-option-row"
+						     class="insight-option-row"
 						     ng-class="{assigned:item.assigned}"
 						     ng-click="toggleItem(item)"
 
@@ -75,7 +75,7 @@
 
 						<div option-row
 						     ng-repeat="item in recents"
-						     class="selekt-option-row"
+						     class="insight-option-row"
 						     ng-class="{assigned:item.assigned}"
 						     ng-click="toggleItem(item)"
 
@@ -90,7 +90,7 @@
 
 						<div option-row
 						     ng-repeat="item in favorites"
-						     class="selekt-option-row"
+						     class="insight-option-row"
 						     ng-class="{assigned:item.assigned}"
 						     ng-click="toggleItem(item)">
 						</div>
@@ -99,7 +99,7 @@
 
 						<div option-row
 						     ng-repeat="item in recents"
-						     class="selekt-option-row"
+						     class="insight-option-row"
 						     ng-class="{assigned:item.assigned}"
 						     ng-click="toggleItem(item)">
 						</div>
@@ -114,7 +114,7 @@
 					</div>
 
 					<div ng-repeat="item in assignedItems | filter:query | orderBy: 'name'"
-					     class="selekt-option-row"
+					     class="insight-option-row"
 					     selection-model-cleanup-strategy="deselect"
 					     selection-model-on-change="selection(item)"
 					     selection-model>

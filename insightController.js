@@ -1,5 +1,5 @@
-angular.module('selekt')
-.controller('SelectController', ['$scope', 'GroupList', function selectController($scope, GroupList){
+angular.module('insight')
+.controller('InsightController', ['$scope', 'GroupList', function insightController($scope, GroupList){
 
 
 	// this needs integration with list directive, infinite scroll, and search

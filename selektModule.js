@@ -1,1 +1,0 @@
-angular.module('selekt', ['ngSanitize', 'ui.highlight', 'ui.bootstrap']);

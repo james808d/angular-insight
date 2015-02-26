@@ -2,7 +2,7 @@ var angular = require('angular');
 var fs = require('fs');
 var path = require('path');
 
-angular.module('example', ['selekt'])
+angular.module('example', ['insight'])
 .factory('GroupList', require('./groupList'))
 .run(function($templateCache) {
   $templateCache.put('select.html', fs.readFileSync(path.join(__dirname, '../select.html'), 'utf8'));

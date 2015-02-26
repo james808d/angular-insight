@@ -1,5 +1,5 @@
 {
-  "name": "angular-selekt",
+  "name": "angular-insight",
   "version": "0.0.0",
   "description": "directive to select things",
   "main": "selectController.js",
@@ -32,12 +32,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/james808d/angular-selekt.git"
+    "url": "https://github.com/james808d/angular-insight.git"
   },
   "author": "James Durham",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/james808d/angular-selekt/issues"
+    "url": "https://github.com/james808d/angular-insight/issues"
   },
-  "homepage": "https://github.com/james808d/angular-selekt"
+  "homepage": "https://github.com/james808d/angular-insight"
 }
