@@ -1,6 +1,16 @@
 @import "mixins";
 @import "variables";
 
+.preview-active {
+
+	.insight {
+		.widget-options {
+			right: 16px;
+		}
+	}
+}
+
+
 .preview-widget {
 	padding: 0;
 	border: 1px solid rgba(0, 0, 0, 0.1);
@@ -82,7 +92,7 @@
 			margin-right: 8px;
 			text-align: center;
 			line-height: 64px;
-			color: @color1Fade;
+			color: @color1Fade50;
 		}
 	}
 
@@ -139,7 +149,7 @@
 	}
 
 	&:hover {
-		background: @accentFade3;
+		background: @accentFade10;
 
 		.badge {
 			display: inline-block;
@@ -150,16 +160,14 @@
 	&.assigned:not(.selected),
 	&.assigned:hover:not(.selected)
 	{
-		//background: rgba(0,160,240,0.05);
-		color: @accentDark;
-		//border-color: transparent;
+		color: @accentColor;
 
 		.btn {
 			color: @accentColor;
 		}
 
 		.circle {
-			background: @accentFade3;
+			background: @accentFade10;
 			color: @accentColor;
 		}
 	}
@@ -190,13 +198,15 @@
 			margin-right: 8px;
 			text-align: center;
 			line-height: 28px;
-			color: @color1Fade;
-			margin-top: -4px;
+			color: @color1Fade50;
+			margin-top: 4px;
 		}
 
 		.badge {
 			display: none;
 			margin-right: 8px;
+			height: 18px;
+			margin-top: 11px;
 
 			&.add-item {
 				background: @accentColor;
@@ -242,7 +252,7 @@
 	}
 }
 
-.search-widget {
+.insight {
 
 	width: 100%;
 	position: relative;
@@ -301,6 +311,7 @@
 			height: 48px;
 			background: white;
 			z-index: 1;
+			width: 100%;
 
 			border: 1px solid rgba(0, 0, 0, 0.25);
 			border-radius: 4px;
@@ -323,7 +334,7 @@
 				line-height: 36px;
 				height: 48px;
 				text-align: center;
-				color: @accentDark;
+				color: @darkBlue;
 				border:1px solid transparent;
 
 				&:focus {
@@ -363,7 +374,7 @@
 		position: absolute;
 		top: 48px;
 		left: 16px;
-		right: 16px;
+		right: 80px;
 		z-index: 21;
 		//bottom: 16px;
 		height: 336px;

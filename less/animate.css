@@ -1,0 +1,232 @@
+.Round {
+  border-radius: 9999px;
+}
+.RoundedButton {
+  border-radius: 2px;
+}
+.PointerCursor {
+  cursor: pointer;
+}
+.TextClip {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  -webkit-hyphens: auto;
+  -moz-hyphens: auto;
+  -ms-hyphens: auto;
+  hyphens: auto;
+}
+.HyphensAuto {
+  -webkit-hyphens: auto;
+  -moz-hyphens: auto;
+  -ms-hyphens: auto;
+  hyphens: auto;
+}
+.WordBreak {
+  word-break: break-all;
+  word-break: break-word;
+  -ms-word-break: break-all;
+  overflow-wrap: break-word;
+}
+.GlyphiconFont {
+  font-family: 'Glyphicons Regular';
+}
+.ButtonGlyphicons {
+  font-size: 1rem;
+  top: 3px;
+}
+.flexDisplay {
+  display: -webkit-flex;
+  display: -ms-flex;
+  display: flex;
+}
+.flexContainerStatic {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  -ms-box-orient: horizontal;
+  display: -webkit-flex;
+  display: -ms-flex;
+  display: flex;
+}
+.AbsoluteFill {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+.BtnWhite {
+  background: rgba(255, 255, 255, 0.65);
+  background: -moz-linear-gradient(top, #ffffff 0%, #f7f7f7 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #ffffff), color-stop(100%, #f7f7f7));
+  background: -webkit-linear-gradient(top, #ffffff 0%, #f7f7f7 100%);
+  background: -ms-linear-gradient(top, #ffffff 0%, #f7f7f7 100%);
+  background: linear-gradient(to bottom, #ffffff 0%, #f7f7f7 100%);
+  border-color: rgba(0, 0, 0, 0.15);
+  -webkit-box-shadow: inset 0 1px 0 #ffffff;
+  box-shadow: inset 0 1px 0 #ffffff;
+  color: #303030;
+}
+.animate-show.ng-hide-add,
+.animate-show.ng-hide-remove {
+  -webkit-transition: all linear 0.5s;
+  transition: all linear 0.5s;
+  display: block !important;
+}
+.animate-show.ng-hide-add.ng-hide-add-active,
+.animate-show.ng-hide-remove {
+  opacity: 0;
+}
+.animate-show.ng-hide-add,
+.animate-show.ng-hide-remove.ng-hide-remove-active {
+  opacity: 1;
+}
+.video-container.full-video-container .animate-show.ng-hide-add,
+.video-container.full-video-container .animate-show.ng-hide-remove {
+  z-index: 20000;
+  position: absolute;
+}
+.full-video-background .animate-show.ng-hide-add.ng-hide-add-active {
+  opacity: 0;
+}
+.full-video-background .animate-show.ng-hide-remove {
+  opacity: 0.5;
+}
+.full-video-background .animate-show.ng-hide-add,
+.full-video-background .animate-show.ng-hide-remove.ng-hide-remove-active {
+  opacity: 1;
+}
+.vbrick-player,
+.vb-player,
+.player-wrap .overlay-play,
+.player-wrap .overlay-play .circle,
+.player-controls {
+  -webkit-backface-visibility: hidden;
+  -webkit-perspective: 1000;
+  -webkit-transform-style: preserve-3d;
+  -webkit-transform: translateZ(0);
+}
+.player-wrap .overlay-play {
+  -webkit-transform: translateZ(0);
+}
+.player-wrap .overlay-play .circle {
+  -webkit-transition: all linear 0.125s;
+  transition: all linear 0.125s;
+}
+.player-controls {
+  -webkit-transition: linear 0.35s;
+  transition: linear 0.35s;
+  opacity: 1;
+}
+.player-controls.ng-hide {
+  -webkit-transition: linear 0.5s 1s;
+  transition: linear 0.5s 1s;
+}
+.player-controls.ng-hide-add.ng-hide-add-active,
+.player-controls.ng-hide-remove {
+  -ms-transform: translate3d(0, 30px, 0);
+  -webkit-transform: translate3d(0, 30px, 0);
+  transform: translate3d(0, 30px, 0);
+}
+.player-controls.ng-hide-add,
+.player-controls.ng-hide-remove.ng-hide-remove-active {
+  -ms-transform: translate3d(0, 0, 0);
+  -webkit-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+}
+.animate-if.ng-enter,
+.animate-if.ng-leave {
+  -webkit-transition: all cubic-bezier(0.25, 0.46, 0.45, 0.94) 1s;
+  transition: all cubic-bezier(0.25, 0.46, 0.45, 0.94) 1s;
+}
+.animate-if.ng-enter,
+.animate-if.ng-leave.ng-leave-active {
+  opacity: 0;
+}
+.animate-if.ng-leave,
+.animate-if.ng-enter.ng-enter-active {
+  opacity: 1;
+}
+.animate-if.async-notifications.ng-enter,
+.animate-if.async-notifications.ng-leave.ng-leave-active {
+  right: -200%;
+}
+.animate-if.async-notifications.ng-leave,
+.animate-if.async-notifications.ng-enter.ng-enter-active {
+  right: 0;
+}
+.animate-repeat.ng-move,
+.animate-repeat.ng-enter,
+.animate-repeat.ng-leave {
+  -webkit-transition: all linear 0.5s;
+  transition: all linear 0.5s;
+}
+.animate-repeat.ng-leave.ng-leave-active,
+.animate-repeat.ng-move,
+.animate-repeat.ng-enter {
+  opacity: 0;
+}
+.animate-repeat.ng-leave,
+.animate-repeat.ng-move.ng-move-active,
+.animate-repeat.ng-enter.ng-enter-active {
+  opacity: 1;
+}
+.flip {
+  -ms-transform: scale(1, -1);
+  -webkit-transform: scale(1, -1);
+  transform: scale(1, -1);
+}
+.rotate-360 {
+  -webkit-animation: icon-spinning 2s infinite linear;
+  animation: icon-spinning 2s infinite linear;
+}
+.icon-spinning {
+  -webkit-animation: icon-spinning 2s infinite linear;
+  animation: icon-spinning 2s infinite linear;
+  -ms-transform: 50% 58%;
+  -webkit-transform: 50% 58%;
+  transform: 50% 58%;
+  -webkit-transform-origin: 50% 58%;
+  transform-origin: 50% 58%;
+  -ms-transform-origin: 50% 58%;
+}
+@-webkit-keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+.animate-pulsate {
+  -webkit-animation-name: pulsate;
+  -webkit-animation-duration: 4s;
+  -webkit-animation-timing-function: ease-in-out;
+  -webkit-animation-iteration-count: infinite;
+}
+@-webkit-keyframes pulsate {
+  0% {
+    opacity: 0.65;
+  }
+  50% {
+    opacity: 1.0;
+  }
+  100% {
+    opacity: 0.65;
+  }
+}
+.ng-animate-start,
+.ng-animate-active {
+  border-spacing: 0;
+  -ms-zoom: auto;
+}

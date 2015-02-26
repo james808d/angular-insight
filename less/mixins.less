@@ -3,74 +3,29 @@
 @defaultRadius: 2px;
 
 .RoundedShape(@radius:@defaultRadius) {
-	-webkit-border-radius: @radius;
-	-moz-border-radius: @radius;
 	border-radius: @radius;
 }
 
-.RoundedTopShape(@radius:@defaultRadius) {
-	-webkit-border-top-left-radius: @radius;
-	-moz-border-radius-topleft: @radius;
-	border-top-left-radius: @radius;
-	-webkit-border-top-right-radius: @radius;
-	-moz-border-radius-topright: @radius;
-	border-top-right-radius: @radius;
+.RoundedShape(@topLeft; @topRight; @bottomRight; @bottomLeft) {
+	.RoundedShape(@arguments);
+}
 
-	-webkit-border-bottom-left-radius: 0;
-	-moz-border-radius-bottomleft: 0;
-	border-bottom-left-radius: 0;
-	-webkit-border-bottom-right-radius: 0;
-	-moz-border-radius-bottomright: 0;
-	border-bottom-right-radius: 0;
+.RoundedTopShape(@radius:@defaultRadius) {
+	.RoundedShape(@radius; @radius; 0; 0);
 }
 
 .RoundedBottomShape(@radius:@defaultRadius) {
-	-webkit-border-bottom-left-radius: @radius;
-	-moz-border-radius-bottomleft: @radius;
-	border-bottom-left-radius: @radius;
-	-webkit-border-bottom-right-radius: @radius;
-	-moz-border-radius-bottomright: @radius;
-	border-bottom-right-radius: @radius;
-
-	-webkit-border-top-left-radius: 0;
-	-moz-border-radius-topleft: 0;
-	border-top-left-radius: 0;
-	-webkit-border-top-right-radius: 0;
-	-moz-border-radius-topright: 0;
-	border-top-right-radius: 0;
+	.RoundedShape(0; 0; @radius; @radius);
 }
 
 .RoundedRightShape(@radius:@defaultRadius) {
-	-webkit-border-bottom-right-radius: @radius;
-	-moz-border-radius-bottomright: @radius;
-	border-bottom-right-radius: @radius;
-	-webkit-border-top-right-radius: @radius;
-	-moz-border-radius-topright: @radius;
-	border-top-right-radius: @radius;
-
-	-webkit-border-top-left-radius: 0;
-	-moz-border-radius-topleft: 0;
-	border-top-left-radius: 0;
-	-webkit-border-bottom-left-radius: 0;
-	-moz-border-radius-bottomleft: 0;
-	border-bottom-left-radius: 0;
+	.RoundedShape(0; @radius; @radius; 0);
 }
 
 .RoundedLeftShape(@radius:@defaultRadius) {
-	-webkit-border-bottom-left-radius: @radius;
-	-moz-border-radius-bottomleft: @radius;
-	border-bottom-left-radius: @radius;
-	-webkit-border-top-left-radius: @radius;
-	-moz-border-radius-topleft: @radius;
-	border-top-left-radius: @radius;
-
-	-webkit-border-top-right-radius: 0;
-	-moz-border-radius-topright: 0;
-	border-top-right-radius: 0;
-	-webkit-border-bottom-right-radius: 0;
-	-moz-border-radius-bottomright: 0;
-	border-bottom-right-radius: 0;
+	.RoundedShape(@radius; 0; 0; @radius);
 }
+
 .Round {
 	.RoundedShape(9999px)
 }
@@ -79,16 +34,29 @@
 	.RoundedShape()
 }
 
-@defaultShadow: 0 0 2px black;
-.BoxShadow(@values:@defaultShadow, ...) {
-	-webkit-box-shadow: @arguments;
-	-moz-box-shadow: @arguments;
-	box-shadow: @arguments;
+.BorderTopLeftRadius(@radius:@defaultRadius) {
+	border-top-left-radius: @radius;
+}
+
+.BorderTopRightRadius(@radius:@defaultRadius) {
+	border-top-right-radius: @radius;
+}
+
+.BorderBottomLeftRadius(@radius:@defaultRadius) {
+	border-bottom-left-radius: @radius;
+}
+
+.BorderBottomRightRadius(@radius:@defaultRadius) {
+	border-bottom-right-radius: @radius;
+}
+
+@defaultShadow: 0 0 2px @black;
+.BoxShadow(@values:@defaultShadow) {
+	-webkit-box-shadow: @values; //left in for older iOS Safari (<5.1) and Android (<4)
+	box-shadow: @values;
 }
 
 .PointerCursor {
-	cursor: default;
-	cursor: hand;
 	cursor: pointer;
 }
 
@@ -97,19 +65,43 @@
 	white-space: nowrap;
 	overflow: hidden;
 
+	.HyphensAuto;
+}
+
+.HyphensAuto { //not standard, so these are all needed
 	-webkit-hyphens: auto;
 	-moz-hyphens: auto;
 	-ms-hyphens: auto;
 	hyphens: auto;
+}
 
+.WordBreak { //Be VERY careful with this, breaks normal words wh_erever
+	word-break: break-all;
+	word-break: break-word;  //webkit
+	-ms-word-break: break-all;
+	overflow-wrap: break-word;
 }
 
 @defaultTransitionAll: all linear 0.25s;
 .TransitionAll(@values:@defaultTransitionAll) {
-	-moz-transition: @values;
-	-webkit-transition: @values;
+	-webkit-transition: @values; //not needed by desktop, but doesn't go back too far on mobile
 	transition: @values;
+}
 
+.Transform(@values) {
+	-ms-transform: @values; //IE 9
+	-webkit-transform: @values; //still used by mobile + Safari desktop
+	transform: @values;
+}
+
+.TransformOrigin(@values) {
+	-webkit-transform-origin: @values; //still used by mobile + Safari desktop
+	transform-origin: @values;
+	-ms-transform-origin: @values; //IE 9
+}
+
+.GlyphiconFont {
+	font-family: 'Glyphicons Regular';
 }
 
 .ButtonGlyphicons {
@@ -124,64 +116,83 @@
 	@opacity: @defaultBlurOpacity;
 ) {
 	-webkit-filter: blur(@blur);
-	-moz-filter: blur(@blur);
-	-o-filter: blur(@blur);
-	-ms-filter: blur(@blur);
+	-ms-filter: blur(@blur); //may not work
 	filter: blur(@blur);
 	opacity: @opacity;
+}
+
+.flexDisplay {
+	display: -webkit-flex;
+	display: -ms-flex; //IE10+
+	display: flex;
+}
+
+.flexContainerStatic {
+	display: -webkit-box;
+	display: -ms-flexbox; //IE10+
+	-ms-box-orient: horizontal;
+	display: -webkit-flex;
+	display: -ms-flex;
+	display: flex;
 }
 
 @defaultFlexWrap: nowrap;
 @defaultFlexAlignItems: stretch;
 @defaultFlexjustify: space-between;
+
 .flexContainer (
 	@wrap:@defaultFlexWrap;
-	  @stretch:@defaultFlexAlignItems;
-	  @justify:@defaultFlexjustify;
+	@stretch:@defaultFlexAlignItems;
+	@justify:@defaultFlexjustify;
 ) {
-
-	display: -webkit-box;
-	display: -moz-box;
-	display: -ms-flexbox;
-	-ms-box-orient: horizontal;
-
-	display: -webkit-flex;
-	display: -moz-flex;
-	display: -ms-flex;
-	display: flex;
+	&:extend(.flexContainerStatic);
 
 	-webkit-flex-flow: row @wrap;
-	-moz-flex-flow: row @wrap;
 	-ms-flex-flow: row @wrap;
 	flex-flow: row @wrap;
 
-	-webkit-align-items: @stretch;
 	align-items: @stretch;
 	justify-content: @justify;
 }
 
 @defaultFlexItem: 0 0 auto;
 .flexItem(@flex:@defaultFlexItem) {
+
+	&:extend(.flexDisplay);
+
 	-ms-flex: @flex;
 	-webkit-flex: @flex;
-	-moz-flex: @flex;
 	-ms-flex: @flex;
 	flex: @flex;
 }
 
-.Gradient (@startColor: white, @endColor: black) {
+.flexJustifyContent(@value){
+	-ms-justify-content: @value;
+	-webkit-justify-content: @value;
+	justify-content: @value;
+}
+
+.VerticalGradient (@startColor: @white, @endColor: @black) {
 	background-color: @startColor;
 	background: -webkit-gradient(linear, left top, left bottom, from(@startColor), to(@endColor));
 	background: -webkit-linear-gradient(top, @startColor, @endColor);
 	background: -moz-linear-gradient(top, @startColor, @endColor);
 	background: -ms-linear-gradient(top, @startColor, @endColor);
-	background: -o-linear-gradient(top, @startColor, @endColor);
+	background: linear-gradient(top, @startColor, @endColor);
+}
+
+.HorizontalGradient (@startColor: @white, @endColor: @black) {
+	background-color: @startColor;
+	background: -webkit-gradient(linear, left top, right top, from(@startColor), to(@endColor));
+	background: -webkit-linear-gradient(left, @startColor, @endColor);
+	background: -moz-linear-gradient(left, @startColor, @endColor);
+	background: -ms-linear-gradient(left, @startColor, @endColor);
+	background: linear-gradient(to right, @startColor, @endColor);
 }
 
 .TextShadow (@string: 0 1px 3px rgba(0, 0, 0, 0.25)) {
 	text-shadow: @string;
 }
-
 
 @defaultTriangleSize: 8px;
 @defaultTriangleColor: @white;
@@ -210,28 +221,53 @@
 	border-color: transparent @color transparent transparent;
 }
 
-.loopLightenColor(@i, @color, @luma, @limit, @name) when (@luma < @limit ) {
-	.loopLightenColor( (@i + 1), lighten(@color, 1%), luma(lighten(@color, 1%)), @limit, @name );
+.AbsoluteFill {
+	position: absolute;
+	top: 0;
+	right:0;
+	bottom:0;
+	left: 0;
 }
 
-.loopLightenColor(@i, @color, @luma, @limit, @name) when (@luma >= @limit) and (@name = 'edit' ) {
-	@edit-light: @color;
-}
-.loopLightenColor(@i, @color, @luma, @limit, @name) when (@luma >= @limit) and (@name = 'color1' ) {
-	@color1-light: @color;
-}
-.loopLightenColor(@i, @color, @luma, @limit, @name) when (@luma >= @limit) and (@name = 'color2' ) {
-	@color2-light: @color;
-}
-.loopLightenColor(@i, @color, @luma, @limit, @name) when (@luma >= @limit) and (@name = 'accent' ) {
-	@accent-light: @color;
-}
-.makeLightColors(@limit) {
-	// lighten colors until it reaches luma of @limit
-	.loopLightenColor(0, @color1, luma(@color1), @limit, "color1");
-	.loopLightenColor(0, @color2, luma(@color2), @limit, "color2");
-	.loopLightenColor(0, @accentColor, luma(@accentColor), @limit, "accent");
-	.loopLightenColor(0, @edit, luma(@edit), @limit, "edit");
+.BtnWhite {
+	background: rgba(255,255,255,0.65);
+	background: -moz-linear-gradient(top, @white 0%, rgba(247, 247, 247, 1) 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, @white), color-stop(100%, rgba(247, 247, 247, 1)));
+	background: -webkit-linear-gradient(top, @white 0%, rgba(247, 247, 247, 1) 100%);
+	background: -ms-linear-gradient(top, @white 0%, rgba(247, 247, 247, 1) 100%);
+	background: linear-gradient(to bottom, @white 0%, rgba(247, 247, 247, 1) 100%);
+
+	border-color: rgba(0,0,0,0.15);
+
+	.BoxShadow(inset 0 1px 0 @white);
+	color: @color1;
 }
 
-.makeLightColors(98%);
+@defaultBoxSizing: content-box;
+.BoxSizing(@boxSizing:@defaultBoxSizing) {
+	-webkit-box-sizing: @boxSizing;
+	box-sizing: @boxSizing;
+}
+
+.Animation(@animation) {
+	-webkit-animation: @animation;
+	animation: @animation;
+}
+
+.AnimationDirection(@animationDirection) {
+	animation-direction: @animationDirection;
+	-webkit-animation-direction: @animationDirection;
+}
+
+@defaultUserSelect: none;
+.UserSelect(@userSelect:@defaultUserSelect) {
+	-webkit-user-select: @userSelect;
+	-moz-user-select: @userSelect;
+	-ms-user-select: @userSelect; //IE10+
+	user-select: none;
+}
+
+.BackgroundClip(@backgroundClip) {
+	-webkit-background-clip: @backgroundClip;
+	background-clip: @backgroundClip;
+} 

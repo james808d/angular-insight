@@ -1,119 +1,139 @@
-@import "mixins";
+@color1: #303030;
+@color1Lighten20: lighten(@color1, 20%);
+@color1Lighten05: lighten(@color1, 5%);
+@color1Lighten50: lighten(@color1, 50%);
+@color1Lighten65: lighten(@color1, 65%); // #d9d9d9
 
-@white: white;
-@whiteFade: fade(white, 50%);
-@whiteFadeMore: fade(white, 15%);
-@whiteFadeMore2: fade(white, 10%);
-
-// default colors
-@background: white;
-@backgroundFade: fade(@background, 50%);
-
-// need something to get to #666
-@color1: #333E48;
-@color1Light0: lighten(@color1, 25%);
-@color1Light: lighten(@color1, 20%);
-@color1Light1: lighten(@color1, 5%);
-@color1Light2: lighten(@color1, 10%);
-@color1Light20: lighten(@color1, 20%);
-@color1Light40: lighten(@color1, 40%);
-@color1Light50: lighten(@color1, 50%);
-@color1Light75: lighten(@color1, 75%);
-@color1Fade0: fade(@color1, 75%);
-@color1Fade: fade(@color1, 60%);
-@color1Fade2: fade(@color1, 25%);
-@color1Fade3: fade(@color1, 10%);
-@color1Fade4: fade(@color1, 20%);
-@color1Dark: darken(@color1, 15%);
-@color1Dark1: darken(@color1, 10%);
-
-@color1Fade10: fade(@color1, 10%);
-@color1Fade25: fade(@color1, 25%);
-@color1Fade40: fade(@color1, 40%);
-@color1Fade50: fade(@color1, 50%);
 @color1Fade75: fade(@color1, 75%);
+@color1Fade50: fade(@color1, 50%);
+@color1Fade25: fade(@color1, 25%);
+@color1Fade10: fade(@color1, 10%);
+
+@color1Darken20: darken(@color1, 20%);
+@color1Darken10: darken(@color1, 10%);
+@color1Darken5: darken(@color1, 5%);
+
+@color1LightText: lighten(@color1, 30%);  // old @color1LightText, converts to #7d7d7d
 
 @color2: #e9e9e9;
-@color2Light: lighten(@color2, 20%);
-@color2Light1: lighten(@color2, 10%);
-@color2VeryLight: lighten(@color2, 4%);
-@color2Fade: fade(@color2, 50%);
-@color2Fade2: fade(@color2, 25%);
-@color2Dark: darken(@color2, 10%);
-@color2Dark2: darken(@color2, 20%);
-.color2 {
-	color: @color2;
-}
-.color2:hover {
-	color: @color2;
-}
+@color2Lighten03: lighten(@color2, 3%);
+@color2Lighten05: lighten(@color2, 5%);
+@color2Lighten10: lighten(@color2, 10%);
+@color2Lighten20: lighten(@color2, 20%);
+@color2VeryLighten04: lighten(@color2, 4%);
+@color2Fade25: fade(@color2, 25%);
+@color2Fade50: fade(@color2, 50%);
+@color2Fade75: fade(@color2, 75%);
+@color2Darken10: darken(@color2, 10%);
 
-@color3: #f5f5f5;
-
-@buttonBorder: @color1Fade4;
-@borderColor: @color1Fade3;
+@borderColor: rgba(0,0,0,0.1);
 @borderColorLight: rgba(0,0,0,0.05);
+@borderColorDark: rgba(0,0,0,0.15);
+@borderSolid: rgb(215,215,215);
 
-@darkButtonBackground: fade(white, 5%);
-@darkButtonColor: fade(white, 65%);
-@darkBorderColor: black;
+@darkButtonBackground: fade(@white, 10%);
+@darkButtonBackgroundHover: fade(@white, 2%);
+@darkButtonColor: fade(@white, 65%);
+@darkBorderColor: @black;
 
+@darkBlue: rgb(0,96,144);
+@darkBlueFade: fade(@darkBlue, 50%);
 
-@accentColor: #00A0F0;
-@accentDark: darken(@accentColor, 10%);
-@accentDark1: darken(@accentColor, 20%);
-@accentLight: lighten(@accentColor, 40%);
-@accentLight1: lighten(@accentColor, 30%);
-@accentLight2: lighten(@accentColor, 20%);
-@accentLight3: lighten(@accentColor, 10%);
-@accentFade: fade(@accentColor, 50%);
-@accentFade2: fade(@accentColor, 25%);
-@accentFade3: fade(@accentColor, 10%);
-@accentFade4: fade(@accentColor, 5%);
-
+@accentColor: #00a0f0;
+@accentDarken10: darken(@accentColor, 10%);
 @accentDarken20: darken(@accentColor, 20%);
-@accentFade20: fade(@accentColor, 20%);
-@accentLighten25: lighten(@accentColor, 25%);
-@accentLighten33: lighten(@accentColor, 33%);
+@accentDarken20Fade25: fade(darken(@accentColor, 20%), 25%);
+
+@darkBlue: @accentDarken20;
+
+@accentOnLight: darken(@accentColor, 15%);
+
+@accentLighten10: lighten(@accentColor, 10%);
+@accentLighten20: lighten(@accentColor, 20%);
+@accentLighten30: lighten(@accentColor, 30%);
+@accentLighten40: lighten(@accentColor, 40%);
 @accentLighten45: lighten(@accentColor, 45%);
 @accentLighten50: lighten(@accentColor, 50%);
 
 
-@accentLightFade: fade(@accentLighten45 , 50%);
+@accentFade50: fade(@accentColor, 50%);
+@accentFade25: fade(@accentColor, 25%);
+@accentFade20: fade(@accentColor, 20%);
+@accentFade10: fade(@accentColor, 10%);
 
-@leftViewport: #222930;
+@accentColor05: rgb(242,250,254); // hard coded 5% of current accent
 
-// new
+
+@adminGray: rgb(90,96,101);
+@adminGrayFade75: fade(@adminGray, 75%);
+
+// status colors
+
+@warningColor: rgba(196,22,22,1);
+@warningColorFade50: fade(@warningColor, 50%);
+
+
+
+// for future usage, this is a brighter version of the accent color for command type actions, such as selection
 
 @actionColor: saturate(@accentColor, 30%);
-@actionColor: @accentColor;
+@actionColor: lighten(@accentColor, 20%);
 
+//
 
-@edit: rgb(252, 255, 143);
-@editFade50: fade(rgb(252, 255, 143), 50%);
-@editLighten50: lighten(@edit, 50%);
+@white: #fff;
+@whiteFade90: fade(@white, 90%);
+@whiteFade75: fade(@white, 75%);
+@whiteFade50: fade(@white, 50%);
+@whiteFade25: fade(@white, 25%);
+@whiteFade15: fade(@white, 15%);
+@whiteFade10: fade(@white, 10%);
 
-
+@background: @color2;
+@backgroundFade50: fade(@background, 50%);
+@backgroundLighten05: lighten(@background, 5%);
+@backgroundLighten8: lighten(@background, 8%);
 
 @fontFamily: 'Karla', Helvetica Neue, Helvetica, Arial, sans-serif;
-@fontSizeSmall: 10px;
-@fontSizeBase: 12px;
+@fontSizeSmall: @type10;
+@fontSizeBase: @type16;
 @fontSizeBasePlus1: 16px;
 @fontSizeBasePlus2: 24px;
 
-@glyphiconSizeBase: 16px;
+
+@glyphiconSizeBase: @type16;
+
+
+
+@type8: .5rem;
+@type10: .625rem;
+@type11: .6875rem;
+@type12: .75rem;
+@type14: .875rem;
+@type16: 1rem; // 16px
+@type18: 1.125rem;
+@type21: 1.3125rem;
+@type24: 1.5rem;
+@type30: 1.875rem;
+@type36: 2.25rem;
+@type48: 3rem;
+
+
+
+
+// future use, moving to 16px/1rem based grid
+
 
 @typeUnit1-4x: @typeUnit1x / 4;
 @typeUnit1-2x: @typeUnit1x / 2;
-@typeUnit1x: 16px;
-@typeUnit1x5x: @typeUnit1x * 1.5;
+@typeUnit3-4x: @typeUnit1x * .75;
+@typeUnit1x: 1rem;
 @typeUnit2x: @typeUnit1x * 2;
 @typeUnit3x: @typeUnit1x * 3;
 @typeUnit4x: @typeUnit1x * 4;
 @typeUnit5x: @typeUnit1x * 5;
 @typeUnit6x: @typeUnit1x * 6;
 
-@colUnit1-8x: @colUnit1x / 8;
 @colUnit1-4x: @colUnit1x / 4;
 @colUnit1-2x: @colUnit1x / 2;
 @colUnit1x: 160px;
@@ -129,5 +149,9 @@
 @gridUnit3x: @gridUnit1x * 3;
 @gridUnit4x: @gridUnit1x * 4;
 
-@formWarning: #880000;
-@leftNavWidth: @colUnit1x;
+@black: #000;
+@blackFade75: fade(@black, 75%);
+@blackFade50: fade(@black, 50%);
+@blackFade25: fade(@black, 25%);
+@blackFade10: fade(@black, 10%);
+@blackFade5: fade(@black, 5%);

@@ -1,7 +1,7 @@
 
-<div class="preview-widget">
-	<div style="padding: 0" ng-class="state.preview ? 'col-sm-7' : 'col-sm-12'">
-		<div class="search-widget"
+<div class="preview-widget" ng-class="{ 'preview-active' : state.preview }">
+	<div style="padding: 0" ng-class="state.preview ? 'col-xs-7' : 'col-xs-12'">
+		<div class="insight"
 		     ng-mouseenter="focus = true">
 
 			<div class="search-field-wrapper" ng-class="{focus:focus && showOptions}">
@@ -144,7 +144,7 @@
 		</div>
 	</div>
 
-	<div class="col-sm-5 preview-column" ng-if="state.preview" ng-class="{ 'show-preview': showOptions }">
+	<div class="col-xs-5 preview-column" ng-if="state.preview" ng-class="{ 'show-preview': showOptions }">
 
 		<button type="button"
 		        class="btn btn-preview"
