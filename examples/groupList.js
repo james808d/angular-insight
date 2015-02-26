@@ -1,4 +1,4 @@
-function groupList() {
+module.exports = function groupList() {
 	var GroupList = {
 		get: function (id) {
 			return _.where(GroupList.groups, { _id: id });
@@ -21,4 +21,4 @@ function groupList() {
 	};
 
 	return GroupList;
-}
+};

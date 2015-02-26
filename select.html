@@ -29,7 +29,7 @@
 						<div ng-if="!filtered.length">No results found.</div>
 
 						<div ng-if="!preview"
-						     option-row
+						     option-row template-url="option-row.html"
 						     ng-repeat="item in filtered = ( data | filter:query | orderBy: 'name' )"
 						     class="selekt-option-row"
 						     ng-class="{assigned:item.assigned}"
@@ -37,7 +37,7 @@
 						</div>
 
 						<div ng-if="preview"
-						     option-row
+						     option-row template-url="option-row.html"
 						     ng-repeat="item in data | filter:query | orderBy: 'name'"
 						     class="selekt-option-row"
 						     ng-class="{assigned:item.assigned}"
@@ -60,7 +60,7 @@
 
 						<div class="subhead">Favorites</div>
 
-						<div option-row
+						<div option-row template-url="option-row.html"
 						     ng-repeat="item in favorites"
 						     class="selekt-option-row"
 						     ng-class="{assigned:item.assigned}"
@@ -73,7 +73,7 @@
 
 						<div class="subhead">Recent</div>
 
-						<div option-row
+						<div option-row template-url="option-row.html"
 						     ng-repeat="item in recents"
 						     class="selekt-option-row"
 						     ng-class="{assigned:item.assigned}"
@@ -88,7 +88,7 @@
 					<div class="scroll-container" ng-if="!preview">
 						<div class="subhead">Favorites</div>
 
-						<div option-row
+						<div option-row template-url="option-row.html"
 						     ng-repeat="item in favorites"
 						     class="selekt-option-row"
 						     ng-class="{assigned:item.assigned}"
@@ -97,7 +97,7 @@
 
 						<div class="subhead">Recent</div>
 
-						<div option-row
+						<div option-row template-url="option-row.html"
 						     ng-repeat="item in recents"
 						     class="selekt-option-row"
 						     ng-class="{assigned:item.assigned}"

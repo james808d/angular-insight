@@ -1,23 +1,24 @@
-function selectController($scope, GroupList){
+angular.module('selekt')
+.controller('SelectController', ['$scope', 'GroupList', function selectController($scope, GroupList){
 
 
 	// this needs integration with list directive, infinite scroll, and search
 
 	$scope.state = {};
 
-	$scope.data = GroupList.groups;
-	$scope.data.$promise.then(function(response){
+	var data = $scope.data = GroupList.groups;
+	//$scope.data.$promise.then(function(response){
 		$scope.favorites = [];
 		$scope.recents = [];
 
-		$scope.favorites.push(response[3]);
-		$scope.favorites.push(response[6]);
-		$scope.favorites.push(response[7]);
+		$scope.favorites.push(data[3]);
+		$scope.favorites.push(data[6]);
+		$scope.favorites.push(data[7]);
 
-		$scope.recents.push(response[1]);
-		$scope.recents.push(response[2]);
-		$scope.recents.push(response[8]);
-	});
+		$scope.recents.push(data[1]);
+		$scope.recents.push(data[2]);
+		$scope.recents.push(data[8]);
+	//});
 
 
 	$scope.preview = false;
@@ -121,4 +122,4 @@ function selectController($scope, GroupList){
 		{label:'Edit', callback: GroupList.get},
 		{label: 'Delete', callback: GroupList.removeGroup}
 	];
-}
+}]);

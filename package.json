@@ -1,0 +1,43 @@
+{
+  "name": "angular-selekt",
+  "version": "0.0.0",
+  "description": "directive to select things",
+  "main": "selectController.js",
+  "directories": {
+    "example": "examples"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "beefy": "^2.1.3",
+    "brfs": "^1.4.0",
+    "browserify": "^9.0.3",
+    "browserify-shim": "^3.8.3",
+    "watchify": "^2.4.0"
+  },
+  "browserify": {
+    "transform": [
+      "browserify-shim",
+      "brfs"
+    ]
+  },
+  "browserify-shim": {
+    "angular": "global:angular"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "preinstall": "npm install -g browserify watchify beefy",
+    "bundle": "browserify examples/index.js -o examples/bundle.js",
+    "watch": "watchify examples/index.js -o examples/bundle.js",
+    "live-reload": "beefy examples/index.js:bundle.js --live"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/james808d/angular-selekt.git"
+  },
+  "author": "James Durham",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/james808d/angular-selekt/issues"
+  },
+  "homepage": "https://github.com/james808d/angular-selekt"
+}
