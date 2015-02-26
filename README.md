@@ -13,6 +13,6 @@ A simple Angular directive to select things
 
 ## Launch the example app
 
-Run `npm run live-reload` to launch the example using beefy. The app will be
+Run `npm run live-reload-example` to launch the example using beefy. The app will be
 available at http://localhost:9966/examples
 
