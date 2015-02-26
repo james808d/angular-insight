@@ -1,25 +1,33 @@
 
 <div class="preview-widget">
-	<div style="padding: 0" ng-class="preview ? 'col-sm-7' : 'col-sm-12'">
+	<div style="padding: 0" ng-class="state.preview ? 'col-sm-7' : 'col-sm-12'">
 		<div class="search-widget"
 		     ng-mouseenter="focus = true">
 
 			<div class="search-field-wrapper" ng-class="{focus:focus && showOptions}">
 
-				<div class="search-field" ng-class="{focus:focus && showOptions }">
-
-					<span class="glyphicons search icon" ng-hide="state.loading"></span>
-					<span class="glyphicons refresh icon" ng-show="state.loading"></span>
-
-					<button class="btn btn-close"
-					        ng-if="showOptions"
-					        ng-click="closeOptions()">
-						Done
-					</button>
-
-					<input class="input" ng-model="query.name"
-					       ng-click="showOptions = true"
-					       placeholder="Find items ...">
+				<div class="search-field-inner">
+					<div class="flex-fill">
+						<div class="search-field" ng-class="{focus:focus && showOptions }">
+							<span class="glyphicons search icon" ng-hide="state.loading"></span>
+							<span class="glyphicons refresh icon" ng-show="state.loading"></span>
+							<button class="btn btn-close"
+							        ng-if="showOptions"
+							        ng-click="closeOptions()">
+								Done
+							</button>
+							<input class="input" ng-model="query.name"
+							       ng-click="showOptions = true"
+							       placeholder="Find items ...">
+						</div>
+					</div>
+					<div ng-hide="state.preview">
+						<button type="button" class="btn btn-preview" ng-model="state.preview" btn-checkbox
+						        btn-checkbox-true="1" btn-checkbox-false="0">
+							<span class="glyphicons eye_close" ng-show="state.preview"></span>
+							<span class="glyphicons eye_open" ng-hide="state.preview"></span>
+						</button>
+					</div>
 				</div>
 
 				<!-- user is searching -->
@@ -28,7 +36,7 @@
 
 						<div ng-if="!filtered.length">No results found.</div>
 
-						<div ng-if="!preview"
+						<div ng-if="!state.preview"
 						     option-row
 						     ng-repeat="item in filtered = ( data | filter:query | orderBy: 'name' )"
 						     class="insight-option-row"
@@ -36,7 +44,7 @@
 						     ng-click="toggleItem(item)">
 						</div>
 
-						<div ng-if="preview"
+						<div ng-if="state.preview"
 						     option-row
 						     ng-repeat="item in data | filter:query | orderBy: 'name'"
 						     class="insight-option-row"
@@ -52,7 +60,7 @@
 
 				<!-- safari style browse options -->
 				<div class="widget-options animate-if" ng-if="!query && showOptions">
-					<div class="scroll-container" ng-if="preview">
+					<div class="scroll-container" ng-if="state.preview">
 
 						<!-- TODO: right now you can select an item in BOTH lists
 							 How to prevent this?
@@ -85,7 +93,7 @@
 						</div>
 					</div>
 
-					<div class="scroll-container" ng-if="!preview">
+					<div class="scroll-container" ng-if="!state.preview">
 						<div class="subhead">Favorites</div>
 
 						<div option-row
@@ -136,7 +144,13 @@
 		</div>
 	</div>
 
-	<div class="col-sm-5 preview-column" ng-if="preview" ng-class="{ 'show-preview': showOptions }">
+	<div class="col-sm-5 preview-column" ng-if="state.preview" ng-class="{ 'show-preview': showOptions }">
+
+		<button type="button"
+		        class="btn btn-preview"
+		        ng-model="state.preview" btn-checkbox btn-checkbox-true="1" btn-checkbox-false="0">
+			<span class="glyphicons remove_2"></span>
+		</button>
 
 		<div class="scroll-container">
 			<!-- preview has to be specific to data type -->
@@ -172,16 +186,6 @@
 				{{ messageItem.name }} was removed.
 			</div>
 
-		</div>
-	</div>
-</div>
-
-<div class="row" style="margin-top: 15px;">
-	<div class="col-sm-12">
-		<label>Show Preview</label><br>
-		<div class="btn-group">
-			<label class="btn btn-primary" ng-model="preview" btn-radio="true">On</label>
-			<label class="btn btn-primary" ng-model="preview" btn-radio="false">Off</label>
 		</div>
 	</div>
 </div>

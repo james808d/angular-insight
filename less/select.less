@@ -7,10 +7,41 @@
 	background: #fafafa;
 	height: 436px;
 
+
+	.btn-preview {
+		background: none;
+		border: none;
+		color: @color1Fade50;
+		font-size: 24px;
+		height: 48px;
+		line-height: 24px;
+		padding: 0 12px;
+		margin-left: 16px;
+
+		&.active {
+			outline: none;
+			.BoxShadow(none);
+		}
+
+		&:active,
+		&:focus,
+		&:active:focus {
+			outline: none;
+			.BoxShadow(none);
+			background: rgba(0,0,0,0.1);
+		}
+	}
+
 	.preview-column {
 
 		border-left: 1px solid rgba(0, 0, 0, 0.1);
 		height: 100%;
+
+		.btn-preview {
+			position: absolute;
+			right: 16px;
+			top: 16px;
+		}
 
 		&.bold-theme {
 			background: @accentColor;
@@ -53,12 +84,11 @@
 			line-height: 64px;
 			color: @color1Fade;
 		}
-
 	}
 
 	.scroll-container {
 		position: absolute;
-		top: 16px;
+		top: 48px;
 		right: 16px;
 		left: 16px;
 		bottom: 0;
@@ -74,12 +104,11 @@
 			background: white;
 			z-index: 900;
 		}
-
 	}
-
 }
 
 .ui-match { background: yellow; }
+
 
 .insight-option-row {
 
@@ -248,12 +277,27 @@
 		padding: 0 16px;
 		border-bottom: 1px solid @borderColor;
 
+		.search-field-inner {
+			.flexContainer();
+
+			> div {
+				.flexItem();
+
+				&.flex-fill {
+					.flexItem(1 1 auto);
+				}
+				> .btn-group {
+					padding-left: 15px;
+				}
+			}
+			> .btn {
+				padding-left: 15px;
+			}
+		}
 
 		.search-field {
-			position: absolute;
+			position: relative;
 			top: 0;
-			left: 16px;
-			right: 16px;
 			height: 48px;
 			background: white;
 			z-index: 1;

@@ -1,1 +1,1 @@
-angular.module('insight', ['ngSanitize', 'ui.highlight', 'ui.bootstrap']);
+angular.module('insight', ['ngSanitize', 'ui.highlight', 'ui.bootstrap']);/*Of making sure you were right,Hey don't you know you were right?*/

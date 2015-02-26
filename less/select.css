@@ -38,9 +38,39 @@
   background: #fafafa;
   height: 436px;
 }
+.preview-widget .btn-preview {
+  background: none;
+  border: none;
+  color: rgba(51, 62, 72, 0.5);
+  font-size: 24px;
+  height: 48px;
+  line-height: 24px;
+  padding: 0 12px;
+  margin-left: 16px;
+}
+.preview-widget .btn-preview.active {
+  outline: none;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+}
+.preview-widget .btn-preview:active,
+.preview-widget .btn-preview:focus,
+.preview-widget .btn-preview:active:focus {
+  outline: none;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  background: rgba(0, 0, 0, 0.1);
+}
 .preview-widget .preview-column {
   border-left: 1px solid rgba(0, 0, 0, 0.1);
   height: 100%;
+}
+.preview-widget .preview-column .btn-preview {
+  position: absolute;
+  right: 16px;
+  top: 16px;
 }
 .preview-widget .preview-column.bold-theme {
   background: #00a0f0;
@@ -79,7 +109,7 @@
 }
 .preview-widget .scroll-container {
   position: absolute;
-  top: 16px;
+  top: 48px;
   right: 16px;
   left: 16px;
   bottom: 0;
@@ -254,11 +284,44 @@
   padding: 0 16px;
   border-bottom: 1px solid rgba(51, 62, 72, 0.1);
 }
+.search-widget .search-field-wrapper .search-field-inner {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  -ms-box-orient: horizontal;
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flex;
+  display: flex;
+  -webkit-flex-flow: row nowrap;
+  -moz-flex-flow: row nowrap;
+  -ms-flex-flow: row nowrap;
+  flex-flow: row nowrap;
+  -webkit-align-items: stretch;
+  align-items: stretch;
+  justify-content: space-between;
+}
+.search-widget .search-field-wrapper .search-field-inner > div {
+  -webkit-flex: 0 0 auto;
+  -moz-flex: 0 0 auto;
+  -ms-flex: 0 0 auto;
+  flex: 0 0 auto;
+}
+.search-widget .search-field-wrapper .search-field-inner > div.flex-fill {
+  -webkit-flex: 1 1 auto;
+  -moz-flex: 1 1 auto;
+  -ms-flex: 1 1 auto;
+  flex: 1 1 auto;
+}
+.search-widget .search-field-wrapper .search-field-inner > div > .btn-group {
+  padding-left: 15px;
+}
+.search-widget .search-field-wrapper .search-field-inner > .btn {
+  padding-left: 15px;
+}
 .search-widget .search-field-wrapper .search-field {
-  position: absolute;
+  position: relative;
   top: 0;
-  left: 16px;
-  right: 16px;
   height: 48px;
   background: white;
   z-index: 1;

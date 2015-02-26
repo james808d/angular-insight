@@ -5,6 +5,7 @@ angular.module('insight')
 	// this needs integration with list directive, infinite scroll, and search
 
 	$scope.state = {};
+	$scope.state.preview = 0;
 
 	var data = $scope.data = GroupList.groups;
 	$scope.data.$promise.then(function(response){
@@ -21,7 +22,7 @@ angular.module('insight')
 	});
 
 
-	$scope.preview = false;
+
 
 	$scope.assignedItems = [];
 
