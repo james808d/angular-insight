@@ -40,7 +40,7 @@
 
 						<div ng-if="!state.preview"
 						     option-row
-						     ng-repeat="item in filtered = ( data | filter:query | orderBy: 'name' )"
+						     ng-repeat="item in filtered = ( insight.data | filter:query | orderBy: 'name' )"
 						     class="insight-option-row"
 						     ng-class="{assigned:item.assigned}"
 						     ng-click="toggleItem(item)">
@@ -48,7 +48,7 @@
 
 						<div ng-if="state.preview"
 						     option-row
-						     ng-repeat="item in data | filter:query | orderBy: 'name'"
+						     ng-repeat="item in insight.data | filter:query | orderBy: 'name'"
 						     class="insight-option-row"
 						     ng-class="{assigned:item.assigned}"
 						     ng-click="toggleItem(item)"
@@ -178,7 +178,7 @@
 			</div>
 
 
-			<div class="preview-item" ng-repeat="item in filteredData = ( data | filter:{selected:true} | limitTo:1 | orderBy:reverse )"
+			<div class="preview-item" ng-repeat="item in filteredData = ( insight.data | filter:{selected:true} | limitTo:1 | orderBy:reverse )"
 			     ng-if="query">
 				<h1>
 					<span class="circle glyphicons group"></span>
