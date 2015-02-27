@@ -1,6 +1,14 @@
 
 <div class="preview-widget" ng-class="{ 'preview-active' : state.preview }">
-	<div style="padding: 0" ng-class="state.preview ? 'col-xs-7' : 'col-xs-12'">
+
+	<button type="button" class="btn btn-preview" ng-model="state.preview" btn-checkbox
+	        btn-checkbox-true="1" btn-checkbox-false="0">
+		<span class="glyphicons eye_close" ng-show="state.preview"></span>
+		<span class="glyphicons eye_open" ng-hide="state.preview"></span>
+	</button>
+
+
+	<div style="padding: 0" ng-class="state.preview ? 'col-xs-7' : 'col-xs-12'" class="assigned-items">
 		<div class="insight"
 		     ng-mouseenter="focus = true">
 
@@ -21,13 +29,7 @@
 							       placeholder="Find items ...">
 						</div>
 					</div>
-					<div ng-hide="state.preview">
-						<button type="button" class="btn btn-preview" ng-model="state.preview" btn-checkbox
-						        btn-checkbox-true="1" btn-checkbox-false="0">
-							<span class="glyphicons eye_close" ng-show="state.preview"></span>
-							<span class="glyphicons eye_open" ng-hide="state.preview"></span>
-						</button>
-					</div>
+					<div ng-hide="state.preview" class="preview-spacer"></div>
 				</div>
 
 				<!-- user is searching -->
@@ -140,13 +142,13 @@
 		</div>
 	</div>
 
-	<div class="col-xs-5 preview-column" ng-if="state.preview" ng-class="{ 'show-preview': showOptions }">
+	<div class="col-xs-5 preview-column animate-if" ng-if="state.preview" ng-class="{ 'show-preview': showOptions }">
 
-		<button type="button"
+		<!--<button type="button"
 		        class="btn btn-preview"
 		        ng-model="state.preview" btn-checkbox btn-checkbox-true="1" btn-checkbox-false="0">
 			<span class="glyphicons eye_close"></span>
-		</button>
+		</button>-->
 
 		<div class="scroll-container">
 
