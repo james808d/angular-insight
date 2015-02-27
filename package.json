@@ -2,7 +2,7 @@
   "name": "angular-insight",
   "version": "0.0.0",
   "description": "directive to select things",
-  "main": "selectController.js",
+  "main": "insightModule.js",
   "directories": {
     "example": "examples"
   },
@@ -26,9 +26,10 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "preinstall": "npm install -g browserify watchify beefy",
-    "bundle": "browserify examples/index.js -o examples/bundle.js",
-    "watch": "watchify examples/index.js -o examples/bundle.js",
-    "live-reload": "beefy examples/index.js:bundle.js --live"
+    "bundle": "browserify insightModule.js -o dist/angular-insight.js",
+    "bundle-example": "browserify examples/index.js -o examples/bundle.js",
+    "watch-example": "watchify examples/index.js -o examples/bundle.js",
+    "live-reload-example": "beefy examples/index.js:bundle.js --live"
   },
   "repository": {
     "type": "git",
