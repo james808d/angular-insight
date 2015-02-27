@@ -5,7 +5,7 @@ angular.module('insight')
 	// this needs integration with list directive, infinite scroll, and search
 
 	$scope.state = {};
-	$scope.state.preview = 0;
+	$scope.state.preview = 1;
 
 	var data = $scope.data = GroupList.groups;
 	$scope.data.$promise.then(function(response){
@@ -40,20 +40,26 @@ angular.module('insight')
 
 	$scope.toggleItem = function(item) {
 
-		$scope.showMessage = false;
-
 		if (!item.assigned) {
+			$scope.showMessage = false;
+			$scope.currentSelection = item;
 			item.assigned = true;
 			$scope.assignedItems.push(item);
 		} else {
+
 			$scope.removeItem(item);
 		}
 	};
 
 	$scope.change = function(item){
+
+		$scope.currentSelection = item;
+
 		if(item.assigned === false) {
 			$scope.showMessage = true;
 			$scope.messageItem = item;
+		} else {
+			$scope.showMessage = false;
 		}
 	};
 
@@ -79,6 +85,8 @@ angular.module('insight')
 
 	$scope.selection = function(item){
 
+		$scope.showMessage = null;
+
 		if (item.selected) {
 			$scope.currentSelection = item;
 		} else {
@@ -90,12 +98,15 @@ angular.module('insight')
 		$scope.showOptions = false;
 		$scope.query = '';
 		$scope.focus = false;
-		_.each($scope.data, function(group){ group.selected = false;});
+		$scope.currentSelection.selected = true;
+		// _.each($scope.data, function(group){ group.selected = false;});
 	};
 
 	$scope.removeItem = function(group) {
-
+		group.selected = false;
 		group.assigned = false;
+		$scope.showMessage = true;
+		$scope.messageItem = group;
 
 		var found, index;
 

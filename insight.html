@@ -51,7 +51,6 @@
 						     ng-class="{assigned:item.assigned}"
 						     ng-click="toggleItem(item)"
 
-						     selection-model-cleanup-strategy="deselect"
 						     selection-model
 						     selection-model-on-change="change(item)">
 						</div>
@@ -74,7 +73,6 @@
 						     ng-class="{assigned:item.assigned}"
 						     ng-click="toggleItem(item)"
 
-						     selection-model-cleanup-strategy="deselect"
 						     selection-model-on-change="change(item)"
 						     selection-model>
 						</div>
@@ -87,7 +85,6 @@
 						     ng-class="{assigned:item.assigned}"
 						     ng-click="toggleItem(item)"
 
-						     selection-model-cleanup-strategy="deselect"
 						     selection-model-on-change="change(item)"
 						     selection-model>
 						</div>
@@ -123,8 +120,7 @@
 
 					<div ng-repeat="item in assignedItems | filter:query | orderBy: 'name'"
 					     class="insight-option-row"
-					     selection-model-cleanup-strategy="deselect"
-					     selection-model-on-change="selection(item)"
+					     selection-model-on-change="change(item)"
 					     selection-model>
 						<div>
 							<span class="circle glyphicon glyphicon-user"></span>
@@ -153,8 +149,18 @@
 		</button>
 
 		<div class="scroll-container">
+
+			<div class="scroll-message" ng-if="!filteredAssignedItems.length && !filteredData.length && !showMessage">
+				<h3>No Items Selected</h3>
+			</div>
+			<div class="scroll-message" ng-show="showMessage">
+				<h3>{{ messageItem.name }} was removed</h3>
+			</div>
+
 			<!-- preview has to be specific to data type -->
-			<div class="preview-item" ng-repeat="item in assignedItems | filter:{selected:true} | limitTo:1 | orderBy:reverse" ng-if="!query">
+			<div class="preview-item"
+			     ng-repeat="item in filteredAssignedItems = ( assignedItems | filter:{selected:true} | limitTo:1 | orderBy:reverse )"
+			     ng-if="!query">
 				<h1>
 					<span class="circle glyphicon glyphicon-user"></span>
 				</h1>
@@ -170,8 +176,11 @@
 			</div>
 
 
-			<div class="preview-item" ng-repeat="item in data | filter:{selected:true} | limitTo:1 | orderBy:reverse" ng-if="query">
-
+			<div class="preview-item" ng-repeat="item in filteredData = ( data | filter:{selected:true} | limitTo:1 | orderBy:reverse )"
+			     ng-if="query">
+				<h1>
+					<span class="circle glyphicon glyphicon-user"></span>
+				</h1>
 				<h3>{{ item.name }}</h3>
 				<p>{{ item.description }}</p>
 
@@ -182,9 +191,7 @@
 				<p ng-if="!item.users.length">No assigned users.</p>
 			</div>
 
-			<div ng-show="showMessage">
-				{{ messageItem.name }} was removed.
-			</div>
+
 
 		</div>
 	</div>

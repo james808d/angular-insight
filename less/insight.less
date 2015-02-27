@@ -94,16 +94,33 @@
 			line-height: 64px;
 			color: @color1Fade50;
 		}
+
+		.scroll-message {
+			height: 100%;
+			width: 100%;
+			text-align: center;
+
+			h3 {
+				margin: 0;
+				position: absolute;
+				top: 50%;
+				text-align: center;
+				width: 100%;
+				color: @color1Fade50;
+			}
+
+		}
+
 	}
 
 	.scroll-container {
 		position: absolute;
-		top: 48px;
+		top: 16px;
 		right: 16px;
 		left: 16px;
-		bottom: 0;
+		bottom: 16px;
 		overflow-y: scroll;
-		height: 332px;
+		// height: 332px;
 	}
 
 	&.show-preview {
@@ -137,14 +154,6 @@
 
 		.btn {
 			color: @white;
-		}
-
-		&:after {
-
-			content: '';
-			.TriangleRight(@color:@accentColor);
-			position: absolute;
-			right: -8px;
 		}
 	}
 
@@ -368,7 +377,6 @@
 	}
 
 
-
 	.widget-options {
 
 		position: absolute;
@@ -444,7 +452,7 @@
 			position: relative;
 			right: 0;
 			left: 0;
-			top: auto;
+			top: 0;
 			overflow-y: scroll;
 			height: 332px;
 			margin-top: 2px;
