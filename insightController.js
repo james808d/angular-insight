@@ -1,14 +1,12 @@
-angular.module('insight')
-.controller('InsightController', ['$scope', 'GroupList', function insightController($scope, GroupList){
-
+module.exports = function insightController($scope, GroupList){
 
 	// this needs integration with list directive, infinite scroll, and search
 
 	$scope.state = {};
 	$scope.state.preview = 1;
 
-	var data = $scope.data = GroupList.groups;
-	$scope.data.$promise.then(function(response){
+	GroupList.groups.$promise.then(function(response){
+		var data = $scope.data = GroupList.groups;
 		$scope.favorites = [];
 		$scope.recents = [];
 
@@ -134,4 +132,4 @@ angular.module('insight')
 		{label:'Edit', callback: GroupList.get},
 		{label: 'Delete', callback: GroupList.removeGroup}
 	];
-}]);
+}
