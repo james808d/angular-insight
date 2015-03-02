@@ -199,7 +199,7 @@
 }
 .preview-widget .scroll-container {
   position: absolute;
-  top: 16px;
+  top: 32px;
   right: 16px;
   left: 16px;
   bottom: 16px;
@@ -234,11 +234,30 @@
 .insight-option-row.selected:hover .btn {
   color: #ffffff;
 }
+.insight-option-row.selected:focus,
+.insight-option-row.selected:hover:focus,
+.insight-option-row.selected:active,
+.insight-option-row.selected:hover:active,
+.insight-option-row.selected:focus:active,
+.insight-option-row.selected:hover:focus:active {
+  background: #008fd7;
+}
+.insight-option-row:active {
+  -webkit-box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.1);
+  box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.1);
+}
 .insight-option-row:hover {
   background: rgba(0, 160, 240, 0.1);
+  background: rgba(0, 0, 0, 0.05);
 }
 .insight-option-row:hover .badge {
   display: inline-block;
+}
+.insight-option-row:hover:focus,
+.insight-option-row:hover:active,
+.insight-option-row:hover:focus:active {
+  background: rgba(0, 160, 240, 0.2);
+  background: rgba(0, 0, 0, 0.1);
 }
 .insight-option-row.assigned:not(.selected),
 .insight-option-row.assigned:hover:not(.selected) {
@@ -252,6 +271,16 @@
 .insight-option-row.assigned:hover:not(.selected) .circle {
   background: rgba(0, 160, 240, 0.1);
   color: #00a0f0;
+}
+.insight-option-row .btn {
+  color: rgba(0, 0, 0, 0.5);
+  position: relative;
+  top: 0;
+  right: 0;
+  border-radius: 0;
+  height: 40px;
+  width: 50px;
+  z-index: 10;
 }
 .insight-option-row > div {
   -webkit-flex: 0 0 auto;
@@ -290,16 +319,6 @@
 }
 .insight-option-row > div .badge.add-item {
   background: #00a0f0;
-}
-.insight-option-row > div .btn {
-  color: rgba(0, 0, 0, 0.5);
-  position: relative;
-  top: 0;
-  right: 0;
-  border-radius: 0;
-  height: 40px;
-  width: 50px;
-  z-index: 10;
 }
 .insight-option-row.ng-move,
 .insight-option-row.ng-enter,

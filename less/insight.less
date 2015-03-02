@@ -168,7 +168,7 @@
 
 	.scroll-container {
 		position: absolute;
-		top: 16px;
+		top: 32px;
 		right: 16px;
 		left: 16px;
 		bottom: 16px;
@@ -194,6 +194,7 @@
 
 	.flexContainer();
 
+
 	&.selected,
 	&.selected:hover
 	{
@@ -208,13 +209,32 @@
 		.btn {
 			color: @white;
 		}
+
+		&:focus,
+		&:active,
+		&:focus:active {
+			background: @accentDarken05;
+		}
+	}
+
+
+	&:active {
+		.BoxShadow(inset 0 0 4px @blackFade10);
 	}
 
 	&:hover {
 		background: @accentFade10;
+		background: @blackFade5;
 
 		.badge {
 			display: inline-block;
+		}
+
+		&:focus,
+		&:active,
+		&:focus:active {
+			background: @accentFade20;
+			background: @blackFade10;
 		}
 	}
 
@@ -234,6 +254,17 @@
 		}
 	}
 
+
+	.btn {
+		color: rgba(0, 0, 0, 0.5);
+		position: relative;
+		top: 0;
+		right: 0;
+		border-radius: 0;
+		height: 40px;
+		width: 50px;
+		z-index: 10;
+	}
 
 	> div {
 
@@ -276,19 +307,6 @@
 			&.remove-item {
 				//background: @formWarning;
 			}
-		}
-
-
-
-		.btn {
-			color: rgba(0, 0, 0, 0.5);
-			position: relative;
-			top: 0;
-			right: 0;
-			border-radius: 0;
-			height: 40px;
-			width: 50px;
-			z-index: 10;
 		}
 	}
 
