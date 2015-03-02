@@ -1,25 +1,38 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
-module.exports = function insightController($scope, GroupList){
+module.exports = function insightDirective () {
+	return {
+		restrict: 'A',
+		templateUrl: function(elem, attr) {
+			return attr.templateUrl || 'insight.html';
+		},
+		scope: {
+			insight: '='
+		},
+		replace: true,
+		controller: ['$scope', insightController],
+		compile: function () {
+		}
+	};
+}
+
+function insightController($scope){
 
 	// this needs integration with list directive, infinite scroll, and search
 
 	$scope.state = {};
 	$scope.state.preview = 1;
 
-	GroupList.groups.$promise.then(function(response){
-		var data = $scope.data = GroupList.groups;
-		$scope.favorites = [];
-		$scope.recents = [];
+	var data = $scope.insight.data;
+	$scope.favorites = [];
+	$scope.recents = [];
 
-		$scope.favorites.push(data[3]);
-		$scope.favorites.push(data[6]);
-		$scope.favorites.push(data[7]);
+	$scope.favorites.push(data[3]);
+	$scope.favorites.push(data[6]);
+	$scope.favorites.push(data[7]);
 
-		$scope.recents.push(data[1]);
-		$scope.recents.push(data[2]);
-		$scope.recents.push(data[8]);
-	});
-
+	$scope.recents.push(data[1]);
+	$scope.recents.push(data[2]);
+	$scope.recents.push(data[8]);
 
 
 
@@ -129,25 +142,13 @@ module.exports = function insightController($scope, GroupList){
 		]}
 	];
 
-	$scope.groupOptions.actions = [
+	/*$scope.groupOptions.actions = [
 		{label:'Edit', callback: GroupList.get},
 		{label: 'Delete', callback: GroupList.removeGroup}
-	];
+	];*/
 }
 
 },{}],2:[function(require,module,exports){
-module.exports = function() {
-
-	return {
-		transclude: true,
-		templateUrl: function(tElement, tAttrs) {
-			return tAttrs.templateUrl || 'option-row.html';
-		}
-	}
-
-}
-
-},{}],3:[function(require,module,exports){
 (function (global){
 var angular = (typeof window !== "undefined" ? window.angular : typeof global !== "undefined" ? global.angular : null);
 
@@ -155,16 +156,16 @@ var path = require('path');
 
 module.exports = angular
 	.module('insight', ['ngSanitize', 'ui.highlight', 'ui.bootstrap'])
-	.controller('InsightController', ['$scope', 'GroupList', require('./insightController')])
-	.directive('optionRow', require('./insightDirective'))
+	.directive('insight', require('./insightDirective'))
+	.directive('optionRow', require('./optionRowDirective'))
 	.run(['$templateCache', function($templateCache) {
-		$templateCache.put('insight.html', "\n<div class=\"preview-widget\" ng-class=\"{ 'preview-active' : state.preview }\">\n\n\t<button type=\"button\" class=\"btn btn-preview\" ng-model=\"state.preview\" btn-checkbox\n\t        btn-checkbox-true=\"1\" btn-checkbox-false=\"0\">\n\t\t<span class=\"glyphicons eye_close\" ng-show=\"state.preview\"></span>\n\t\t<span class=\"glyphicons eye_open\" ng-hide=\"state.preview\"></span>\n\t</button>\n\n\n\t<div style=\"padding: 0\" ng-class=\"state.preview ? 'col-xs-7' : 'col-xs-12'\" class=\"assigned-items\">\n\t\t<div class=\"insight\"\n\t\t     ng-mouseenter=\"focus = true\">\n\n\t\t\t<div class=\"search-field-wrapper\" ng-class=\"{focus:focus && showOptions}\">\n\n\t\t\t\t<div class=\"search-field-inner\">\n\t\t\t\t\t<div class=\"flex-fill\">\n\t\t\t\t\t\t<div class=\"search-field\" ng-class=\"{focus:focus && showOptions }\">\n\t\t\t\t\t\t\t<span class=\"glyphicons search icon\" ng-hide=\"state.loading\"></span>\n\t\t\t\t\t\t\t<span class=\"glyphicons refresh icon\" ng-show=\"state.loading\"></span>\n\t\t\t\t\t\t\t<button class=\"btn btn-close\"\n\t\t\t\t\t\t\t        ng-if=\"showOptions\"\n\t\t\t\t\t\t\t        ng-click=\"closeOptions()\">\n\t\t\t\t\t\t\t\tDone\n\t\t\t\t\t\t\t</button>\n\t\t\t\t\t\t\t<input class=\"input\" ng-model=\"query.name\"\n\t\t\t\t\t\t\t       ng-click=\"showOptions = true\"\n\t\t\t\t\t\t\t       placeholder=\"Find items ...\">\n\t\t\t\t\t\t</div>\n\t\t\t\t\t</div>\n\t\t\t\t\t<div ng-hide=\"state.preview\" class=\"preview-spacer\"></div>\n\t\t\t\t</div>\n\n\t\t\t\t<!-- user is searching -->\n\t\t\t\t<div class=\"widget-options animate-if\" ng-if=\"query && showOptions\">\n\t\t\t\t\t<div class=\"scroll-container\">\n\n\t\t\t\t\t\t<div ng-if=\"!filtered.length\">No results found.</div>\n\n\t\t\t\t\t\t<div ng-if=\"!state.preview\"\n\t\t\t\t\t\t     option-row\n\t\t\t\t\t\t     ng-repeat=\"item in filtered = ( data | filter:query | orderBy: 'name' )\"\n\t\t\t\t\t\t     class=\"insight-option-row\"\n\t\t\t\t\t\t     ng-class=\"{assigned:item.assigned}\"\n\t\t\t\t\t\t     ng-click=\"toggleItem(item)\">\n\t\t\t\t\t\t</div>\n\n\t\t\t\t\t\t<div ng-if=\"state.preview\"\n\t\t\t\t\t\t     option-row\n\t\t\t\t\t\t     ng-repeat=\"item in data | filter:query | orderBy: 'name'\"\n\t\t\t\t\t\t     class=\"insight-option-row\"\n\t\t\t\t\t\t     ng-class=\"{assigned:item.assigned}\"\n\t\t\t\t\t\t     ng-click=\"toggleItem(item)\"\n\n\t\t\t\t\t\t     selection-model\n\t\t\t\t\t\t     selection-model-on-change=\"change(item)\">\n\t\t\t\t\t\t</div>\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\n\t\t\t\t<!-- safari style browse options -->\n\t\t\t\t<div class=\"widget-options animate-if\" ng-if=\"!query && showOptions\">\n\t\t\t\t\t<div class=\"scroll-container\" ng-if=\"state.preview\">\n\n\t\t\t\t\t\t<!-- TODO: right now you can select an item in BOTH lists\n\t\t\t\t\t\t\t How to prevent this?\n\t\t\t\t\t\t-->\n\n\t\t\t\t\t\t<div class=\"subhead\">Favorites</div>\n\n\t\t\t\t\t\t<div option-row\n\t\t\t\t\t\t     ng-repeat=\"item in favorites\"\n\t\t\t\t\t\t     class=\"insight-option-row\"\n\t\t\t\t\t\t     ng-class=\"{assigned:item.assigned}\"\n\t\t\t\t\t\t     ng-click=\"toggleItem(item)\"\n\n\t\t\t\t\t\t     selection-model-on-change=\"change(item)\"\n\t\t\t\t\t\t     selection-model>\n\t\t\t\t\t\t</div>\n\n\t\t\t\t\t\t<div class=\"subhead\">Recent</div>\n\n\t\t\t\t\t\t<div option-row\n\t\t\t\t\t\t     ng-repeat=\"item in recents\"\n\t\t\t\t\t\t     class=\"insight-option-row\"\n\t\t\t\t\t\t     ng-class=\"{assigned:item.assigned}\"\n\t\t\t\t\t\t     ng-click=\"toggleItem(item)\"\n\n\t\t\t\t\t\t     selection-model-on-change=\"change(item)\"\n\t\t\t\t\t\t     selection-model>\n\t\t\t\t\t\t</div>\n\t\t\t\t\t</div>\n\n\t\t\t\t\t<div class=\"scroll-container\" ng-if=\"!state.preview\">\n\t\t\t\t\t\t<div class=\"subhead\">Favorites</div>\n\n\t\t\t\t\t\t<div option-row\n\t\t\t\t\t\t     ng-repeat=\"item in favorites\"\n\t\t\t\t\t\t     class=\"insight-option-row\"\n\t\t\t\t\t\t     ng-class=\"{assigned:item.assigned}\"\n\t\t\t\t\t\t     ng-click=\"toggleItem(item)\">\n\t\t\t\t\t\t</div>\n\n\t\t\t\t\t\t<div class=\"subhead\">Recent</div>\n\n\t\t\t\t\t\t<div option-row\n\t\t\t\t\t\t     ng-repeat=\"item in recents\"\n\t\t\t\t\t\t     class=\"insight-option-row\"\n\t\t\t\t\t\t     ng-class=\"{assigned:item.assigned}\"\n\t\t\t\t\t\t     ng-click=\"toggleItem(item)\">\n\t\t\t\t\t\t</div>\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\t\t\t</div>\n\n\t\t\t<div class=\"widget-members\"  ng-class=\"{focus:focus && showOptions}\">\n\t\t\t\t<div class=\"scroll-container\">\n\t\t\t\t\t<div ng-if=\"assignedItems.length === 0\" style=\"color: gray\">\n\t\t\t\t\t\tNo items assigned.\n\t\t\t\t\t</div>\n\n\t\t\t\t\t<div ng-repeat=\"item in assignedItems | filter:query | orderBy: 'name'\"\n\t\t\t\t\t     class=\"insight-option-row\"\n\t\t\t\t\t     selection-model-on-change=\"change(item)\"\n\t\t\t\t\t     selection-model>\n\t\t\t\t\t\t<div>\n\t\t\t\t\t\t\t<span class=\"circle glyphicons group\"></span>\n\t\t\t\t\t\t</div>\n\t\t\t\t\t\t<div class=\"flex-fill\">\n\t\t\t\t\t\t\t{{ item.name }}\n\t\t\t\t\t\t</div>\n\t\t\t\t\t\t<div>\n\t\t\t\t\t\t\t<button class=\"btn btn-link pull-right\" ng-click=\"removeItem(item)\" selection-model-ignore>\n\t\t\t\t\t\t\t\t<span class=\"glyphicons remove_2\"></span>\n\t\t\t\t\t\t\t</button>\n\t\t\t\t\t\t</div>\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t\t<div class=\"overlay\" ng-show=\"showOptions === true\" ng-click=\"closeOptions()\"></div>\n\t\t</div>\n\t</div>\n\n\t<div class=\"col-xs-5 preview-column animate-if\" ng-if=\"state.preview\" ng-class=\"{ 'show-preview': showOptions }\">\n\n\t\t<!--<button type=\"button\"\n\t\t        class=\"btn btn-preview\"\n\t\t        ng-model=\"state.preview\" btn-checkbox btn-checkbox-true=\"1\" btn-checkbox-false=\"0\">\n\t\t\t<span class=\"glyphicons eye_close\"></span>\n\t\t</button>-->\n\n\t\t<div class=\"scroll-container\">\n\n\t\t\t<div class=\"scroll-message\" ng-if=\"!filteredAssignedItems.length && !filteredData.length && !showMessage\">\n\t\t\t\t<h3>No Items Selected</h3>\n\t\t\t</div>\n\t\t\t<div class=\"scroll-message\" ng-show=\"showMessage\">\n\t\t\t\t<h3>{{ messageItem.name }} was removed</h3>\n\t\t\t</div>\n\n\t\t\t<!-- preview has to be specific to data type -->\n\t\t\t<div class=\"preview-item\"\n\t\t\t     ng-repeat=\"item in filteredAssignedItems = ( assignedItems | filter:{selected:true} | limitTo:1 | orderBy:reverse )\"\n\t\t\t     ng-if=\"!query\">\n\t\t\t\t<h1>\n\t\t\t\t\t<span class=\"circle glyphicons group\"></span>\n\t\t\t\t</h1>\n\n\t\t\t\t<h3>{{ item.name }}</h3>\n\t\t\t\t<p>{{ item.description }}</p>\n\n\t\t\t\t<p ng-if=\"item.roles.length\" ng-repeat=\"role in item.roles track by $index\">{{ role.name }}</p>\n\t\t\t\t<p ng-if=\"!item.roles.length\">No assigned roles.</p>\n\n\t\t\t\t<p ng-if=\"item.users.length\" ng-repeat=\"user in item.users track by $index\">{{ user }}</p>\n\t\t\t\t<p ng-if=\"!item.users.length\">No assigned users.</p>\n\t\t\t</div>\n\n\n\t\t\t<div class=\"preview-item\" ng-repeat=\"item in filteredData = ( data | filter:{selected:true} | limitTo:1 | orderBy:reverse )\"\n\t\t\t     ng-if=\"query\">\n\t\t\t\t<h1>\n\t\t\t\t\t<span class=\"circle glyphicons group\"></span>\n\t\t\t\t</h1>\n\t\t\t\t<h3>{{ item.name }}</h3>\n\t\t\t\t<p>{{ item.description }}</p>\n\n\t\t\t\t<p ng-if=\"item.roles.length\" ng-repeat=\"role in item.roles track by $index\">{{ role.name }}</p>\n\t\t\t\t<p ng-if=\"!item.roles.length\">No assigned roles.</p>\n\n\t\t\t\t<p ng-if=\"item.users.length\" ng-repeat=\"user in item.users track by $index\">{{ user }}</p>\n\t\t\t\t<p ng-if=\"!item.users.length\">No assigned users.</p>\n\t\t\t</div>\n\n\n\n\t\t</div>\n\t</div>\n</div>\n");
+		$templateCache.put('insight.html', "\n<div class=\"preview-widget\" ng-class=\"{ 'preview-active' : state.preview }\">\n\n\t<button type=\"button\" class=\"btn btn-preview\" ng-model=\"state.preview\" btn-checkbox\n\t        btn-checkbox-true=\"1\" btn-checkbox-false=\"0\">\n\t\t<span class=\"glyphicons eye_close\" ng-show=\"state.preview\"></span>\n\t\t<span class=\"glyphicons eye_open\" ng-hide=\"state.preview\"></span>\n\t</button>\n\n\n\t<div style=\"padding: 0\" ng-class=\"state.preview ? 'col-xs-7' : 'col-xs-12'\" class=\"assigned-items\">\n\t\t<div class=\"insight\"\n\t\t     ng-mouseenter=\"focus = true\">\n\n\t\t\t<div class=\"search-field-wrapper\" ng-class=\"{focus:focus && showOptions}\">\n\n\t\t\t\t<div class=\"search-field-inner\">\n\t\t\t\t\t<div class=\"flex-fill\">\n\t\t\t\t\t\t<div class=\"search-field\" ng-class=\"{focus:focus && showOptions }\">\n\t\t\t\t\t\t\t<span class=\"glyphicons search icon\" ng-hide=\"state.loading\"></span>\n\t\t\t\t\t\t\t<span class=\"glyphicons refresh icon\" ng-show=\"state.loading\"></span>\n\t\t\t\t\t\t\t<button class=\"btn btn-close\"\n\t\t\t\t\t\t\t        ng-if=\"showOptions\"\n\t\t\t\t\t\t\t        ng-click=\"closeOptions()\">\n\t\t\t\t\t\t\t\tDone\n\t\t\t\t\t\t\t</button>\n\t\t\t\t\t\t\t<input class=\"input\" ng-model=\"query.name\"\n\t\t\t\t\t\t\t       ng-click=\"showOptions = true\"\n\t\t\t\t\t\t\t       placeholder=\"Find items ...\">\n\t\t\t\t\t\t</div>\n\t\t\t\t\t</div>\n\t\t\t\t\t<div ng-hide=\"state.preview\" class=\"preview-spacer\"></div>\n\t\t\t\t</div>\n\n\t\t\t\t<!-- user is searching -->\n\t\t\t\t<div class=\"widget-options animate-if\" ng-if=\"query && showOptions\">\n\t\t\t\t\t<div class=\"scroll-container\">\n\n\t\t\t\t\t\t<div ng-if=\"!filtered.length\">No results found.</div>\n\n\t\t\t\t\t\t<div ng-if=\"!state.preview\"\n\t\t\t\t\t\t     option-row\n\t\t\t\t\t\t     ng-repeat=\"item in filtered = ( insight.data | filter:query | orderBy: 'name' )\"\n\t\t\t\t\t\t     class=\"insight-option-row\"\n\t\t\t\t\t\t     ng-class=\"{assigned:item.assigned}\"\n\t\t\t\t\t\t     ng-click=\"toggleItem(item)\">\n\t\t\t\t\t\t</div>\n\n\t\t\t\t\t\t<div ng-if=\"state.preview\"\n\t\t\t\t\t\t     option-row\n\t\t\t\t\t\t     ng-repeat=\"item in insight.data | filter:query | orderBy: 'name'\"\n\t\t\t\t\t\t     class=\"insight-option-row\"\n\t\t\t\t\t\t     ng-class=\"{assigned:item.assigned}\"\n\t\t\t\t\t\t     ng-click=\"toggleItem(item)\"\n\n\t\t\t\t\t\t     selection-model\n\t\t\t\t\t\t     selection-model-on-change=\"change(item)\">\n\t\t\t\t\t\t</div>\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\n\t\t\t\t<!-- safari style browse options -->\n\t\t\t\t<div class=\"widget-options animate-if\" ng-if=\"!query && showOptions\">\n\t\t\t\t\t<div class=\"scroll-container\" ng-if=\"state.preview\">\n\n\t\t\t\t\t\t<!-- TODO: right now you can select an item in BOTH lists\n\t\t\t\t\t\t\t How to prevent this?\n\t\t\t\t\t\t-->\n\n\t\t\t\t\t\t<div class=\"subhead\">Favorites</div>\n\n\t\t\t\t\t\t<div option-row\n\t\t\t\t\t\t     ng-repeat=\"item in favorites\"\n\t\t\t\t\t\t     class=\"insight-option-row\"\n\t\t\t\t\t\t     ng-class=\"{assigned:item.assigned}\"\n\t\t\t\t\t\t     ng-click=\"toggleItem(item)\"\n\n\t\t\t\t\t\t     selection-model-on-change=\"change(item)\"\n\t\t\t\t\t\t     selection-model>\n\t\t\t\t\t\t</div>\n\n\t\t\t\t\t\t<div class=\"subhead\">Recent</div>\n\n\t\t\t\t\t\t<div option-row\n\t\t\t\t\t\t     ng-repeat=\"item in recents\"\n\t\t\t\t\t\t     class=\"insight-option-row\"\n\t\t\t\t\t\t     ng-class=\"{assigned:item.assigned}\"\n\t\t\t\t\t\t     ng-click=\"toggleItem(item)\"\n\n\t\t\t\t\t\t     selection-model-on-change=\"change(item)\"\n\t\t\t\t\t\t     selection-model>\n\t\t\t\t\t\t</div>\n\t\t\t\t\t</div>\n\n\t\t\t\t\t<div class=\"scroll-container\" ng-if=\"!state.preview\">\n\t\t\t\t\t\t<div class=\"subhead\">Favorites</div>\n\n\t\t\t\t\t\t<div option-row\n\t\t\t\t\t\t     ng-repeat=\"item in favorites\"\n\t\t\t\t\t\t     class=\"insight-option-row\"\n\t\t\t\t\t\t     ng-class=\"{assigned:item.assigned}\"\n\t\t\t\t\t\t     ng-click=\"toggleItem(item)\">\n\t\t\t\t\t\t</div>\n\n\t\t\t\t\t\t<div class=\"subhead\">Recent</div>\n\n\t\t\t\t\t\t<div option-row\n\t\t\t\t\t\t     ng-repeat=\"item in recents\"\n\t\t\t\t\t\t     class=\"insight-option-row\"\n\t\t\t\t\t\t     ng-class=\"{assigned:item.assigned}\"\n\t\t\t\t\t\t     ng-click=\"toggleItem(item)\">\n\t\t\t\t\t\t</div>\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\t\t\t</div>\n\n\t\t\t<div class=\"widget-members\"  ng-class=\"{focus:focus && showOptions}\">\n\t\t\t\t<div class=\"scroll-container\">\n\t\t\t\t\t<div ng-if=\"assignedItems.length === 0\" style=\"color: gray\">\n\t\t\t\t\t\tNo items assigned.\n\t\t\t\t\t</div>\n\n\t\t\t\t\t<div ng-repeat=\"item in assignedItems | filter:query | orderBy: 'name'\"\n\t\t\t\t\t     class=\"insight-option-row\"\n\t\t\t\t\t     selection-model-on-change=\"change(item)\"\n\t\t\t\t\t     selection-model>\n\t\t\t\t\t\t<div>\n\t\t\t\t\t\t\t<span class=\"circle glyphicons group\"></span>\n\t\t\t\t\t\t</div>\n\t\t\t\t\t\t<div class=\"flex-fill\">\n\t\t\t\t\t\t\t{{ item.name }}\n\t\t\t\t\t\t</div>\n\t\t\t\t\t\t<div>\n\t\t\t\t\t\t\t<button class=\"btn btn-link pull-right\" ng-click=\"removeItem(item)\" selection-model-ignore>\n\t\t\t\t\t\t\t\t<span class=\"glyphicons remove_2\"></span>\n\t\t\t\t\t\t\t</button>\n\t\t\t\t\t\t</div>\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t\t<div class=\"overlay\" ng-show=\"showOptions === true\" ng-click=\"closeOptions()\"></div>\n\t\t</div>\n\t</div>\n\n\t<div class=\"col-xs-5 preview-column animate-if\" ng-if=\"state.preview\" ng-class=\"{ 'show-preview': showOptions }\">\n\n\t\t<!--<button type=\"button\"\n\t\t        class=\"btn btn-preview\"\n\t\t        ng-model=\"state.preview\" btn-checkbox btn-checkbox-true=\"1\" btn-checkbox-false=\"0\">\n\t\t\t<span class=\"glyphicons eye_close\"></span>\n\t\t</button>-->\n\n\t\t<div class=\"scroll-container\">\n\n\t\t\t<div class=\"scroll-message\" ng-if=\"!filteredAssignedItems.length && !filteredData.length && !showMessage\">\n\t\t\t\t<h3>No Items Selected</h3>\n\t\t\t</div>\n\t\t\t<div class=\"scroll-message\" ng-show=\"showMessage\">\n\t\t\t\t<h3>{{ messageItem.name }} was removed</h3>\n\t\t\t</div>\n\n\t\t\t<!-- preview has to be specific to data type -->\n\t\t\t<div class=\"preview-item\"\n\t\t\t     ng-repeat=\"item in filteredAssignedItems = ( assignedItems | filter:{selected:true} | limitTo:1 | orderBy:reverse )\"\n\t\t\t     ng-if=\"!query\">\n\t\t\t\t<h1>\n\t\t\t\t\t<span class=\"circle glyphicons group\"></span>\n\t\t\t\t</h1>\n\n\t\t\t\t<h3>{{ item.name }}</h3>\n\t\t\t\t<p>{{ item.description }}</p>\n\n\t\t\t\t<p ng-if=\"item.roles.length\" ng-repeat=\"role in item.roles track by $index\">{{ role.name }}</p>\n\t\t\t\t<p ng-if=\"!item.roles.length\">No assigned roles.</p>\n\n\t\t\t\t<p ng-if=\"item.users.length\" ng-repeat=\"user in item.users track by $index\">{{ user }}</p>\n\t\t\t\t<p ng-if=\"!item.users.length\">No assigned users.</p>\n\t\t\t</div>\n\n\n\t\t\t<div class=\"preview-item\" ng-repeat=\"item in filteredData = ( insight.data | filter:{selected:true} | limitTo:1 | orderBy:reverse )\"\n\t\t\t     ng-if=\"query\">\n\t\t\t\t<h1>\n\t\t\t\t\t<span class=\"circle glyphicons group\"></span>\n\t\t\t\t</h1>\n\t\t\t\t<h3>{{ item.name }}</h3>\n\t\t\t\t<p>{{ item.description }}</p>\n\n\t\t\t\t<p ng-if=\"item.roles.length\" ng-repeat=\"role in item.roles track by $index\">{{ role.name }}</p>\n\t\t\t\t<p ng-if=\"!item.roles.length\">No assigned roles.</p>\n\n\t\t\t\t<p ng-if=\"item.users.length\" ng-repeat=\"user in item.users track by $index\">{{ user }}</p>\n\t\t\t\t<p ng-if=\"!item.users.length\">No assigned users.</p>\n\t\t\t</div>\n\n\n\n\t\t</div>\n\t</div>\n</div>\n");
 		$templateCache.put('option-row.html', "<div>\n\t<button class=\"btn btn-link pull-right\" ng-show=\"item.assigned\">\n\t\t<span class=\"glyphicons ok_2\"></span>\n\t</button>\n\t<button class=\"btn btn-link pull-right\" ng-hide=\"item.assigned\">\n\t\t<span class=\"glyphicons plus\"></span>\n\t</button>\n</div>\n<div>\n\t<span class=\"circle glyphicons group\"></span>\n</div>\n<div class=\"flex-fill\">\n\t{{ item.name }}\n</div>\n<div>\n\t<span class=\"badge remove-item\" ng-show=\"item.assigned\">Remove item</span>\n\t<span class=\"badge add-item\" ng-hide=\"item.assigned\">Add item</span>\n</div>\n");
 	}])
 	.name;
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"./insightController":1,"./insightDirective":2,"path":4}],4:[function(require,module,exports){
+},{"./insightDirective":1,"./optionRowDirective":5,"path":3}],3:[function(require,module,exports){
 (function (process){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -392,7 +393,7 @@ var substr = 'ab'.substr(-1) === 'b'
 ;
 
 }).call(this,require('_process'))
-},{"_process":5}],5:[function(require,module,exports){
+},{"_process":4}],4:[function(require,module,exports){
 // shim for using process in browser
 
 var process = module.exports = {};
@@ -451,4 +452,16 @@ process.chdir = function (dir) {
 };
 process.umask = function() { return 0; };
 
-},{}]},{},[3]);
+},{}],5:[function(require,module,exports){
+module.exports = function() {
+
+	return {
+		transclude: true,
+		templateUrl: function(tElement, tAttrs) {
+			return tAttrs.templateUrl || 'option-row.html';
+		}
+	}
+
+}
+
+},{}]},{},[2]);
