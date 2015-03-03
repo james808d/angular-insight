@@ -20,16 +20,8 @@ module.exports = function insightDirective () {
 			var data = $scope.insight.data;
 			$scope.favorites = [];
 			$scope.recents = [];
-
-			$scope.favorites.push(data[3]);
-			$scope.favorites.push(data[6]);
-			$scope.favorites.push(data[7]);
-
-			$scope.recents.push(data[1]);
-			$scope.recents.push(data[2]);
-			$scope.recents.push(data[8]);
-
 			$scope.assignedItems = [];
+
 			if (ngModelCtrl) {
 				ngModelCtrl.$render = function () {
 					_.each(ngModelCtrl.$modelValue, toggleItem);
