@@ -111,13 +111,7 @@ module.exports = function insightDirective () {
 				$scope.showMessage = true;
 				$scope.messageItem = group;
 
-				var found, index;
-
-				found =  $scope.assignedItems.filter(function(obj) {
-					return obj._id === group._id;
-				});
-
-				index = $scope.assignedItems.indexOf(found[0]);
+				var index = $scope.assignedItems.indexOf(group);
 				$scope.assignedItems.splice(index,1);
 				tryUpdateModel();
 			};
