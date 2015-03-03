@@ -19,7 +19,7 @@
 						<div class="search-field" ng-class="{focus:focus && showOptions }">
 							<span class="glyphicons search icon" ng-hide="state.loading"></span>
 							<span class="glyphicons refresh icon" ng-show="state.loading"></span>
-							<button class="btn btn-close"
+							<button type="button" class="btn btn-close"
 							        ng-if="showOptions"
 							        ng-click="closeOptions()">
 								Done
@@ -131,7 +131,7 @@
 							{{ item.name }}
 						</div>
 						<div>
-							<button class="btn btn-link pull-right" ng-click="removeItem(item)" selection-model-ignore>
+							<button type="button" class="btn btn-link pull-right" ng-click="removeItem(item)" selection-model-ignore>
 								<span class="glyphicons remove_2"></span>
 							</button>
 						</div>

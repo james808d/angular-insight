@@ -16,6 +16,10 @@
 	<script src="./bundle.js"></script>
 </head>
 <body ng-controller="ExampleController">
-	<div insight="insightOptions"></div>
+	<div insight="insightOptions" ng-model="selectedGroups"></div>
+	<h2>Selections</h2>
+	<div ng-repeat="group in selectedGroups">
+		<p>{{ ::group.name }}
+	</div>
 </body>
 </html>
