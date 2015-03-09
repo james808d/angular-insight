@@ -47,7 +47,10 @@
 						     ng-repeat="item in filtered = ( insight.data | filter:query | orderBy: 'name' )"
 						     class="insight-option-row"
 						     ng-class="{assigned:item.assigned}"
-						     ng-click="toggleItem(item)">
+
+						     selection-model
+						     selection-model-cleanup-strategy="deselect"
+						     selection-model-on-change="change(item)">
 						</div>
 
 						<div ng-if="state.preview.showPreview"
@@ -55,9 +58,9 @@
 						     ng-repeat="item in insight.data | filter:query | orderBy: 'name'"
 						     class="insight-option-row"
 						     ng-class="{assigned:item.assigned}"
-						     ng-click="toggleItem(item)"
 
 						     selection-model
+						     selection-model-cleanup-strategy="deselect"
 						     selection-model-on-change="change(item)">
 						</div>
 					</div>
@@ -67,21 +70,6 @@
 				<div class="widget-options animate-if" ng-if="!query && showOptions">
 					<div class="scroll-container" ng-if="state.preview.showPreview">
 
-						<!-- TODO: right now you can select an item in BOTH lists
-							 How to prevent this?
-						-->
-
-						<div class="subhead">Favorites</div>
-
-						<div option-row
-						     ng-repeat="item in favorites"
-						     class="insight-option-row"
-						     ng-class="{assigned:item.assigned}"
-
-						     selection-model-on-change="change(item)"
-						     selection-model>
-						</div>
-
 						<div class="subhead">Recent</div>
 
 						<div option-row
@@ -92,23 +80,20 @@
 						     selection-model-on-change="change(item)"
 						     selection-model>
 						</div>
+
 					</div>
 
 					<div class="scroll-container" ng-if="!state.preview.showPreview">
-						<div class="subhead">Favorites</div>
 
-						<div option-row
-						     ng-repeat="item in favorites"
-						     class="insight-option-row"
-						     ng-class="{assigned:item.assigned}">
-						</div>
-
-						<div class="subhead">Recent</div>
+						<div class="subhead">Recent Items</div>
 
 						<div option-row
 						     ng-repeat="item in recents"
 						     class="insight-option-row"
-						     ng-class="{assigned:item.assigned}">
+						     ng-class="{assigned:item.assigned}"
+
+						     selection-model-on-change="change(item)"
+						     selection-model>
 						</div>
 					</div>
 				</div>
@@ -130,7 +115,7 @@
 						<div class="flex-fill">
 							{{ item.name }}
 						</div>
-						<div ng-if="allowEditAccess">
+						<div ng-if="insight.allowEditAccess">
 							<!-- dummy for edit access permission -->
 							<button type="button"
 							        class="btn btn-link btn-edit-access badge"

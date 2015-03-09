@@ -225,39 +225,57 @@
   color: rgba(48, 48, 48, 0.5);
 }
 .insight-option-row.selected,
-.insight-option-row.selected:hover {
+.insight-option-row.selected:active,
+.insight-option-row.selected:focus,
+.insight-option-row.selected:hover,
+.insight-option-row.selected:hover:active {
   background: #00a0f0;
   color: white;
 }
 .insight-option-row.selected .ui-match,
-.insight-option-row.selected:hover .ui-match {
+.insight-option-row.selected:active .ui-match,
+.insight-option-row.selected:focus .ui-match,
+.insight-option-row.selected:hover .ui-match,
+.insight-option-row.selected:hover:active .ui-match {
   background: rgba(0, 0, 0, 0.5);
   color: #ffffff;
 }
 .insight-option-row.selected .btn,
-.insight-option-row.selected:hover .btn {
+.insight-option-row.selected:active .btn,
+.insight-option-row.selected:focus .btn,
+.insight-option-row.selected:hover .btn,
+.insight-option-row.selected:hover:active .btn {
   color: #ffffff;
 }
 .insight-option-row.selected .btn .glyphicons,
-.insight-option-row.selected:hover .btn .glyphicons {
+.insight-option-row.selected:active .btn .glyphicons,
+.insight-option-row.selected:focus .btn .glyphicons,
+.insight-option-row.selected:hover .btn .glyphicons,
+.insight-option-row.selected:hover:active .btn .glyphicons {
   color: #ffffff;
 }
+.insight-option-row.selected .btn.btn-edit-access,
+.insight-option-row.selected:active .btn.btn-edit-access,
+.insight-option-row.selected:focus .btn.btn-edit-access,
+.insight-option-row.selected:hover .btn.btn-edit-access,
+.insight-option-row.selected:hover:active .btn.btn-edit-access {
+  color: #e9e9e9;
+  background: #303030;
+}
 .insight-option-row.selected .btn.btn-edit-access.active,
-.insight-option-row.selected:hover .btn.btn-edit-access.active {
+.insight-option-row.selected:active .btn.btn-edit-access.active,
+.insight-option-row.selected:focus .btn.btn-edit-access.active,
+.insight-option-row.selected:hover .btn.btn-edit-access.active,
+.insight-option-row.selected:hover:active .btn.btn-edit-access.active {
   background: #ffffff;
   color: #00a0f0;
 }
 .insight-option-row.selected .btn.btn-edit-access.active .glyphicons,
-.insight-option-row.selected:hover .btn.btn-edit-access.active .glyphicons {
+.insight-option-row.selected:active .btn.btn-edit-access.active .glyphicons,
+.insight-option-row.selected:focus .btn.btn-edit-access.active .glyphicons,
+.insight-option-row.selected:hover .btn.btn-edit-access.active .glyphicons,
+.insight-option-row.selected:hover:active .btn.btn-edit-access.active .glyphicons {
   color: #00a0f0;
-}
-.insight-option-row.selected:focus,
-.insight-option-row.selected:hover:focus,
-.insight-option-row.selected:active,
-.insight-option-row.selected:hover:active,
-.insight-option-row.selected:focus:active,
-.insight-option-row.selected:hover:focus:active {
-  background: #008fd7;
 }
 .insight-option-row:active {
   -webkit-box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.1);
@@ -359,6 +377,9 @@
   height: 18px;
   margin-top: 11px;
   font-size: 0.75rem;
+  padding: 0 0.5rem;
+  border-radius: 1rem;
+  border: none;
 }
 .insight-option-row > div .badge.add-item {
   background: #00a0f0;

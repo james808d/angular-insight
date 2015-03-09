@@ -199,7 +199,10 @@
 	}
 
 	&.selected,
-	&.selected:hover
+	&.selected:active,
+	&.selected:focus,
+	&.selected:hover,
+	&.selected:hover:active
 	{
 		background: @accentColor;
 		color: white;
@@ -216,20 +219,21 @@
 				color: @white;
 			}
 
-			&.btn-edit-access.active {
-				background: @white;
-				color: @accentColor;
+			&.btn-edit-access {
 
-				.glyphicons {
+				color: @color2;
+				background: @color1;
+
+				&.active {
+
+					background: @white;
 					color: @accentColor;
+
+					.glyphicons {
+						color: @accentColor;
+					}
 				}
 			}
-		}
-
-		&:focus,
-		&:active,
-		&:focus:active {
-			background: @accentDarken05;
 		}
 	}
 
@@ -361,11 +365,13 @@
 		}
 
 		.badge {
-			//display: none;
 			margin-right: 8px;
 			height: 18px;
 			margin-top: 11px;
 			font-size: @type12;
+			padding: 0 @typeUnit1-2x;
+			.RoundedShape(@typeUnit1x);
+			border: none;
 
 			&.add-item {
 				background: @accentColor;

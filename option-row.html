@@ -10,17 +10,15 @@
 	<span class="circle glyphicons group"></span>
 </div>
 <div class="flex-fill" ng-click="toggleItem(item)">
-	{{ item.name }}
-	<!--<span class="badge remove-item" ng-show="item.assigned">Remove item</span>
-	<span class="badge add-item" ng-hide="item.assigned">Add item</span>-->
+	<span ng-bind-html="item.name | highlight:query.name"></span>
 </div>
-<div ng-if="allowEditAccess">
+<div ng-if="insight.allowEditAccess">
 	<!-- dummy for edit access permission -->
 	<button type="button"
 	        class="btn btn-link btn-edit-access badge"
-	        selection-model-ignore
-	        ng-disabled="!item.assigned"
+	        selection-model-ignore="true"
 	        ng-model="item.active"
+	        ng-click="checkAssignedState(item)"
 	        btn-checkbox
 	        btn-checkbox-true="true"
 	        btn-checkbox-false="false">
