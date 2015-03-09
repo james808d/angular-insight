@@ -454,6 +454,9 @@
   align-items: stretch;
   justify-content: space-between;
 }
+.insight-option-row .plus {
+  color: rgba(48, 48, 48, 0.5);
+}
 .insight-option-row.selected,
 .insight-option-row.selected:hover {
   background: #00a0f0;
@@ -467,6 +470,19 @@
 .insight-option-row.selected .btn,
 .insight-option-row.selected:hover .btn {
   color: #ffffff;
+}
+.insight-option-row.selected .btn .glyphicons,
+.insight-option-row.selected:hover .btn .glyphicons {
+  color: #ffffff;
+}
+.insight-option-row.selected .btn.btn-edit-access.active,
+.insight-option-row.selected:hover .btn.btn-edit-access.active {
+  background: #ffffff;
+  color: #00a0f0;
+}
+.insight-option-row.selected .btn.btn-edit-access.active .glyphicons,
+.insight-option-row.selected:hover .btn.btn-edit-access.active .glyphicons {
+  color: #00a0f0;
 }
 .insight-option-row.selected:focus,
 .insight-option-row.selected:hover:focus,
@@ -484,9 +500,6 @@
   background: rgba(0, 160, 240, 0.1);
   background: rgba(0, 0, 0, 0.05);
 }
-.insight-option-row:hover .badge {
-  display: inline-block;
-}
 .insight-option-row:hover:focus,
 .insight-option-row:hover:active,
 .insight-option-row:hover:focus:active {
@@ -497,8 +510,8 @@
 .insight-option-row.assigned:hover:not(.selected) {
   color: #00a0f0;
 }
-.insight-option-row.assigned:not(.selected) .btn,
-.insight-option-row.assigned:hover:not(.selected) .btn {
+.insight-option-row.assigned:not(.selected) .btn-assigned,
+.insight-option-row.assigned:hover:not(.selected) .btn-assigned {
   color: #00a0f0;
 }
 .insight-option-row.assigned:not(.selected) .circle,
@@ -506,8 +519,29 @@
   background: rgba(0, 160, 240, 0.1);
   color: #00a0f0;
 }
-.insight-option-row .btn {
-  color: rgba(0, 0, 0, 0.5);
+.insight-option-row .btn-link {
+  color: #7d7d7d;
+}
+.insight-option-row .btn-link:hover {
+  text-decoration: none;
+}
+.insight-option-row .btn-link.active,
+.insight-option-row .btn-link:active,
+.insight-option-row .btn-link:focus,
+.insight-option-row .btn-link:active:focus {
+  outline: none;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  text-decoration: none;
+}
+.insight-option-row .btn-link[disabled] {
+  color: rgba(48, 48, 48, 0.5);
+}
+.insight-option-row .btn-link[disabled].btn-edit-access {
+  background: rgba(48, 48, 48, 0.5);
+}
+.insight-option-row .btn-link.remove-assigned-item {
+  color: rgba(48, 48, 48, 0.5);
   position: relative;
   top: 0;
   right: 0;
@@ -515,6 +549,14 @@
   height: 40px;
   width: 50px;
   z-index: 10;
+}
+.insight-option-row .btn-edit-access {
+  background: none;
+  color: #7d7d7d;
+}
+.insight-option-row .btn-edit-access.active {
+  background: #00a0f0;
+  color: white;
 }
 .insight-option-row > div {
   -webkit-flex: 0 0 auto;
@@ -546,10 +588,10 @@
   margin-top: 4px;
 }
 .insight-option-row > div .badge {
-  display: none;
   margin-right: 8px;
   height: 18px;
   margin-top: 11px;
+  font-size: 0.75rem;
 }
 .insight-option-row > div .badge.add-item {
   background: #00a0f0;
@@ -786,15 +828,6 @@
 }
 .insight .widget-members .scroll-container > div:not(.insight-option-row) {
   padding: 16px;
-}
-.insight .widget-members .scroll-container .btn {
-  color: rgba(0, 0, 0, 0.25);
-  position: relative;
-  top: 0;
-  right: 0;
-  height: 40px;
-  padding-left: 16px;
-  width: 50px;
 }
 .btn:focus,
 .btn:active,

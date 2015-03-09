@@ -194,6 +194,9 @@
 
 	.flexContainer();
 
+	.plus {
+		color: @color1Fade50;
+	}
 
 	&.selected,
 	&.selected:hover
@@ -208,6 +211,19 @@
 
 		.btn {
 			color: @white;
+
+			.glyphicons {
+				color: @white;
+			}
+
+			&.btn-edit-access.active {
+				background: @white;
+				color: @accentColor;
+
+				.glyphicons {
+					color: @accentColor;
+				}
+			}
 		}
 
 		&:focus,
@@ -226,10 +242,6 @@
 		background: @accentFade10;
 		background: @blackFade5;
 
-		.badge {
-			display: inline-block;
-		}
-
 		&:focus,
 		&:active,
 		&:focus:active {
@@ -244,7 +256,7 @@
 	{
 		color: @accentColor;
 
-		.btn {
+		.btn-assigned {
 			color: @accentColor;
 		}
 
@@ -254,16 +266,69 @@
 		}
 	}
 
+	.btn-link {
+		color: @color1LightText;
 
-	.btn {
-		color: rgba(0, 0, 0, 0.5);
-		position: relative;
-		top: 0;
-		right: 0;
-		border-radius: 0;
-		height: 40px;
-		width: 50px;
-		z-index: 10;
+
+		.ok_2 {
+			// color: @accentColor;
+		}
+
+		&:hover {
+			text-decoration: none;
+		}
+
+		.active {
+
+		}
+
+		&:active {
+
+		}
+		&:focus {
+
+		}
+		&:active:focus {
+
+		}
+		&.active,
+		&:active,
+		&:focus,
+		&:active:focus {
+			outline: none;
+			.BoxShadow(none);
+			text-decoration: none;
+		}
+
+		&[disabled] {
+			color: @color1Fade50;
+
+			&.btn-edit-access {
+				background: @color1Fade50;
+			}
+		}
+
+		&.remove-assigned-item {
+			color: @color1Fade50;
+			position: relative;
+			top: 0;
+			right: 0;
+			border-radius: 0;
+			height: 40px;
+			width: 50px;
+			z-index: 10;
+		}
+	}
+
+	.btn-edit-access {
+
+		background: none;
+		color: @color1LightText;
+
+		&.active {
+			background: @accentColor;
+			color: white;
+		}
 	}
 
 	> div {
@@ -296,10 +361,11 @@
 		}
 
 		.badge {
-			display: none;
+			//display: none;
 			margin-right: 8px;
 			height: 18px;
 			margin-top: 11px;
+			font-size: @type12;
 
 			&.add-item {
 				background: @accentColor;
@@ -581,16 +647,6 @@
 			> div:not(.insight-option-row)
 			{
 				padding: 16px;
-			}
-
-			.btn {
-				color: rgba(0, 0, 0, 0.25);
-				position: relative;
-				top: 0;
-				right: 0;
-				height: 40px;
-				padding-left: 16px;
-				width: 50px;
 			}
 		}
 	}

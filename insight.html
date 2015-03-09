@@ -77,7 +77,6 @@
 						     ng-repeat="item in favorites"
 						     class="insight-option-row"
 						     ng-class="{assigned:item.assigned}"
-						     ng-click="toggleItem(item)"
 
 						     selection-model-on-change="change(item)"
 						     selection-model>
@@ -89,7 +88,6 @@
 						     ng-repeat="item in recents"
 						     class="insight-option-row"
 						     ng-class="{assigned:item.assigned}"
-						     ng-click="toggleItem(item)"
 
 						     selection-model-on-change="change(item)"
 						     selection-model>
@@ -102,8 +100,7 @@
 						<div option-row
 						     ng-repeat="item in favorites"
 						     class="insight-option-row"
-						     ng-class="{assigned:item.assigned}"
-						     ng-click="toggleItem(item)">
+						     ng-class="{assigned:item.assigned}">
 						</div>
 
 						<div class="subhead">Recent</div>
@@ -111,8 +108,7 @@
 						<div option-row
 						     ng-repeat="item in recents"
 						     class="insight-option-row"
-						     ng-class="{assigned:item.assigned}"
-						     ng-click="toggleItem(item)">
+						     ng-class="{assigned:item.assigned}">
 						</div>
 					</div>
 				</div>
@@ -134,8 +130,24 @@
 						<div class="flex-fill">
 							{{ item.name }}
 						</div>
+						<div ng-if="allowEditAccess">
+							<!-- dummy for edit access permission -->
+							<button type="button"
+							        class="btn btn-link btn-edit-access badge"
+							        selection-model-ignore
+							        ng-model="item.active"
+							        btn-checkbox
+							        btn-checkbox-true="true"
+							        btn-checkbox-false="false">
+								<span ng-show="item.active" class="glyphicons ok_2"></span>
+								<span ng-hide="item.active" class="glyphicons minus"></span>
+								Edit Access
+							</button>
+						</div>
 						<div>
-							<button type="button" class="btn btn-link pull-right" ng-click="removeItem(item)" selection-model-ignore>
+							<button type="button" class="btn btn-link pull-right remove-assigned-item"
+							        ng-click="removeItem(item)"
+							        selection-model-ignore>
 								<span class="glyphicons remove_2"></span>
 							</button>
 						</div>

@@ -6,5 +6,4 @@ module.exports = function() {
 			return tAttrs.templateUrl || 'option-row.html';
 		}
 	}
-
-}
+};

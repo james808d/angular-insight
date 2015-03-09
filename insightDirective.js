@@ -12,7 +12,7 @@ module.exports = function insightDirective () {
 		compile: function () {
 		}
 	};
-}
+};
 
 function insightController($scope){
 
@@ -23,6 +23,8 @@ function insightController($scope){
 		usePreview: false,
 		showPreview: true
 	};
+
+	$scope.allowEditAccess = $scope.insight.allowEditAccess;
 
 	var data = $scope.insight.data;
 	$scope.favorites = [];
@@ -113,7 +115,6 @@ function insightController($scope){
 		$scope.query = '';
 		$scope.focus = false;
 		$scope.currentSelection.selected = true;
-		// _.each($scope.data, function(group){ group.selected = false;});
 	};
 
 	$scope.removeItem = function(group) {
@@ -131,21 +132,4 @@ function insightController($scope){
 		index = $scope.assignedItems.indexOf(found[0]);
 		$scope.assignedItems.splice(index,1);
 	};
-
-	$scope.groupOptions = {};
-
-	$scope.groupOptions.displayItems = [
-		{id:0, field:'name', label:'name', fill:true},
-		{id:1, field:'users', label:'users', type:'array-length' },
-		{id:2, field:'status', label:'status' },
-		{id:3, field:null, label:'tools', type:'tools', actions: [
-			{label:'Edit'},
-			{label: 'Delete'}
-		]}
-	];
-
-	/*$scope.groupOptions.actions = [
-		{label:'Edit', callback: GroupList.get},
-		{label: 'Delete', callback: GroupList.removeGroup}
-	];*/
 }
