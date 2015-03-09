@@ -114,6 +114,7 @@
   width: 64px;
 }
 .preview-widget .assigned-items {
+  padding: 0;
   -webkit-transition: all linear 0.2s;
   transition: all linear 0.2s;
   z-index: 0;
