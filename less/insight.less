@@ -199,7 +199,10 @@
 	}
 
 	&.selected,
-	&.selected:hover
+	&.selected:active,
+	&.selected:focus,
+	&.selected:hover,
+	&.selected:hover:active
 	{
 		background: @accentColor;
 		color: white;
@@ -216,20 +219,21 @@
 				color: @white;
 			}
 
-			&.btn-edit-access.active {
-				background: @white;
-				color: @accentColor;
+			&.btn-edit-access {
 
-				.glyphicons {
+				color: @color2;
+				background: @color1;
+
+				&.active {
+
+					background: @white;
 					color: @accentColor;
+
+					.glyphicons {
+						color: @accentColor;
+					}
 				}
 			}
-		}
-
-		&:focus,
-		&:active,
-		&:focus:active {
-			background: @accentDarken05;
 		}
 	}
 
