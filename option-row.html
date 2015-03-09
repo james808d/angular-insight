@@ -12,7 +12,7 @@
 <div class="flex-fill" ng-click="toggleItem(item)">
 	<span ng-bind-html="item.name | highlight:query.name"></span>
 </div>
-<div>
+<div ng-if="insight.allowEditAccess">
 	<!-- dummy for edit access permission -->
 	<button type="button"
 	        class="btn btn-link btn-edit-access badge"

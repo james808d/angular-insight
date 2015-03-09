@@ -17,10 +17,8 @@ module.exports = function insightDirective () {
 				showPreview: true
 			};
 
-			$scope.allowEditAccess = $scope.insight.allowEditAccess;
-
 			$scope.favorites = [];
-			$scope.recents = $scope.insight.data.slice(6);
+			$scope.recents = $scope.insight.data.slice(0,8); //placeholder until we have real recents
 			$scope.assignedItems = [];
 
 			if (ngModelCtrl) {

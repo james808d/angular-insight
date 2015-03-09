@@ -365,11 +365,13 @@
 		}
 
 		.badge {
-			//display: none;
 			margin-right: 8px;
 			height: 18px;
 			margin-top: 11px;
 			font-size: @type12;
+			padding: 0 @typeUnit1-2x;
+			.RoundedShape(@typeUnit1x);
+			border: none;
 
 			&.add-item {
 				background: @accentColor;
