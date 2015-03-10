@@ -29,7 +29,7 @@
     "bundle": "browserify insightModule.js -o dist/angular-insight.js",
     "bundle-example": "browserify examples/index.js -o examples/bundle.js",
     "watch-example": "watchify examples/index.js -o examples/bundle.js",
-    "live-reload-example": "beefy examples/index.js:bundle.js --live"
+    "live-reload-example": "beefy examples/index.js:bundle.js --index ./examples/index.html --live"
   },
   "repository": {
     "type": "git",
