@@ -16,10 +16,9 @@
 	<script src="./bundle.js"></script>
 </head>
 <body ng-controller="ExampleController">
-	<div insight="insightOptions" ng-model="selectedGroups"></div>
-	<h2>Selections</h2>
-	<div ng-repeat="group in selectedGroups">
-		<p>{{ ::group.name }}
-	</div>
+	<h2>Basic Example</h2>
+	<div insight="insightOptions" ng-model="assignedGroups"></div>
+	Current Names: "<span ng-repeat="group in assignedGroups">{{ ::group.name }}<span ng-if="!$last">,</span></span>"
+	<p>Basic example binding assigned items to a property on scope using the ng-model attribute.</p>
 </body>
 </html>
