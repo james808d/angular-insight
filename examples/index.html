@@ -17,8 +17,13 @@
 </head>
 <body ng-controller="ExampleController">
 	<h2>Basic Example</h2>
-	<div insight="insightOptions" ng-model="assignedGroups"></div>
+	<div insight="basicOptions" ng-model="assignedGroups"></div>
 	Current Names: "<span ng-repeat="group in assignedGroups">{{ ::group.name }}<span ng-if="!$last">,</span></span>"
 	<p>Basic example binding assigned items to a property on scope using the ng-model attribute.</p>
+
+	<h2>Remote Source — Rotten Tomatoes</h2>
+	<div insight="movieOptions" ng-model="assignedMovies"></div>
+	Current Movie titles: "<span ng-repeat="movie in assignedMovies">{{ ::movie.name }}<span ng-if="!$last">,</span></span>"
+	<p>Example integrating third-party data, loaded asynchronously.</p>
 </body>
 </html>
