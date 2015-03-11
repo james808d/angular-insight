@@ -1,4 +1,6 @@
-module.exports = function insightDirective () {
+var _ = require('underscore');
+
+module.exports = function insightDirective ($q) {
 	return {
 		restrict: 'A',
 		require: '?ngModel',
@@ -17,6 +19,8 @@ module.exports = function insightDirective () {
 				showPreview: true
 			};
 
+			$scope.overlayData = $scope.insight.loadPage ? [] : $scope.insight.data;
+
 			$scope.favorites = [];
 			$scope.recents = $scope.insight.data.slice(0,8); //placeholder until we have real recents
 			$scope.assignedItems = [];
@@ -26,6 +30,19 @@ module.exports = function insightDirective () {
 					_.each(ngModelCtrl.$modelValue, toggleItem);
 				};
 			}
+
+			$scope.tryLoadPage = function () {
+				if (!($scope.insight.loadPage instanceof Function)) {
+					return;
+				}
+
+				var deferred = $q.defer();
+				$scope.insight.loadPage($scope.query.name, deferred);
+				deferred.promise
+					.then(function (data) {
+						$scope.overlayData = data;
+					});
+			};
 
 			$scope.addOption = function(item) {
 
@@ -47,6 +64,9 @@ module.exports = function insightDirective () {
 					$scope.currentSelection = item;
 					item.assigned = true;
 					$scope.assignedItems.push(item);
+					if (!_.contains($scope.insight.data, item)) {
+						$scope.insight.data.push(item);
+					}
 					tryUpdateModel();
 				} else {
 
@@ -110,8 +130,10 @@ module.exports = function insightDirective () {
 				$scope.messageItem = group;
 
 				var index = $scope.assignedItems.indexOf(group);
-				$scope.assignedItems.splice(index,1);
-				tryUpdateModel();
+				if (index !== -1) {
+					$scope.assignedItems.splice(index,1);
+					tryUpdateModel();
+				}
 			};
 
 			function tryUpdateModel() {

@@ -30,6 +30,8 @@
 							</button>
 							<input class="input" ng-model="query.name"
 							       ng-click="showOptions = true"
+							       ng-model-options="{ debounce: insight.loadPage && 300 || 0}"
+							       ng-change="tryLoadPage()"
 							       placeholder="Find items ...">
 						</div>
 					</div>
@@ -44,7 +46,7 @@
 
 						<div ng-if="!state.preview.showPreview"
 						     option-row
-						     ng-repeat="item in filtered = ( insight.data | filter:query | orderBy: 'name' )"
+						     ng-repeat="item in filtered = ( overlayData | filter:query | orderBy: 'name' )"
 						     class="insight-option-row"
 						     ng-class="{assigned:item.assigned}"
 
@@ -55,7 +57,7 @@
 
 						<div ng-if="state.preview.showPreview"
 						     option-row
-						     ng-repeat="item in insight.data | filter:query | orderBy: 'name'"
+						     ng-repeat="item in overlayData | filter:query | orderBy: 'name'"
 						     class="insight-option-row"
 						     ng-class="{assigned:item.assigned}"
 
