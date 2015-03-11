@@ -30,6 +30,7 @@
 							</button>
 							<input class="input" ng-model="query.name"
 							       ng-click="showOptions = true"
+							       ng-model-options="{ debounce: insight.loadPage && 300 || 0}"
 							       ng-change="tryLoadPage()"
 							       placeholder="Find items ...">
 						</div>
