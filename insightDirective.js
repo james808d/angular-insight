@@ -1,3 +1,5 @@
+var _ = require('underscore');
+
 module.exports = function insightDirective () {
 	return {
 		restrict: 'A',
