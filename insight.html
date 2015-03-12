@@ -28,7 +28,7 @@
 							        ng-click="closeOptions()">
 								Done
 							</button>
-							<input class="input" ng-model="query.name"
+							<input class="input" ng-model="query[insight.fieldDefs.display]"
 							       ng-click="showOptions = true"
 							       ng-model-options="{ debounce: insight.loadPage && 300 || 0}"
 							       ng-change="tryLoadPage()"
@@ -46,7 +46,7 @@
 
 						<div ng-if="!state.preview.showPreview"
 						     option-row
-						     ng-repeat="item in filtered = ( overlayData | filter:query | orderBy: 'name' )"
+						     ng-repeat="item in filtered = ( overlayData | filter:query | orderBy: insight.fieldDefs.display )"
 						     class="insight-option-row"
 						     ng-class="{assigned:item.assigned}"
 
@@ -57,7 +57,7 @@
 
 						<div ng-if="state.preview.showPreview"
 						     option-row
-						     ng-repeat="item in overlayData | filter:query | orderBy: 'name'"
+						     ng-repeat="item in overlayData | filter:query | orderBy: insight.fieldDefs.display"
 						     class="insight-option-row"
 						     ng-class="{assigned:item.assigned}"
 
@@ -107,7 +107,7 @@
 						No items assigned.
 					</div>
 
-					<div ng-repeat="item in assignedItems | filter:query | orderBy: 'name'"
+					<div ng-repeat="item in assignedItems | filter:query | orderBy: insight.fieldDefs.display"
 					     class="insight-option-row"
 					     selection-model-on-change="change(item)"
 					     selection-model>
@@ -115,7 +115,7 @@
 							<span class="circle glyphicons group"></span>
 						</div>
 						<div class="flex-fill">
-							{{ item.name }}
+							{{ item[insight.fieldDefs.display] }}
 						</div>
 						<div ng-if="insight.allowEditAccess">
 							<!-- dummy for edit access permission -->
