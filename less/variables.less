@@ -13,6 +13,7 @@
 @color1Darken10: darken(@color1, 10%);
 @color1Darken5: darken(@color1, 5%);
 
+@color1MedText: lighten(@color1, 15%);
 @color1LightText: lighten(@color1, 30%);  // old @color1LightText, converts to #7d7d7d
 
 @color2: #e9e9e9;
@@ -20,16 +21,16 @@
 @color2Lighten05: lighten(@color2, 5%);
 @color2Lighten10: lighten(@color2, 10%);
 @color2Lighten20: lighten(@color2, 20%);
-@color2VeryLighten04: lighten(@color2, 4%);
+@color2Lighten04: lighten(@color2, 4%);
 @color2Fade25: fade(@color2, 25%);
 @color2Fade50: fade(@color2, 50%);
 @color2Fade75: fade(@color2, 75%);
 @color2Darken10: darken(@color2, 10%);
 
-@borderColor: rgba(0,0,0,0.1);
-@borderColorLight: rgba(0,0,0,0.05);
-@borderColorDark: rgba(0,0,0,0.15);
-@borderSolid: rgb(215,215,215);
+@borderColor: rgb(205, 205, 205);
+@borderColorLight: lighten(@borderColor, 10%);
+@borderColorLighter: lighten(@borderColor, 15%);
+@borderColorDark: darken(@borderColor, 10%);
 
 @darkButtonBackground: fade(@white, 10%);
 @darkButtonBackgroundHover: fade(@white, 2%);
@@ -42,10 +43,10 @@
 @accentColor: #00a0f0;
 @accentDarken05: darken(@accentColor, 5%);
 @accentDarken10: darken(@accentColor, 10%);
-@accentDarken20: darken(@accentColor, 20%);
+@accentDarken25: darken(@accentColor, 25%);
 @accentDarken20Fade25: fade(darken(@accentColor, 20%), 25%);
 
-@darkBlue: @accentDarken20;
+@darkBlue: @accentDarken25;
 
 @accentOnLight: darken(@accentColor, 15%);
 
@@ -55,10 +56,9 @@
 @accentLighten40: lighten(@accentColor, 40%);
 @accentLighten45: lighten(@accentColor, 45%);
 @accentLighten50: lighten(@accentColor, 50%);
-
+@accentLighten55: lighten(@accentColor, 51%);
 
 @accentFade50: fade(@accentColor, 50%);
-@accentFade35: fade(@accentColor, 35%);
 @accentFade25: fade(@accentColor, 25%);
 @accentFade20: fade(@accentColor, 20%);
 @accentFade10: fade(@accentColor, 10%);
@@ -74,7 +74,12 @@
 @warningColor: rgba(196,22,22,1);
 @warningColorFade50: fade(@warningColor, 50%);
 
-
+@highlight: rgba(255,255,0,1);
+@highlightFade25: fade(@highlight, 25%);
+@highlightFade10: fade(@highlight, 10%);
+@highlightLighten25: lighten(@highlight, 25%);
+@highlightLighten35: lighten(@highlight, 35%);
+@highlightLighten50: lighten(@highlight, 50%);
 
 // for future usage, this is a brighter version of the accent color for command type actions, such as selection
 
@@ -94,6 +99,7 @@
 @background: @color2;
 @backgroundFade50: fade(@background, 50%);
 @backgroundLighten05: lighten(@background, 5%);
+@backgroundLighten03: lighten(@background, 3%);
 @backgroundLighten8: lighten(@background, 8%);
 
 @fontFamily: 'Karla', Helvetica Neue, Helvetica, Arial, sans-serif;
@@ -130,6 +136,7 @@
 @typeUnit1-2x: @typeUnit1x / 2;
 @typeUnit3-4x: @typeUnit1x * .75;
 @typeUnit1x: 1rem;
+@typeUnit1_5x: @typeUnit1x * 1.5;
 @typeUnit2x: @typeUnit1x * 2;
 @typeUnit3x: @typeUnit1x * 3;
 @typeUnit4x: @typeUnit1x * 4;
@@ -155,7 +162,11 @@
 @blackFade75: fade(@black, 75%);
 @blackFade50: fade(@black, 50%);
 @blackFade25: fade(@black, 25%);
-@blackFade20: fade(@black, 20%);
-@blackFade15: fade(@black, 15%);
 @blackFade10: fade(@black, 10%);
 @blackFade5: fade(@black, 5%);
+
+@gray: lighten(@black, 50%);
+
+.primary-color {
+	color: @accentColor;
+}

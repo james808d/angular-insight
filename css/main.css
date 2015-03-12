@@ -1,3 +1,6 @@
+.primary-color {
+  color: #00a0f0;
+}
 .Round {
   border-radius: 9999px;
 }
@@ -56,16 +59,42 @@
   left: 0;
 }
 .BtnWhite {
-  background: rgba(255, 255, 255, 0.65);
-  background: -moz-linear-gradient(top, #ffffff 0%, #f7f7f7 100%);
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #ffffff), color-stop(100%, #f7f7f7));
-  background: -webkit-linear-gradient(top, #ffffff 0%, #f7f7f7 100%);
-  background: -ms-linear-gradient(top, #ffffff 0%, #f7f7f7 100%);
-  background: linear-gradient(to bottom, #ffffff 0%, #f7f7f7 100%);
-  border-color: rgba(0, 0, 0, 0.15);
+  background-color: #ffffff;
+  background: -webkit-gradient(linear, left top, left bottom, from(#ffffff), to(#f1f1f1));
+  background: -webkit-linear-gradient(top, #ffffff, #f1f1f1);
+  background: -moz-linear-gradient(top, #ffffff, #f1f1f1);
+  background: -ms-linear-gradient(top, #ffffff, #f1f1f1);
+  background: linear-gradient(top, #ffffff, #f1f1f1);
+  border-color: #b4b4b4;
   -webkit-box-shadow: inset 0 1px 0 #ffffff;
   box-shadow: inset 0 1px 0 #ffffff;
   color: #303030;
+}
+.BtnWhiteActive {
+  color: #004b71;
+  -webkit-box-shadow: inset 0 1px 5px rgba(0, 160, 240, 0.25);
+  box-shadow: inset 0 1px 5px rgba(0, 160, 240, 0.25);
+  border-color: rgba(0, 92, 138, 0.25);
+  -webkit-box-shadow: inset 0 -1px 6px rgba(0, 160, 240, 0.2), inset 0 1px 2px #b4b4b4;
+  box-shadow: inset 0 -1px 6px rgba(0, 160, 240, 0.2), inset 0 1px 2px #b4b4b4;
+  background: #d7f2ff;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+.focusedItem {
+  /*
+
+	future
+
+	border-color: @accentColor;
+	outline: 0;
+	-webkit-box-shadow: inset 0 0 0 1px @accentColor, 0 0 10px @blackFade25 !important;
+	box-shadow: inset 0 0 0 1px @accentColor, 0 0 10px @blackFade25 !important;
+	*/
+  /* bootstrap */
+  outline: thin dotted;
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
 }
 .animate-show.ng-hide-add,
 .animate-show.ng-hide-remove {
@@ -231,6 +260,9 @@
   -ms-zoom: auto;
 }
 
+.primary-color {
+  color: #00a0f0;
+}
 .Round {
   border-radius: 9999px;
 }
@@ -295,16 +327,42 @@
   left: 0;
 }
 .BtnWhite {
-  background: rgba(255, 255, 255, 0.65);
-  background: -moz-linear-gradient(top, #ffffff 0%, #f7f7f7 100%);
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #ffffff), color-stop(100%, #f7f7f7));
-  background: -webkit-linear-gradient(top, #ffffff 0%, #f7f7f7 100%);
-  background: -ms-linear-gradient(top, #ffffff 0%, #f7f7f7 100%);
-  background: linear-gradient(to bottom, #ffffff 0%, #f7f7f7 100%);
-  border-color: rgba(0, 0, 0, 0.15);
+  background-color: #ffffff;
+  background: -webkit-gradient(linear, left top, left bottom, from(#ffffff), to(#f1f1f1));
+  background: -webkit-linear-gradient(top, #ffffff, #f1f1f1);
+  background: -moz-linear-gradient(top, #ffffff, #f1f1f1);
+  background: -ms-linear-gradient(top, #ffffff, #f1f1f1);
+  background: linear-gradient(top, #ffffff, #f1f1f1);
+  border-color: #b4b4b4;
   -webkit-box-shadow: inset 0 1px 0 #ffffff;
   box-shadow: inset 0 1px 0 #ffffff;
   color: #303030;
+}
+.BtnWhiteActive {
+  color: #004b71;
+  -webkit-box-shadow: inset 0 1px 5px rgba(0, 160, 240, 0.25);
+  box-shadow: inset 0 1px 5px rgba(0, 160, 240, 0.25);
+  border-color: rgba(0, 92, 138, 0.25);
+  -webkit-box-shadow: inset 0 -1px 6px rgba(0, 160, 240, 0.2), inset 0 1px 2px #b4b4b4;
+  box-shadow: inset 0 -1px 6px rgba(0, 160, 240, 0.2), inset 0 1px 2px #b4b4b4;
+  background: #d7f2ff;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+.focusedItem {
+  /*
+
+	future
+
+	border-color: @accentColor;
+	outline: 0;
+	-webkit-box-shadow: inset 0 0 0 1px @accentColor, 0 0 10px @blackFade25 !important;
+	box-shadow: inset 0 0 0 1px @accentColor, 0 0 10px @blackFade25 !important;
+	*/
+  /* bootstrap */
+  outline: thin dotted;
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
 }
 .preview-active .insight .widget-options {
   right: 16px;
@@ -399,7 +457,7 @@
 .preview-widget .preview-column .preview-item > h3 {
   color: #00a0f0;
   text-align: center;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  border-bottom: 1px solid #cdcdcd;
   padding-bottom: 24px;
 }
 .preview-widget .preview-column h1 {
@@ -410,7 +468,7 @@
   height: 64px;
   width: 64px;
   border-radius: 9999px;
-  background: rgba(0, 0, 0, 0.1);
+  background: #cdcdcd;
   display: inline-block;
   vertical-align: middle;
   margin-right: 8px;
@@ -596,7 +654,7 @@
   height: 30px;
   width: 30px;
   border-radius: 9999px;
-  background: rgba(0, 0, 0, 0.1);
+  background: #cdcdcd;
   display: inline-block;
   vertical-align: middle;
   margin-right: 8px;
@@ -664,7 +722,7 @@
   left: 0;
   right: 0;
   padding: 0 16px;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  border-bottom: 1px solid #cdcdcd;
 }
 .insight .search-field-wrapper .search-field-inner {
   -webkit-flex-flow: row nowrap;
@@ -716,7 +774,7 @@
   line-height: 36px;
   height: 48px;
   text-align: center;
-  color: #005c8a;
+  color: #004b71;
   border: 1px solid transparent;
 }
 .insight .search-field-wrapper .search-field input:focus {
@@ -850,12 +908,10 @@
 .insight .widget-members .scroll-container > div:not(.insight-option-row) {
   padding: 16px;
 }
-.btn:focus,
-.btn:active,
-.btn:focus:active {
-  outline: none;
-}
 
+.primary-color {
+  color: #00a0f0;
+}
 .Round {
   border-radius: 9999px;
 }
@@ -914,15 +970,44 @@
   left: 0;
 }
 .BtnWhite {
-  background: rgba(255, 255, 255, 0.65);
-  background: -moz-linear-gradient(top, #ffffff 0%, #f7f7f7 100%);
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #ffffff), color-stop(100%, #f7f7f7));
-  background: -webkit-linear-gradient(top, #ffffff 0%, #f7f7f7 100%);
-  background: -ms-linear-gradient(top, #ffffff 0%, #f7f7f7 100%);
-  background: linear-gradient(to bottom, #ffffff 0%, #f7f7f7 100%);
-  border-color: rgba(0, 0, 0, 0.15);
+  background-color: #ffffff;
+  background: -webkit-gradient(linear, left top, left bottom, from(#ffffff), to(#f1f1f1));
+  background: -webkit-linear-gradient(top, #ffffff, #f1f1f1);
+  background: -moz-linear-gradient(top, #ffffff, #f1f1f1);
+  background: -ms-linear-gradient(top, #ffffff, #f1f1f1);
+  background: linear-gradient(top, #ffffff, #f1f1f1);
+  border-color: #b4b4b4;
   -webkit-box-shadow: inset 0 1px 0 #ffffff;
   box-shadow: inset 0 1px 0 #ffffff;
   color: #303030;
 }
+.BtnWhiteActive {
+  color: #004b71;
+  -webkit-box-shadow: inset 0 1px 5px rgba(0, 160, 240, 0.25);
+  box-shadow: inset 0 1px 5px rgba(0, 160, 240, 0.25);
+  border-color: rgba(0, 92, 138, 0.25);
+  -webkit-box-shadow: inset 0 -1px 6px rgba(0, 160, 240, 0.2), inset 0 1px 2px #b4b4b4;
+  box-shadow: inset 0 -1px 6px rgba(0, 160, 240, 0.2), inset 0 1px 2px #b4b4b4;
+  background: #d7f2ff;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+.focusedItem {
+  /*
 
+	future
+
+	border-color: @accentColor;
+	outline: 0;
+	-webkit-box-shadow: inset 0 0 0 1px @accentColor, 0 0 10px @blackFade25 !important;
+	box-shadow: inset 0 0 0 1px @accentColor, 0 0 10px @blackFade25 !important;
+	*/
+  /* bootstrap */
+  outline: thin dotted;
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
+}
+
+.primary-color {
+  color: #00a0f0;
+}
