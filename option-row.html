@@ -7,10 +7,10 @@
 	</button>
 </div>
 <div ng-click="toggleItem(item)">
-	<span class="circle glyphicons group"></span>
+	<span class="circle glyphicons" ng-class="insight.dataType || insight.dataTypes[item[insight.fieldDefs.dataType]]"></span>
 </div>
 <div class="flex-fill" ng-click="toggleItem(item)">
-	<span ng-bind-html="item.name | highlight:query.name"></span>
+	<span ng-bind-html="item[insight.fieldDefs.display] | highlight:query[insight.fieldDefs.display]"></span>
 </div>
 <div ng-if="insight.allowEditAccess">
 	<!-- dummy for edit access permission -->

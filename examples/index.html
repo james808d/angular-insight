@@ -23,7 +23,7 @@
 
 	<h2>Remote Source — Rotten Tomatoes</h2>
 	<div insight="movieOptions" ng-model="assignedMovies"></div>
-	Current Movie titles: "<span ng-repeat="movie in assignedMovies">{{ ::movie.name }}<span ng-if="!$last">,</span></span>"
+	Current Movie titles: "<span ng-repeat="movie in assignedMovies">{{ ::movie.title }}<span ng-if="!$last">,</span></span>"
 	<p>Example integrating third-party data, loaded asynchronously.</p>
 </body>
 </html>

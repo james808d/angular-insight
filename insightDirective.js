@@ -12,6 +12,7 @@ module.exports = function insightDirective ($q) {
 		},
 		replace: true,
 		link: function ($scope, element, attrs, ngModelCtrl) { //todo $scope -> scope
+			var insight = $scope.insight;
 
 			$scope.state = {};
 			$scope.state.preview = {
@@ -19,10 +20,10 @@ module.exports = function insightDirective ($q) {
 				showPreview: true
 			};
 
-			$scope.overlayData = $scope.insight.loadPage ? [] : $scope.insight.data;
+			$scope.overlayData = insight.loadPage ? [] : insight.data;
 
 			$scope.favorites = [];
-			$scope.recents = $scope.insight.data.slice(0,8); //placeholder until we have real recents
+			$scope.recents = insight.data.slice(0,8); //placeholder until we have real recents
 			$scope.assignedItems = [];
 
 			if (ngModelCtrl) {
@@ -32,15 +33,19 @@ module.exports = function insightDirective ($q) {
 			}
 
 			$scope.tryLoadPage = function () {
-				if (!($scope.insight.loadPage instanceof Function)) {
+				if (!(insight.loadPage instanceof Function)) {
 					return;
 				}
 
 				var deferred = $q.defer();
-				$scope.insight.loadPage($scope.query.name, deferred);
+				insight.loadPage($scope.query[insight.fieldDefs.display], deferred);
 				deferred.promise
 					.then(function (data) {
-						$scope.overlayData = data;
+						$scope.overlayData = data
+							.map(function (item) {
+								var existing = insight.data[findIndexByIdentifier(insight.data, item)];
+								return existing || item;
+							});
 					});
 			};
 
@@ -64,8 +69,9 @@ module.exports = function insightDirective ($q) {
 					$scope.currentSelection = item;
 					item.assigned = true;
 					$scope.assignedItems.push(item);
-					if (!_.contains($scope.insight.data, item)) {
-						$scope.insight.data.push(item);
+
+					if (findIndexByIdentifier(insight.data, item) === -1) {
+						insight.data.push(item);
 					}
 					tryUpdateModel();
 				} else {
@@ -123,13 +129,13 @@ module.exports = function insightDirective ($q) {
 				// _.each($scope.data, function(group){ group.selected = false;});
 			};
 
-			$scope.removeItem = function(group) {
-				group.selected = false;
-				group.assigned = false;
+			$scope.removeItem = function(item) {
+				item.selected = false;
+				item.assigned = false;
 				$scope.showMessage = true;
-				$scope.messageItem = group;
+				$scope.messageItem = item;
 
-				var index = $scope.assignedItems.indexOf(group);
+				var index = findIndexByIdentifier($scope.assignedItems, item);
 				if (index !== -1) {
 					$scope.assignedItems.splice(index,1);
 					tryUpdateModel();
@@ -142,6 +148,12 @@ module.exports = function insightDirective ($q) {
 				}
 
 				ngModelCtrl.$setViewValue($scope.assignedItems);
+			}
+
+			function findIndexByIdentifier (array, item) {
+				var properties = {};
+				properties[insight.fieldDefs.identifier] = item[insight.fieldDefs.identifier];
+				return _.findIndex(array, properties);
 			}
 		}
 	}
