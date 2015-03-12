@@ -23,12 +23,17 @@ module.exports = function insightDirective ($q) {
 			$scope.overlayData = insight.loadPage ? [] : insight.data;
 
 			$scope.favorites = [];
-			$scope.recents = insight.data.slice(0,8); //placeholder until we have real recents
+			$scope.recents = insight.data ? insight.data.slice(0,8) : []; //placeholder until we have real recents
 			$scope.assignedItems = [];
 
 			if (ngModelCtrl) {
 				ngModelCtrl.$render = function () {
-					_.each(ngModelCtrl.$modelValue, toggleItem);
+					ngModelCtrl.$modelValue
+							.map(function (item) {
+								var existing = insight.data[findIndexByIdentifier(insight.data, item)];
+								return existing || item;
+							})
+							.forEach(toggleItem);
 				};
 			}
 
@@ -44,7 +49,7 @@ module.exports = function insightDirective ($q) {
 						$scope.overlayData = data
 							.map(function (item) {
 								var existing = insight.data[findIndexByIdentifier(insight.data, item)];
-								return existing || item;
+								return existing ? _.extend(existing, item) : item;
 							});
 					});
 			};

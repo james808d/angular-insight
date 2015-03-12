@@ -13,7 +13,7 @@ module.exports = function($scope, GroupList, MovieService) {
 		assignedGroups: [GroupList.groups[1], GroupList.groups[2]],
 
 		movieOptions: {
-			data: [],
+			data: [{ id: '770946423', title: 'Avengers', type: 'film' }],
 			fieldDefs: {
 				identifier: 'id',
 				display: 'title',
@@ -38,7 +38,8 @@ module.exports = function($scope, GroupList, MovieService) {
 					}, deferred.reject);
 			}
 		},
-		assignedMovies: []
+		assignedMovies: [{ id: '770946423', type: 'film' }]
+
 	});
 
 }

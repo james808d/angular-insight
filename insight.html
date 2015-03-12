@@ -107,7 +107,7 @@
 						No items assigned.
 					</div>
 
-					<div ng-repeat="item in assignedItems | filter:query | orderBy: insight.fieldDefs.display"
+					<div ng-repeat="item in assignedItems | filter:query | limitTo: 8 | orderBy: insight.fieldDefs.display"
 					     class="insight-option-row"
 					     selection-model-on-change="change(item)"
 					     selection-model>
