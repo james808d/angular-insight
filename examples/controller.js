@@ -19,6 +19,9 @@ module.exports = function($scope, GroupList, MovieService) {
 				display: 'title',
 				dataType: 'type'
 			},
+			dataTypes: {
+				film: 'film'
+			},
 			loadPage: function (query, deferred) {
 				if (!query.length) {
 					return deferred.resolve();
