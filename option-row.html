@@ -7,7 +7,7 @@
 	</button>
 </div>
 <div ng-click="toggleItem(item)">
-	<span class="circle glyphicons group"></span>
+	<span class="circle glyphicons" ng-class="insight.dataType || item[insight.fieldDefs.dataType]"></span>
 </div>
 <div class="flex-fill" ng-click="toggleItem(item)">
 	<span ng-bind-html="item[insight.fieldDefs.display] | highlight:query[insight.fieldDefs.display]"></span>

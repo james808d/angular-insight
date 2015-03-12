@@ -112,7 +112,7 @@
 					     selection-model-on-change="change(item)"
 					     selection-model>
 						<div>
-							<span class="circle glyphicons group"></span>
+							<span class="circle glyphicons" ng-class="insight.dataType || item[insight.fieldDefs.dataType]"></span>
 						</div>
 						<div class="flex-fill">
 							{{ item[insight.fieldDefs.display] }}
@@ -161,7 +161,7 @@
 			     ng-repeat="item in filteredAssignedItems = ( assignedItems | filter:{selected:true} | limitTo:1 | orderBy:reverse )"
 			     ng-if="!query">
 				<h1>
-					<span class="circle glyphicons group"></span>
+					<span class="circle glyphicons" ng-class="insight.dataType || item[insight.fieldDefs.dataType]"></span>
 				</h1>
 
 				<h3>{{ item.name }}</h3>
@@ -178,7 +178,7 @@
 			<div class="preview-item" ng-repeat="item in filteredData = ( insight.data | filter:{selected:true} | limitTo:1 | orderBy:reverse )"
 			     ng-if="query">
 				<h1>
-					<span class="circle glyphicons group"></span>
+					<span class="circle glyphicons" ng-class="insight.dataType || item[insight.fieldDefs.dataType]"></span>
 				</h1>
 				<h3>{{ item.name }}</h3>
 				<p>{{ item.description }}</p>

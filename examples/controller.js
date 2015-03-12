@@ -7,7 +7,8 @@ module.exports = function($scope, GroupList, MovieService) {
 			fieldDefs: {
 				identifier: '_id',
 				display: 'name'
-			}
+			},
+			dataType: 'group'
 		},
 		assignedGroups: [GroupList.groups[1], GroupList.groups[2]],
 
@@ -15,7 +16,8 @@ module.exports = function($scope, GroupList, MovieService) {
 			data: [],
 			fieldDefs: {
 				identifier: 'id',
-				display: 'title'
+				display: 'title',
+				dataType: 'type'
 			},
 			loadPage: function (query, deferred) {
 				if (!query.length) {
@@ -25,6 +27,10 @@ module.exports = function($scope, GroupList, MovieService) {
 				MovieService
 					.queryMovies(query)
 					.then(function (movies) {
+						//Set data type field on each movie object
+						movies.forEach(function (movie) {
+							movie.type = 'film';
+						});
 						deferred.resolve(movies);
 					}, deferred.reject);
 			}
