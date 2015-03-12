@@ -617,8 +617,3 @@
 .insight .widget-members .scroll-container > div:not(.insight-option-row) {
   padding: 16px;
 }
-.btn:focus,
-.btn:active,
-.btn:focus:active {
-  outline: none;
-}
