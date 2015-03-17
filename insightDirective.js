@@ -11,8 +11,34 @@ module.exports = function insightDirective ($q) {
 			insight: '='
 		},
 		replace: true,
+
+		compile: function(tElement, tAttrs){
+			if(tAttrs.optionTemplateUrl){
+				var optionRows = tElement[0].querySelectorAll("[option-row]");
+
+				_.forEach(optionRows, function(optionRow){
+					optionRow.setAttribute("template-url", tAttrs.optionTemplateUrl);
+				});
+			}
+
+			if(tAttrs.assignedOptionTemplateUrl){
+				var assignedOptionRows = tElement[0].querySelectorAll("[assigned-option-row]");
+
+				_.forEach(assignedOptionRows, function(optionRow){
+					optionRow.setAttribute("template-url", tAttrs.assignedOptionTemplateUrl);
+				});
+			}
+
+			return this.link;
+		},
+
 		link: function ($scope, element, attrs, ngModelCtrl) { //todo $scope -> scope
 			var insight = $scope.insight;
+			insight.data = insight.data || [];
+
+			if(!insight.fieldDefs){
+				throw new Error("Insight fieldDefs is required");
+			}
 
 			$scope.state = {};
 			$scope.state.preview = {
@@ -130,7 +156,9 @@ module.exports = function insightDirective ($q) {
 				$scope.showOptions = false;
 				$scope.query = '';
 				$scope.focus = false;
-				$scope.currentSelection.selected = true;
+				if($scope.currentSelection){
+					$scope.currentSelection.selected = true;
+				}
 				// _.each($scope.data, function(group){ group.selected = false;});
 			};
 
@@ -146,6 +174,17 @@ module.exports = function insightDirective ($q) {
 					tryUpdateModel();
 				}
 			};
+
+			$scope.getDataType = function(item){
+				return item[$scope.insight.fieldDefs.dataType];
+			}
+
+			$scope.getIconClass = function(item){
+				var dataType = $scope.getDataType(item);
+
+				var dataTypeClasses = insight.dataTypes || {};
+				return dataTypeClasses[dataType] || insight.dataType;
+			}
 
 			function tryUpdateModel() {
 				if (!ngModelCtrl) {

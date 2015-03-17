@@ -1,7 +1,7 @@
 module.exports = function() {
 	return {
 		templateUrl: function(tElement, tAttrs) {
-			return tAttrs.templateUrl || 'option-row.html';
+			return tAttrs.templateUrl || 'assigned-option-row.html';
 		}
 	}
 };

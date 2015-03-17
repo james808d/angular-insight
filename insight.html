@@ -4,7 +4,7 @@
 	<button type="button"
 	        class="btn btn-preview"
 	        ng-model="state.preview.showPreview"
-	        ng-if="state.preview.usePreview"
+	        ng-show="state.preview.usePreview"
 	        btn-checkbox
 	        btn-checkbox-true="true"
 	        btn-checkbox-false="false">
@@ -12,25 +12,25 @@
 		<span class="glyphicons eye_open" ng-hide="state.preview.showPreview"></span>
 	</button>
 
-	<div ng-class="state.preview.showPreview && state.preview.usePreview ? 'col-xs-7' : 'col-xs-12'" class="assigned-items">
+	<div ng-class="state.preview.showPreview &amp;&amp; state.preview.usePreview ? 'col-xs-7' : 'col-xs-12'" class="assigned-items">
 		<div class="insight"
 		     ng-mouseenter="focus = true">
 
-			<div class="search-field-wrapper" ng-class="{focus:focus && showOptions}">
+			<div class="search-field-wrapper" ng-class="{focus:focus &amp;&amp; showOptions}">
 
 				<div class="search-field-inner">
 					<div class="flex-fill">
-						<div class="search-field" ng-class="{focus:focus && showOptions }">
+						<div class="search-field" ng-class="{focus:focus &amp;&amp; showOptions }">
 							<span class="glyphicons search icon" ng-hide="state.loading"></span>
 							<span class="glyphicons refresh icon" ng-show="state.loading"></span>
 							<button type="button" class="btn btn-close"
-							        ng-if="showOptions"
-							        ng-click="closeOptions()">
+								ng-show="showOptions"
+								ng-click="closeOptions()">
 								Done
 							</button>
 							<input class="input" ng-model="query[insight.fieldDefs.display]"
 							       ng-click="showOptions = true"
-							       ng-model-options="{ debounce: insight.loadPage && 300 || 0}"
+							       ng-model-options="{ debounce: insight.loadPage &amp;&amp; 300 || 0}"
 							       ng-change="tryLoadPage()"
 							       placeholder="Find items ...">
 						</div>
@@ -39,10 +39,10 @@
 				</div>
 
 				<!-- user is searching -->
-				<div class="widget-options animate-if" ng-if="query && showOptions">
+				<div class="widget-options animate-if" ng-if="query &amp;&amp; showOptions">
 					<div class="scroll-container">
 
-						<div ng-if="!filtered.length">No results found.</div>
+						<div ng-show="!filtered.length">No results found.</div>
 
 						<div ng-if="!state.preview.showPreview"
 						     option-row
@@ -69,7 +69,7 @@
 				</div>
 
 				<!-- safari style browse options -->
-				<div class="widget-options animate-if" ng-if="!query && showOptions">
+				<div class="widget-options animate-if" ng-if="!query &amp;&amp; showOptions">
 					<div class="scroll-container" ng-if="state.preview.showPreview">
 
 						<div class="subhead">Recent</div>
@@ -101,43 +101,17 @@
 				</div>
 			</div>
 
-			<div class="widget-members"  ng-class="{focus:focus && showOptions}">
+			<div class="widget-members"  ng-class="{focus:focus &amp;&amp; showOptions}">
 				<div class="scroll-container">
-					<div ng-if="assignedItems.length === 0" style="color: gray">
+					<div ng-show="assignedItems.length === 0" style="color: gray">
 						No items assigned.
 					</div>
 
-					<div ng-repeat="item in assignedItems | filter:query | limitTo: 8 | orderBy: insight.fieldDefs.display"
+					<div assigned-option-row
+					     ng-repeat="item in assignedItems | filter:query | limitTo: 8 | orderBy: insight.fieldDefs.display"
 					     class="insight-option-row"
 					     selection-model-on-change="change(item)"
 					     selection-model>
-						<div>
-							<span class="circle glyphicons" ng-class="insight.dataType || insight.dataTypes[item[insight.fieldDefs.dataType]]"></span>
-						</div>
-						<div class="flex-fill">
-							{{ item[insight.fieldDefs.display] }}
-						</div>
-						<div ng-if="insight.allowEditAccess">
-							<!-- dummy for edit access permission -->
-							<button type="button"
-							        class="btn btn-link btn-edit-access badge"
-							        selection-model-ignore
-							        ng-model="item.active"
-							        btn-checkbox
-							        btn-checkbox-true="true"
-							        btn-checkbox-false="false">
-								<span ng-show="item.active" class="glyphicons ok_2"></span>
-								<span ng-hide="item.active" class="glyphicons minus"></span>
-								Edit Access
-							</button>
-						</div>
-						<div>
-							<button type="button" class="btn btn-link pull-right remove-assigned-item"
-							        ng-click="removeItem(item)"
-							        selection-model-ignore>
-								<span class="glyphicons remove_2"></span>
-							</button>
-						</div>
 					</div>
 				</div>
 			</div>
@@ -149,7 +123,7 @@
 
 		<div class="scroll-container">
 
-			<div class="scroll-message" ng-if="!filteredAssignedItems.length && !filteredData.length && !showMessage">
+			<div class="scroll-message" ng-show="!filteredAssignedItems.length &amp;&amp; !filteredData.length &amp;&amp; !showMessage">
 				<h3>No Items Selected</h3>
 			</div>
 			<div class="scroll-message" ng-show="showMessage">
