@@ -28,7 +28,7 @@
 								ng-click="closeOptions()">
 								Done
 							</button>
-							<input class="input" ng-model="query[insight.fieldDefs.display]"
+							<input class="input" ng-model="insight.query"
 							       ng-click="showOptions = true"
 							       ng-model-options="{ debounce: insight.loadPage &amp;&amp; 300 || 0}"
 							       ng-change="tryLoadPage()"
@@ -39,14 +39,14 @@
 				</div>
 
 				<!-- user is searching -->
-				<div class="widget-options animate-if" ng-if="query &amp;&amp; showOptions">
+				<div class="widget-options animate-if" ng-if="insight.query &amp;&amp; showOptions">
 					<div class="scroll-container">
 
 						<div ng-show="!filtered.length">No results found.</div>
 
 						<div ng-if="!state.preview.showPreview"
 						     option-row
-						     ng-repeat="item in filtered = ( overlayData | filter:query | orderBy: insight.fieldDefs.display )"
+						     ng-repeat="item in filtered = filterOptions(overlayData)"
 						     class="insight-option-row"
 						     ng-class="{assigned:item.assigned}"
 
@@ -57,7 +57,7 @@
 
 						<div ng-if="state.preview.showPreview"
 						     option-row
-						     ng-repeat="item in overlayData | filter:query | orderBy: insight.fieldDefs.display"
+						     ng-repeat="item in filterOptions(overlayData)"
 						     class="insight-option-row"
 						     ng-class="{assigned:item.assigned}"
 
@@ -69,7 +69,7 @@
 				</div>
 
 				<!-- safari style browse options -->
-				<div class="widget-options animate-if" ng-if="!query &amp;&amp; showOptions">
+				<div class="widget-options animate-if" ng-if="!insight.query &amp;&amp; showOptions">
 					<div class="scroll-container" ng-if="state.preview.showPreview">
 
 						<div class="subhead">Recent</div>
@@ -108,7 +108,7 @@
 					</div>
 
 					<div assigned-option-row
-					     ng-repeat="item in assignedItems | filter:query | limitTo: 8 | orderBy: insight.fieldDefs.display"
+					     ng-repeat="item in filterOptions(assignedItems) | limitTo: 8"
 					     class="insight-option-row"
 					     selection-model-on-change="change(item)"
 					     selection-model>

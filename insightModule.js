@@ -4,7 +4,7 @@ var path = require('path');
 
 module.exports = angular
 	.module('insight', ['ngSanitize', 'ui.highlight', 'ui.bootstrap'])
-	.directive('insight', ['$q', require('./insightDirective')])
+	.directive('insight', require('./insightDirective'))
 	.directive('optionRow', require('./optionRowDirective'))
 	.directive('assignedOptionRow', require('./optionRowDirective'))
 	.run(['$templateCache', function($templateCache) {
