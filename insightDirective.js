@@ -1,6 +1,7 @@
 var _ = require('underscore');
 
-module.exports = function insightDirective ($q) {
+insightDirective.$inject = ['$q', 'filterFilter', 'orderByFilter'];
+function insightDirective($q, filterFilter, orderByFilter){
 	return {
 		restrict: 'A',
 		require: '?ngModel',
@@ -50,16 +51,23 @@ module.exports = function insightDirective ($q) {
 
 			$scope.favorites = [];
 			$scope.recents = insight.data ? insight.data.slice(0,8) : []; //placeholder until we have real recents
+
 			$scope.assignedItems = [];
 
-			if (ngModelCtrl) {
+			if(ngModelCtrl){
 				ngModelCtrl.$render = function () {
+					$scope.assignedItems = [];
+
+					_.forEach($scope.insight.data, function(item){
+						item.assigned = false;
+					});
+
 					ngModelCtrl.$modelValue
-							.map(function (item) {
-								var existing = insight.data[findIndexByIdentifier(insight.data, item)];
-								return existing || item;
-							})
-							.forEach(toggleItem);
+						.map(function (item) {
+							var existing = insight.data[findIndexByIdentifier(insight.data, item)];
+							return existing || item;
+						})
+						.forEach(assignItem);
 				};
 			}
 
@@ -69,110 +77,44 @@ module.exports = function insightDirective ($q) {
 				}
 
 				var deferred = $q.defer();
-				insight.loadPage($scope.query[insight.fieldDefs.display], deferred);
+				insight.loadPage($scope.insight.query, deferred);
 				deferred.promise
 					.then(function (data) {
-						$scope.overlayData = data
-							.map(function (item) {
-								var existing = insight.data[findIndexByIdentifier(insight.data, item)];
-								return existing ? _.extend(existing, item) : item;
-							});
+						$scope.overlayData = data && data.map(function (item) {
+							var existing = insight.data[findIndexByIdentifier(insight.data, item)];
+							return existing ? _.extend(existing, item) : item;
+						});
 					});
 			};
 
-			$scope.addOption = function(item) {
+			var assignItem = $scope.assignItem = function(item){
+				item.assigned = true;
+				$scope.assignedItems.push(item);
 
-				if (!item.assigned) {
-					item.assigned = true;
-					item.selected = false;
-
-					_.each($scope.assignedItems, function(group){ group.selected = false;});
-
-					$scope.assignedItems.push(item);
-					tryUpdateModel();
+				if (findIndexByIdentifier(insight.data, item) === -1) {
+					insight.data.push(item);
 				}
-			};
+				tryUpdateModel();
+			}
 
-			var toggleItem = $scope.toggleItem = function(item) {
-
-				if (!item.assigned) {
-					$scope.showMessage = false;
-					$scope.currentSelection = item;
-					item.assigned = true;
-					$scope.assignedItems.push(item);
-
-					if (findIndexByIdentifier(insight.data, item) === -1) {
-						insight.data.push(item);
-					}
-					tryUpdateModel();
-				} else {
-
-					$scope.removeItem(item);
-				}
-			};
-
-			$scope.change = function(item){
-
-				$scope.currentSelection = item;
-
-				if(item.assigned === false) {
-					$scope.showMessage = true;
-					$scope.messageItem = item;
-				} else {
-					$scope.showMessage = false;
-				}
-			};
-
-			$scope.checkAssignedState = function(item) {
-				if(!item.assigned) {
-					toggleItem(item);
-				}
-			};
-
-			$scope.setPlaceholder = function(value){
-				$scope.inputPlaceholder = value;
-				if(value === 'Find assigned groups ...'){
-					$scope.showOptions = false;
-				}
-			};
-
-			$scope.selectAndToggle = function(item) {
-				$scope.selection(item);
-				$scope.toggleItem(item);
-			};
-
-			$scope.selection = function(item){
-
-				$scope.showMessage = null;
-
-				if (item.selected) {
-					$scope.currentSelection = item;
-				} else {
-					$scope.currentSelection = null;
-				}
-			};
-
-			$scope.closeOptions = function() {
-				$scope.showOptions = false;
-				$scope.query = '';
-				$scope.focus = false;
-				if($scope.currentSelection){
-					$scope.currentSelection.selected = true;
-				}
-				// _.each($scope.data, function(group){ group.selected = false;});
-			};
-
-			$scope.removeItem = function(item) {
-				item.selected = false;
+			var removeItem = $scope.removeItem = function(item) {
 				item.assigned = false;
-				$scope.showMessage = true;
-				$scope.messageItem = item;
 
 				var index = findIndexByIdentifier($scope.assignedItems, item);
 				if (index !== -1) {
 					$scope.assignedItems.splice(index,1);
 					tryUpdateModel();
 				}
+			};
+
+			var toggleItemAssignment = $scope.toggleItemAssignment = function(item) {
+				return item.assigned ? removeItem(item) : assignItem(item);
+			};
+
+			$scope.closeOptions = function() {
+				$scope.showOptions = false;
+				$scope.insight.query = '';
+				$scope.focus = false;
 			};
 
 			$scope.getDataType = function(item){
@@ -184,6 +126,16 @@ module.exports = function insightDirective ($q) {
 
 				var dataTypeClasses = insight.dataTypes || {};
 				return dataTypeClasses[dataType] || insight.dataType;
+			}
+
+			$scope.filterOptions = function(data){
+				data = data || [];
+				if(!$scope.insight.loadPage){
+					data = filterFilter(data, $scope.insight.query);
+				}
+				data = orderByFilter(data, $scope.insight.fieldDefs.display);
+
+				return data;
 			}
 
 			function tryUpdateModel() {
@@ -202,3 +154,5 @@ module.exports = function insightDirective ($q) {
 		}
 	}
 };
+
+module.exports = insightDirective;

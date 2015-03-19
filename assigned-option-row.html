@@ -4,20 +4,6 @@
 <div class="flex-fill">
 	{{ item[insight.fieldDefs.display] }}
 </div>
-<div ng-show="insight.allowEditAccess">
-	<!-- dummy for edit access permission -->
-	<button type="button"
-			class="btn btn-link btn-edit-access badge"
-			selection-model-ignore
-			ng-model="item.active"
-			btn-checkbox
-			btn-checkbox-true="true"
-			btn-checkbox-false="false">
-		<span ng-show="item.active" class="glyphicons ok_2"></span>
-		<span ng-hide="item.active" class="glyphicons minus"></span>
-		Edit Access
-	</button>
-</div>
 <div>
 	<button type="button" class="btn btn-link pull-right remove-assigned-item"
 			ng-click="removeItem(item)"
