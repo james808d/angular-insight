@@ -6,7 +6,7 @@ insightDirective.$inject = ['$q', 'filterFilter', 'orderByFilter'];
 function insightDirective($q, filterFilter, orderByFilter){
 	return {
 		restrict: 'A',
-		require: 'ngModel',
+		require: '?ngModel',
 		templateUrl: function(elem, attr) {
 			return attr.templateUrl || 'insight.html';
 		},
@@ -56,20 +56,22 @@ function insightDirective($q, filterFilter, orderByFilter){
 
 			$scope.assignedItems = [];
 
-			ngModelCtrl.$render = function () {
-				$scope.assignedItems = [];
+			if(ngModelCtrl){
+				ngModelCtrl.$render = function () {
+					$scope.assignedItems = [];
 
-				_.forEach($scope.insight.data, function(item){
-					item.assigned = false;
-				});
+					_.forEach($scope.insight.data, function(item){
+						item.assigned = false;
+					});
 
-				ngModelCtrl.$modelValue
-					.map(function (item) {
-						var existing = insight.data[findIndexByIdentifier(insight.data, item)];
-						return existing || item;
-					})
-					.forEach(assignItem);
-			};
+					ngModelCtrl.$modelValue
+						.map(function (item) {
+							var existing = insight.data[findIndexByIdentifier(insight.data, item)];
+							return existing || item;
+						})
+						.forEach(assignItem);
+				};
+			}
 
 			$scope.tryLoadPage = function () {
 				if (!(insight.loadPage instanceof Function)) {
