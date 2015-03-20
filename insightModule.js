@@ -10,5 +10,6 @@ module.exports = angular
 	.run(['$templateCache', function($templateCache) {
 		$templateCache.put('insight.html', fs.readFileSync(path.join(__dirname, 'insight.html'), 'utf8'));
 		$templateCache.put('option-row.html', fs.readFileSync(path.join(__dirname, 'option-row.html'), 'utf8'));
+		$templateCache.put('assigned-option-row.html', fs.readFileSync(path.join(__dirname, 'assigned-option-row.html'), 'utf8'));
 	}])
 	.name;
