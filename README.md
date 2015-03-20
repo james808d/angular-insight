@@ -2,14 +2,12 @@
 
 A simple Angular directive to select things
 
-## Build Prerequsites
+## Build Angular Insight
 
-* Install browserify globally. Optionally install watchify and beefy globally.
-  Install all three with `npm install -g browserify watchify beefy` or
-  `npm run preinstall`.
 * Clone this repository
 * Run `npm install`
 * Run `bower install`
+* Run `npm run bundle` to build using browserify
 
 ## Launch the example app
 
