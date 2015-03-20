@@ -1,7 +1,7 @@
 var _ = require('underscore');
 
-insightDirective.$inject = ['$q', 'filterFilter', 'orderByFilter'];
-function insightDirective($q, filterFilter, orderByFilter){
+// @ngInject
+module.exports = function insightDirective ($q, filterFilter, orderByFilter) {
 	return {
 		restrict: 'A',
 		require: '?ngModel',
@@ -155,4 +155,3 @@ function insightDirective($q, filterFilter, orderByFilter){
 	}
 };
 
-module.exports = insightDirective;
