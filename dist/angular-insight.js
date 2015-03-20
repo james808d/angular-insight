@@ -2,8 +2,8 @@
 (function (global){
 var _ = (typeof window !== "undefined" ? window._ : typeof global !== "undefined" ? global._ : null);
 
-insightDirective.$inject = ['$q', 'filterFilter', 'orderByFilter'];
-function insightDirective($q, filterFilter, orderByFilter){
+// @ngInject
+module.exports = function insightDirective ($q, filterFilter, orderByFilter) {
 	return {
 		restrict: 'A',
 		require: '?ngModel',
@@ -156,8 +156,8 @@ function insightDirective($q, filterFilter, orderByFilter){
 		}
 	}
 };
+module.exports.$inject = ["$q", "filterFilter", "orderByFilter"];
 
-module.exports = insightDirective;
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 },{}],2:[function(require,module,exports){
