@@ -28,7 +28,6 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "preinstall": "npm install -g browserify watchify beefy",
     "bundle": "browserify insightModule.js -o dist/angular-insight.js",
     "bundle-example": "browserify examples/index.js -o examples/bundle.js",
     "watch-example": "watchify examples/index.js -o examples/bundle.js",
