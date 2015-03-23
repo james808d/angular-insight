@@ -78,9 +78,7 @@ module.exports = function insightDirective ($q, filterFilter, orderByFilter) {
 					return;
 				}
 
-				var deferred = $q.defer();
-				insight.loadPage($scope.insight.query, deferred);
-				deferred.promise
+				$q.when(insight.loadPage($scope.insight.query))
 					.then(function (data) {
 						$scope.overlayData = data && data.map(function (item) {
 							var existing = insight.data[findIndexByIdentifier(insight.data, item)];
@@ -444,6 +442,7 @@ process.browser = true;
 process.env = {};
 process.argv = [];
 process.version = ''; // empty string to avoid regexp issues
+process.versions = {};
 
 function noop() {}
 

@@ -22,20 +22,21 @@ module.exports = function($scope, GroupList, MovieService) {
 			dataTypes: {
 				film: 'film'
 			},
-			loadPage: function (query, deferred) {
+			loadPage: function (query) {
 				if (!query.length) {
-					return deferred.resolve();
+					return
 				}
 
-				MovieService
+				return MovieService
 					.queryMovies(query)
 					.then(function (movies) {
 						//Set data type field on each movie object
 						movies.forEach(function (movie) {
 							movie.type = 'film';
 						});
-						deferred.resolve(movies);
-					}, deferred.reject);
+
+						return movies
+					});
 			}
 		},
 		assignedMovies: [{ id: '770946423', type: 'film' }]
