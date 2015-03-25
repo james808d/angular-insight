@@ -12,6 +12,10 @@ module.exports = function($scope, GroupList, MovieService) {
 		},
 		assignedGroups: [GroupList.groups[1], GroupList.groups[2]],
 
+		pluckAssignedGroupNames: function () {
+			return _.pluck($scope.assignedGroups, 'name');
+		},
+
 		movieOptions: {
 			data: [{ id: '770946423', title: 'Avengers', type: 'film' }],
 			fieldDefs: {

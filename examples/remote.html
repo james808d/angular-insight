@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en" ng-app="example">
+<head>
+	<meta charset="utf-8">
+	<title>Angular insight widget example</title>
+	<link href="../bower_components/glyphicons-pro-1.8/css/glyphicons.css" rel="stylesheet" media="screen">
+	<link href="../bower_components/bootstrap/dist/css/bootstrap.css" rel="stylesheet" media="screen">
+	<link href="css/main.css" rel="stylesheet" media="screen">
+	<script src="../bower_components/angular/angular.js"></script>
+	<script src="../bower_components/angular-animate/angular-animate.js"></script>
+	<script src="../bower_components/angular-sanitize/angular-sanitize.js"></script>
+	<script src="../bower_components/angular-selection-model/dist/selection-model.js"></script>
+	<script src="../bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+	<script src="../bower_components/ui-utils/ui-utils.js"></script>
+	<script src="../bower_components/underscore/underscore.js"></script>
+	<script src="./bundle.js"></script>
+</head>
+<body ng-controller="ExampleController">
+	<h2>Remote Source — Rotten Tomatoes</h2>
+	<div insight="movieOptions" ng-model="assignedMovies"></div>
+	Current Movie titles: "<span ng-repeat="movie in assignedMovies">{{ ::movie.title }}<span ng-if="!$last">,</span></span>"
+	<p>Example integrating third-party data, loaded asynchronously.</p>
+</body>
+</html>
