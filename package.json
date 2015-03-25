@@ -24,6 +24,7 @@
     "karma-mocha": "^0.1.10",
     "karma-phantomjs-launcher": "^0.1.4",
     "mocha": "^2.2.1",
+    "protractor": "^2.0.0",
     "watchify": "^2.4.0"
   },
   "browserify": {
@@ -38,9 +39,13 @@
     "underscore": "global:_"
   },
   "scripts": {
-    "test": "karma start test/karma.conf.js",
+    "test": "karma start test/karma.conf.js --singleRun",
+    "update-webdriver": "webdriver-manager update",
+    "pretest:e2e": "npm run update-webdriver",
+    "test:e2e": "protractor test/protractor.conf.js",
     "bundle": "browserify insightModule.js -o dist/angular-insight.js",
     "bundle-example": "browserify examples/index.js -o examples/bundle.js",
+    "watch:test": "karma start test/karma.conf.js",
     "watch-example": "watchify examples/index.js -o examples/bundle.js",
     "live-reload:basic": "beefy examples/index.js:bundle.js --index ./examples/basic.html --live",
     "live-reload:form": "beefy examples/index.js:bundle.js --index ./examples/form.html --live",

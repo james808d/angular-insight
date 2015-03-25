@@ -17,6 +17,10 @@ module.exports = function(config) {
       { pattern: 'test/**/*.spec.js', watched: false, included: true, served: true }
     ],
 
+    exclude: [
+      'test/e2e.spec.js'
+    ],
+
     preprocessors: {
      'test/**/*.spec.js': [ 'browserify' ]
     },
