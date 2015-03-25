@@ -47,8 +47,6 @@ module.exports = function insightDirective ($q, filterFilter, orderByFilter) {
 				showPreview: true
 			};
 
-			$scope.overlayData = insight.loadPage ? [] : insight.data;
-
 			$scope.favorites = [];
 			$scope.recents = insight.data ? insight.data.slice(0,8) : []; //placeholder until we have real recents
 
@@ -62,23 +60,33 @@ module.exports = function insightDirective ($q, filterFilter, orderByFilter) {
 						item.assigned = false;
 					});
 
-					ngModelCtrl.$modelValue
-						.map(function (item) {
-							var existing = insight.data[findIndexByIdentifier(insight.data, item)];
-							return existing || item;
-						})
-						.forEach(assignItem);
+					if(ngModelCtrl.$modelValue && ngModelCtrl.$modelValue.map){
+						ngModelCtrl.$modelValue
+							.map(function (item) {
+								var existing = insight.data[findIndexByIdentifier(insight.data, item)];
+								return existing || item;
+							})
+							.forEach(assignItem);
+					}
 				};
 			}
 
-			$scope.tryLoadPage = function () {
-				if (!(insight.loadPage instanceof Function)) {
-					return;
+			$scope.updateOptions = function(){
+				if(insight.loadPage instanceof Function){
+					loadPage()
+						.then(function(options){
+							$scope.filteredOptions = filterOptions(options);
+						});
 				}
+				else{
+					$scope.filteredOptions = filterOptions(insight.data);
+				}
+			}
 
-				$q.when(insight.loadPage($scope.insight.query))
+			function loadPage(){
+				return $q.when(insight.loadPage($scope.insight.query))
 					.then(function (data) {
-						$scope.overlayData = data && data.map(function (item) {
+						return data && data.map(function (item) {
 							var existing = insight.data[findIndexByIdentifier(insight.data, item)];
 							return existing ? _.extend(existing, item) : item;
 						});
@@ -126,9 +134,9 @@ module.exports = function insightDirective ($q, filterFilter, orderByFilter) {
 				return dataTypeClasses[dataType] || insight.dataType;
 			}
 
-			$scope.filterOptions = function(data){
+			var filterOptions = $scope.filterOptions = function(data){
 				data = data || [];
-				if(!$scope.insight.loadPage){
+				if(!insight.loadPage){
 					data = filterFilter(data, $scope.insight.query);
 				}
 				data = orderByFilter(data, $scope.insight.fieldDefs.display);
