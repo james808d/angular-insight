@@ -8,11 +8,23 @@
   },
   "dependencies": {},
   "devDependencies": {
+    "angular": "~1.3.15",
+    "angular-mocks": "~1.3.15",
     "beefy": "^2.1.3",
     "brfs": "^1.4.0",
     "browserify": "^9.0.3",
     "browserify-ngannotate": "^0.7.1",
     "browserify-shim": "^3.8.3",
+    "chai": "^2.1.2",
+    "es5-shim": "^4.1.0",
+    "jquery": "^2.1.3",
+    "karma": "^0.12.31",
+    "karma-browserify": "^4.0.0",
+    "karma-chai": "^0.1.0",
+    "karma-mocha": "^0.1.10",
+    "karma-phantomjs-launcher": "^0.1.4",
+    "mocha": "^2.2.1",
+    "protractor": "^2.0.0",
     "watchify": "^2.4.0"
   },
   "browserify": {
@@ -27,11 +39,17 @@
     "underscore": "global:_"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "karma start test/karma.conf.js --singleRun",
+    "update-webdriver": "webdriver-manager update",
+    "pretest:e2e": "npm run update-webdriver",
+    "test:e2e": "protractor test/protractor.conf.js",
     "bundle": "browserify insightModule.js -o dist/angular-insight.js",
     "bundle-example": "browserify examples/index.js -o examples/bundle.js",
+    "watch:test": "karma start test/karma.conf.js",
     "watch-example": "watchify examples/index.js -o examples/bundle.js",
-    "live-reload-example": "beefy examples/index.js:bundle.js --index ./examples/index.html --live"
+    "live-reload:basic": "beefy examples/index.js:bundle.js --index ./examples/basic.html --live",
+    "live-reload:form": "beefy examples/index.js:bundle.js --index ./examples/form.html --live",
+    "live-reload:remote": "beefy examples/index.js:bundle.js --index ./examples/remote.html --live"
   },
   "repository": {
     "type": "git",

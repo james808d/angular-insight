@@ -1,5 +1,4 @@
-
-<div class="preview-widget" ng-class="{ 'preview-active' : state.preview.showPreview }">
+<div class="preview-widget" ng-class="{ 'preview-active' : state.preview.showPreview }" ng-keydown="preventEnter($event)">
 
 	<button type="button"
 	        class="btn btn-preview"

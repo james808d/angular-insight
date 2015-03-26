@@ -71,17 +71,22 @@ module.exports = function insightDirective ($q, filterFilter, orderByFilter) {
 				};
 			}
 
-			$scope.updateOptions = function(){
-				if(insight.loadPage instanceof Function){
+			$scope.updateOptions = function () {
+				if (insight.loadPage instanceof Function) {
 					loadPage()
 						.then(function(options){
 							$scope.filteredOptions = filterOptions(options);
 						});
-				}
-				else{
+				} else {
 					$scope.filteredOptions = filterOptions(insight.data);
 				}
-			}
+			};
+
+			$scope.preventEnter = function ($event) {
+				if ($event.keyCode === 13) {
+					$event.preventDefault();
+				}
+			};
 
 			function loadPage(){
 				return $q.when(insight.loadPage($scope.insight.query))
