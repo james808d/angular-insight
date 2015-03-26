@@ -22,6 +22,7 @@
     "karma-browserify": "^4.0.0",
     "karma-chai": "^0.1.0",
     "karma-chrome-launcher": "^0.1.7",
+    "karma-cli": "0.0.4",
     "karma-mocha": "^0.1.10",
     "karma-phantomjs-launcher": "^0.1.4",
     "mocha": "^2.2.1",
@@ -40,7 +41,7 @@
     "underscore": "global:_"
   },
   "scripts": {
-    "test": "./node_modules/karma/bin/karma start test/karma.conf.js --singleRun",
+    "test": "karma start test/karma.conf.js --singleRun",
     "update-webdriver": "webdriver-manager update",
     "pretest:e2e": "npm run update-webdriver",
     "test:e2e": "protractor test/protractor.conf.js",
