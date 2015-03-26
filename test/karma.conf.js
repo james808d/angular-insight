@@ -9,6 +9,7 @@ module.exports = function(config) {
       'node_modules/angular/angular.js',
       'node_modules/angular-mocks/angular-mocks.js',
       'node_modules/es5-shim/es5-shim.js', //required until phantomjs 2
+      'bower_components/underscore/underscore.js',
       'bower_components/angular-sanitize/angular-sanitize.js',
       'bower_components/ui-utils/ui-utils.js',
       'bower_components/angular-bootstrap/ui-bootstrap.js',

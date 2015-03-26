@@ -73,8 +73,8 @@ module.exports = function insightDirective ($q, filterFilter, orderByFilter) {
 				};
 			}
 
-			$scope.updateOptions = function () {
-				if (insight.loadPage instanceof Function) {
+			$scope.updateOptions = function (){
+				if(_.isFunction(insight.loadPage)){
 					loadPage()
 						.then(function(options){
 							$scope.filteredOptions = filterOptions(options);
@@ -91,7 +91,7 @@ module.exports = function insightDirective ($q, filterFilter, orderByFilter) {
 			};
 
 			function loadPage(){
-				return $q.when(insight.loadPage($scope.insight.query))
+				return $q.when(insight.loadPage($scope.insight.query || ''))
 					.then(function (data) {
 						return data && data.map(function (item) {
 							var existing = insight.data[findIndexByIdentifier(insight.data, item)];
@@ -131,7 +131,11 @@ module.exports = function insightDirective ($q, filterFilter, orderByFilter) {
 			};
 
 			$scope.getDataType = function(item){
-				return item[$scope.insight.fieldDefs.dataType];
+				var fieldDef = $scope.insight.fieldDefs.dataType;
+				if(_.isFunction(fieldDef)){
+					return fieldDef(item);
+				}
+				return item[fieldDef];
 			}
 
 			$scope.getIconClass = function(item){
@@ -455,6 +459,7 @@ process.browser = true;
 process.env = {};
 process.argv = [];
 process.version = ''; // empty string to avoid regexp issues
+process.versions = {};
 
 function noop() {}
 

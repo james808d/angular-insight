@@ -25,4 +25,19 @@ describe('insight directive', function () {
 		var insightElement = '<div insight="insightOptions"></div>';
 		assert.doesNotThrow(compileAndLink.bind(null, insightElement), 'compile and link do not throw');
 	});
+
+	it('should get item dataType', function () {
+		var insightElement = '<div insight="insightOptions"></div>';
+		insightOptions.data = [{id: 1}, {id: 2}]
+
+		insightOptions.fieldDefs.dataType = function(item){
+			return 'item-'+item.id;
+		};
+
+		compileAndLink(insightElement);
+
+		var insightScope = scope.$$childHead;
+
+		assert(insightScope.getDataType(insightOptions.data[0]) === 'item-1', 'Wrong dataType');
+	});
 });
