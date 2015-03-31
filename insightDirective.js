@@ -1,7 +1,9 @@
+'use strict';
+
 var _ = require('underscore');
 
 // @ngInject
-module.exports = function insightDirective ($q, filterFilter, orderByFilter) {
+module.exports = function insightDirective ($q, filterFilter, orderByFilter, insightStrings) {
 	return {
 		restrict: 'A',
 		require: '?ngModel',
@@ -36,6 +38,7 @@ module.exports = function insightDirective ($q, filterFilter, orderByFilter) {
 		link: function ($scope, element, attrs, ngModelCtrl) { //todo $scope -> scope
 			var insight = $scope.insight;
 			insight.data = insight.data || [];
+			insight.strings = _.extend({}, insightStrings, insight.strings);
 
 			if(!insight.fieldDefs){
 				throw new Error("Insight fieldDefs is required");
@@ -120,6 +123,10 @@ module.exports = function insightDirective ($q, filterFilter, orderByFilter) {
 
 			var toggleItemAssignment = $scope.toggleItemAssignment = function(item) {
 				return item.assigned ? removeItem(item) : assignItem(item);
+			};
+
+			$scope.openOptions = function(){
+				$scope.showOptions = true;
 			};
 
 			$scope.closeOptions = function() {

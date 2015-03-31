@@ -25,13 +25,13 @@
 							<button type="button" class="btn btn-close"
 								ng-show="showOptions"
 								ng-click="closeOptions()">
-								Done
+								{{::insight.strings.done}}
 							</button>
 							<input class="input" ng-model="insight.query"
-							       ng-click="showOptions = true; updateOptions()"
+							       ng-click="openOptions(); updateOptions()"
 							       ng-model-options="{ debounce: insight.loadPage &amp;&amp; 300 || 0}"
 							       ng-change="updateOptions()"
-							       placeholder="Find items ...">
+								   placeholder="{{::insight.strings.findItemsPlaceholder}}">
 						</div>
 					</div>
 					<div ng-hide="state.preview.showPreview" class="preview-spacer"></div>
@@ -41,7 +41,7 @@
 				<div class="widget-options animate-if" ng-if="showOptions">
 					<div class="scroll-container">
 
-						<div ng-show="insight.query &amp;&amp; !filteredOptions.length">No results found.</div>
+						<div ng-show="insight.query &amp;&amp; !filteredOptions.length">{{::insight.strings.noResultsFound}}</div>
 
 						<div ng-if="!state.preview.showPreview"
 						     option-row
@@ -71,7 +71,7 @@
 				<div class="widget-options animate-if" ng-if="!filteredOptions.length &amp;&amp; !insight.query &amp;&amp; showOptions">
 					<div class="scroll-container" ng-if="state.preview.showPreview">
 
-						<div class="subhead">Recent</div>
+						<div class="subhead">{{::insight.strings.recentItems}}</div>
 
 						<div option-row
 						     ng-repeat="item in recents"
@@ -86,7 +86,7 @@
 
 					<div class="scroll-container" ng-if="!state.preview.showPreview">
 
-						<div class="subhead">Recent Items</div>
+						<div class="subhead">{{::insight.strings.recentItems}}</div>
 
 						<div option-row
 						     ng-repeat="item in recents"
@@ -103,7 +103,7 @@
 			<div class="widget-members"  ng-class="{focus:focus &amp;&amp; showOptions}">
 				<div class="scroll-container">
 					<div ng-show="assignedItems.length === 0" style="color: gray">
-						No items assigned.
+						{{::insight.strings.noItemsAssigned}}
 					</div>
 
 					<div assigned-option-row
@@ -114,7 +114,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="overlay" ng-show="showOptions === true" ng-click="closeOptions()"></div>
+			<div class="overlay" ng-show="showOptions" ng-click="closeOptions()"></div>
 		</div>
 	</div>
 
