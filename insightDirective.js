@@ -99,7 +99,7 @@ module.exports = function insightDirective ($q, filterFilter, orderByFilter, ins
 							return existing ? _.extend(existing, item) : item;
 						});
 					});
-			};
+			}
 
 			var assignItem = $scope.assignItem = function(item){
 				item.assigned = true;
@@ -109,7 +109,7 @@ module.exports = function insightDirective ($q, filterFilter, orderByFilter, ins
 					insight.data.push(item);
 				}
 				tryUpdateModel();
-			}
+			};
 
 			var removeItem = $scope.removeItem = function(item) {
 				item.assigned = false;
@@ -141,14 +141,14 @@ module.exports = function insightDirective ($q, filterFilter, orderByFilter, ins
 					return fieldDef(item);
 				}
 				return item[fieldDef];
-			}
+			};
 
 			$scope.getIconClass = function(item){
 				var dataType = $scope.getDataType(item);
 
 				var dataTypeClasses = insight.dataTypes || {};
 				return dataTypeClasses[dataType] || insight.dataType;
-			}
+			};
 
 			var filterOptions = $scope.filterOptions = function(data){
 				data = data || [];
@@ -158,7 +158,7 @@ module.exports = function insightDirective ($q, filterFilter, orderByFilter, ins
 				data = orderByFilter(data, $scope.insight.fieldDefs.display);
 
 				return data;
-			}
+			};
 
 			function tryUpdateModel() {
 				if (!ngModelCtrl) {

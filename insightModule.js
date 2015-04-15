@@ -8,7 +8,7 @@ module.exports = angular
 	.module('insight', ['ngSanitize', 'ui.highlight', 'ui.bootstrap'])
 	.directive('insight', require('./insightDirective'))
 	.directive('optionRow', require('./optionRowDirective'))
-	.directive('assignedOptionRow', require('./optionRowDirective'))
+	.directive('assignedOptionRow', require('./assignedOptionRowDirective'))
 	.value('insightStrings', require('./insightStrings'))
 	.run(['$templateCache', function($templateCache) {
 		$templateCache.put('insight.html', fs.readFileSync(path.join(__dirname, 'insight.html'), 'utf8'));
