@@ -16,7 +16,7 @@
   "dependencies": {
     "angular": "~1.3.13",
     "ui-utils": "~0.2.2",
-    "underscore": "~1.8.2",
+    "underscore": "~1.8.3",
     "bootstrap": "~3.3.2",
     "angular-animate": "~1.3.13",
     "angular-selection-model": "~0.8.4",
