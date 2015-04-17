@@ -94,6 +94,9 @@ module.exports = function insightDirective ($q, filterFilter, orderByFilter, ins
 			};
 
 			function loadPage(){
+
+				$scope.state.noResults = false;
+
 				return $q.when(insight.loadPage($scope.insight.query || ''))
 					.then(function (data) {
 
