@@ -516,6 +516,13 @@
 				//background: @accentColor;
 				color: white;
 			}
+
+			.loader.accent {
+				border-color: @color1MedText;
+				border-left-color: @accentColor;
+				position: absolute;
+				top: 14px;
+			}
 		}
 	}
 
@@ -653,6 +660,38 @@
 			> div:not(.insight-option-row)
 			{
 				padding: 16px;
+			}
+		}
+	}
+
+	.status-message {
+		.AbsoluteFill;
+		background: @white;
+		z-index: 10;
+		text-align: center;
+
+		div {
+			line-height: 280px;
+			color: @color1LightText;
+		}
+
+		&.animate-show.ng-hide {
+			&-add,
+			&-remove {
+				.TransitionAll(all linear 0.5s);
+				display: block !important;
+			}
+
+			&-add.ng-hide-add-active,
+			&-remove {
+				opacity: 0;
+				top: -350px;
+			}
+
+			&-add,
+			&-remove.ng-hide-remove-active {
+				opacity: 1;
+				top: 0;
 			}
 		}
 	}

@@ -45,6 +45,7 @@ module.exports = function insightDirective ($q, filterFilter, orderByFilter, ins
 			}
 
 			$scope.state = {};
+			$scope.state.noResults = false;
 			$scope.state.preview = {
 				usePreview: false,
 				showPreview: true
@@ -82,6 +83,7 @@ module.exports = function insightDirective ($q, filterFilter, orderByFilter, ins
 						});
 				} else {
 					$scope.filteredOptions = filterOptions(insight.data);
+					$scope.filteredOptions.length ? $scope.state.noResults = false : $scope.state.noResults = true;
 				}
 			};
 
@@ -94,6 +96,13 @@ module.exports = function insightDirective ($q, filterFilter, orderByFilter, ins
 			function loadPage(){
 				return $q.when(insight.loadPage($scope.insight.query || ''))
 					.then(function (data) {
+
+						if(data) {
+							data.length && $scope.insight.query ? $scope.state.noResults = false : $scope.state.noResults = true;
+						} else {
+							return;
+						}
+
 						return data && data.map(function (item) {
 							var existing = insight.data[findIndexByIdentifier(insight.data, item)];
 							return existing ? _.extend(existing, item) : item;

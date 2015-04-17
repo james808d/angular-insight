@@ -20,8 +20,11 @@
 				<div class="search-field-inner">
 					<div class="flex-fill">
 						<div class="search-field" ng-class="{focus:focus &amp;&amp; showOptions }">
-							<span class="glyphicons search icon" ng-hide="state.loading"></span>
-							<span class="glyphicons refresh icon" ng-show="state.loading"></span>
+							<span class="glyphicons search icon"
+							      ng-hide="insight.query &amp;&amp; !filteredOptions.length &amp;&amp; !state.noResults"></span>
+							<vb-loading-spinner size="small" opt="accent"
+							                    ng-show="insight.query &amp;&amp; !filteredOptions.length &amp;&amp; !state.noResults">
+							</vb-loading-spinner>
 							<button type="button" class="btn btn-close"
 								ng-show="showOptions"
 								ng-click="closeOptions()">
@@ -39,9 +42,15 @@
 
 				<!-- user is searching -->
 				<div class="widget-options animate-if" ng-if="showOptions">
-					<div class="scroll-container">
+					<div class="scroll-container" ng-if="insight.query">
 
-						<div ng-show="insight.query &amp;&amp; !filteredOptions.length">{{::insight.strings.noResultsFound}}</div>
+						<div ng-show="insight.query &amp;&amp; !filteredOptions.length"
+						     class="status-message animate-show">
+							<div ng-show="state.noResults">{{::insight.strings.noResultsFound}}</div>
+							<div ng-hide="state.noResults">
+								{{::insight.strings.searching}}
+							</div>
+						</div>
 
 						<div ng-if="!state.preview.showPreview"
 						     option-row
@@ -65,36 +74,36 @@
 						     selection-model-on-change="change(item)">
 						</div>
 					</div>
-				</div>
 
-				<!-- safari style browse options -->
-				<div class="widget-options animate-if" ng-if="!filteredOptions.length &amp;&amp; !insight.query &amp;&amp; showOptions">
-					<div class="scroll-container" ng-if="state.preview.showPreview">
+					<!-- safari style browse options -->
+					<div ng-if="!insight.query &amp;&amp; showOptions">
+						<div class="scroll-container" ng-if="state.preview.showPreview">
 
-						<div class="subhead">{{::insight.strings.recentItems}}</div>
+							<div class="subhead">{{::insight.strings.recentItems}}</div>
 
-						<div option-row
-						     ng-repeat="item in recents"
-						     class="insight-option-row"
-						     ng-class="{assigned:item.assigned}"
+							<div option-row
+							     ng-repeat="item in recents"
+							     class="insight-option-row"
+							     ng-class="{assigned:item.assigned}"
 
-						     selection-model-on-change="change(item)"
-						     selection-model>
+							     selection-model-on-change="change(item)"
+							     selection-model>
+							</div>
+
 						</div>
 
-					</div>
+						<div class="scroll-container" ng-if="!state.preview.showPreview">
 
-					<div class="scroll-container" ng-if="!state.preview.showPreview">
+							<div class="subhead">{{::insight.strings.recentItems}}</div>
 
-						<div class="subhead">{{::insight.strings.recentItems}}</div>
+							<div option-row
+							     ng-repeat="item in recents"
+							     class="insight-option-row"
+							     ng-class="{assigned:item.assigned}"
 
-						<div option-row
-						     ng-repeat="item in recents"
-						     class="insight-option-row"
-						     ng-class="{assigned:item.assigned}"
-
-						     selection-model-on-change="change(item)"
-						     selection-model>
+							     selection-model-on-change="change(item)"
+							     selection-model>
+							</div>
 						</div>
 					</div>
 				</div>
