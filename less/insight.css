@@ -402,6 +402,21 @@
   opacity: 1;
   max-height: 40px;
 }
+.no-flexbox .insight-option-row {
+  display: table;
+  width: 100%;
+}
+.no-flexbox .insight-option-row > div {
+  display: table-cell;
+  width: 1px;
+  vertical-align: middle;
+}
+.no-flexbox .insight-option-row > div.flex-fill {
+  width: auto;
+}
+.no-flexbox .insight-option-row > div .circle {
+  top: -3px;
+}
 .insight {
   width: 100%;
   position: relative;

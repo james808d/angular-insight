@@ -404,6 +404,29 @@
 	}
 }
 
+
+.no-flexbox {
+	.insight-option-row {
+		display: table;
+		width: 100%;
+
+		> div {
+			display: table-cell;
+			width: 1px;
+			vertical-align: middle;
+
+			&.flex-fill {
+				width: auto;
+			}
+
+			.circle {
+				top: -3px;
+			}
+
+		}
+	}
+}
+
 .insight {
 
 	width: 100%;
