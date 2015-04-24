@@ -409,9 +409,13 @@
 .no-flexbox .insight-option-row > div {
   display: table-cell;
   width: 1px;
+  vertical-align: middle;
 }
 .no-flexbox .insight-option-row > div.flex-fill {
   width: auto;
+}
+.no-flexbox .insight-option-row > div .circle {
+  top: -3px;
 }
 .insight {
   width: 100%;
