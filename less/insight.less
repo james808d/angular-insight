@@ -404,6 +404,24 @@
 	}
 }
 
+
+.no-flexbox {
+	.insight-option-row {
+		display: table;
+		width: 100%;
+
+		> div {
+			display: table-cell;
+			width: 1px;
+
+			&.flex-fill {
+				width: auto;
+			}
+
+		}
+	}
+}
+
 .insight {
 
 	width: 100%;
