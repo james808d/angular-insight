@@ -37,7 +37,10 @@ module.exports = function insightDirective ($q, filterFilter, orderByFilter, ins
 
 		link: function ($scope, element, attrs, ngModelCtrl) { //todo $scope -> scope
 			var insight = $scope.insight;
+			var assignedLoaded = !angular.isFunction(insight.onAssignedInfiniteScroll);
+			var pauseAssignedInfiniteScroll = false;
 			insight.data = insight.data || [];
+			insight.data.forEach(function(item) { item._loaded = true });
 			insight.strings = _.extend({}, insightStrings, insight.strings);
 
 			if(!insight.fieldDefs){
@@ -76,8 +79,8 @@ module.exports = function insightDirective ($q, filterFilter, orderByFilter, ins
 			}
 
 			$scope.updateOptions = function (){
-				if(_.isFunction(insight.loadPage)){
-					loadPage()
+				if(angular.isFunction(insight.loadQueryPage)){
+					loadQueryPage()
 						.then(function(options){
 							$scope.filteredOptions = filterOptions(options);
 						});
@@ -93,16 +96,40 @@ module.exports = function insightDirective ($q, filterFilter, orderByFilter, ins
 				}
 			};
 
-			function loadPage(){
+			$scope.loadAssignedPage = function () {
+				if (pauseAssignedInfiniteScroll || assignedLoaded) {
+					return;
+				}
+
+				pauseAssignedInfiniteScroll = true;
+				return $q.when(insight.onAssignedInfiniteScroll())
+					.then(function (results) {
+						results = results || [];
+						results.forEach(function (item) {
+							item._loaded = true;
+							var existing = insight.data[findIndexByIdentifier(insight.data, item)];
+							if (existing) {
+								_.extend(existing, item);
+							} else {
+								insight.data.push(item);
+								$scope.assignedItems.push(item);
+							}
+						});
+						pauseAssignedInfiniteScroll = false;
+					});
+			};
+
+			function loadQueryPage(){
 
 				$scope.state.noResults = false;
 
-				return $q.when(insight.loadPage($scope.insight.query || ''))
+				return $q.when(insight.loadQueryPage($scope.insight.query || ''))
 					.then(function (data) {
 
 						$scope.state.noResults = (!data || !data.length) && $scope.insight.query;
 
 						return data && data.map(function (item) {
+							item._loaded = true;
 							var existing = insight.data[findIndexByIdentifier(insight.data, item)];
 							return existing ? _.extend(existing, item) : item;
 						});
@@ -160,7 +187,8 @@ module.exports = function insightDirective ($q, filterFilter, orderByFilter, ins
 
 			var filterOptions = $scope.filterOptions = function(data){
 				data = data || [];
-				if(!insight.loadPage){
+				data = _.where(data, { _loaded: true });
+				if(!insight.loadQueryPage){
 					data = filterFilter(data, $scope.insight.query);
 				}
 				data = orderByFilter(data, $scope.insight.fieldDefs.display);
