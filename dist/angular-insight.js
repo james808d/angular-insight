@@ -99,7 +99,7 @@ module.exports = function insightDirective ($q, filterFilter, orderByFilter, ins
 						});
 				} else {
 					$scope.filteredOptions = filterOptions(insight.data);
-					$scope.filteredOptions.length ? $scope.state.noResults = false : $scope.state.noResults = true;
+					$scope.state.noResults = !$scope.filteredOptions.length;
 				}
 			};
 
@@ -528,6 +528,7 @@ process.browser = true;
 process.env = {};
 process.argv = [];
 process.version = ''; // empty string to avoid regexp issues
+process.versions = {};
 
 function noop() {}
 
