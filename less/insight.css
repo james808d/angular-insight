@@ -616,7 +616,7 @@
 .insight .widget-members {
   position: relative;
   z-index: 0;
-  height: 348px;
+  height: 370px;
   top: 64px;
 }
 .insight .widget-members.focus .scroll-container > div.selected {
@@ -633,10 +633,14 @@
   left: 0;
   bottom: 0;
   overflow-y: scroll;
-  height: 316px;
+  height: 354px;
 }
-.insight .widget-members .scroll-container > div:not(.insight-option-row) {
+.insight .widget-members .scroll-container .assigned-option-container > div:not(.insight-option-row) {
   padding: 16px;
+}
+.insight .widget-members .scroll-container .no-items {
+  padding: 16px;
+  color: #898989;
 }
 .insight .status-message {
   position: absolute;

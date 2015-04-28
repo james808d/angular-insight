@@ -654,7 +654,7 @@
 	.widget-members {
 		position: relative;
 		z-index: 0;
-		height: 348px;
+		height: 370px;
 		top: 64px;
 
 		&.focus  {
@@ -678,11 +678,16 @@
 			left: 0;
 			bottom: 0;
 			overflow-y: scroll;
-			height: 316px;
+			height: 354px;
 
-			> div:not(.insight-option-row)
+			.assigned-option-container > div:not(.insight-option-row)
 			{
 				padding: 16px;
+			}
+
+			.no-items {
+				padding: 16px;
+				color: @color1LightText;
 			}
 		}
 	}

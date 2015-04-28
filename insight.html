@@ -111,7 +111,7 @@
 
 			<div class="widget-members"  ng-class="{focus:focus &amp;&amp; showOptions}">
 				<div class="scroll-container">
-					<div ng-show="assignedItems.length === 0" style="color: gray">
+					<div ng-show="assignedItems.length === 0" class="no-items">
 						{{::insight.strings.noItemsAssigned}}
 					</div>
 					<div class="assigned-option-container" infinite-scroll="loadAssignedPage()" infinite-scroll-parent="true">
