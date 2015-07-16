@@ -47,6 +47,8 @@ module.exports = function insightDirective ($q, filterFilter, orderByFilter, ins
 				throw new Error("Insight fieldDefs is required");
 			}
 
+			insight.fieldDefs.orderBy = insight.fieldDefs.orderBy || insight.fieldDefs.display;
+
 			$scope.state = {};
 			$scope.state.noResults = false;
 			$scope.state.preview = {
@@ -191,7 +193,7 @@ module.exports = function insightDirective ($q, filterFilter, orderByFilter, ins
 				if(!insight.loadQueryPage){
 					data = filterFilter(data, $scope.insight.query);
 				}
-				data = orderByFilter(data, $scope.insight.fieldDefs.display);
+				data = orderByFilter(data, $scope.insight.fieldDefs.orderBy, !$scope.insight.fieldDefs.ascending);
 
 				return data;
 			};
