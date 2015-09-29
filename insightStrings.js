@@ -5,6 +5,5 @@ module.exports = {
 	searching: 'Searching ...',
 	noItemsAssigned: 'No items assigned.',
 	findItemsPlaceholder: 'Find items ...	',
-	done: 'Done',
-	recentItems: 'Recent Items'
+	done: 'Done'
 };
