@@ -19,6 +19,25 @@ $ npm run live-reload:basic
 
 The app will be available at http://localhost:9966/examples
 
+## Testing
+
+### Unit
+
+Unit tests run in the Karma test runner. To run tests:
+
+```sh
+$ npm test
+```
+
+### End to end
+
+End to end tests are run using Protractor and a running web server. To run tests:
+
+```sh
+$ npm run live-reload:form
+$ npm run test:e2e
+```
+
 ## License
 
 MIT
