@@ -13,6 +13,7 @@ module.exports = function(config) {
       'bower_components/angular-sanitize/angular-sanitize.js',
       'bower_components/ui-utils/ui-utils.js',
       'bower_components/angular-bootstrap/ui-bootstrap.js',
+      'bower_components/ngInfiniteScroll/build/ng-infinite-scroll.js',
 
       // don't watch patterns already watched by the browserify preprocessor
       { pattern: 'test/**/*.spec.js', watched: false, included: true, served: true }
