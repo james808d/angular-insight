@@ -19,3 +19,6 @@ $ npm run live-reload:basic
 
 The app will be available at http://localhost:9966/examples
 
+## License
+
+MIT
