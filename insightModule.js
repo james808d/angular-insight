@@ -5,7 +5,7 @@ var fs = require('fs');
 var path = require('path');
 
 module.exports = angular
-	.module('insight', ['infinite-scroll', 'ngSanitize', 'ui.highlight', 'ui.bootstrap'])
+	.module('insight', ['infinite-scroll', 'ngSanitize', 'ui.highlight'])
 	.directive('insight', require('./insightDirective'))
 	.directive('optionRow', require('./optionRowDirective'))
 	.directive('assignedOptionRow', require('./assignedOptionRowDirective'))
