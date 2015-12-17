@@ -1,15 +1,19 @@
 <div class="preview-widget" ng-class="{ 'preview-active' : state.preview.showPreview }" ng-keydown="preventEnter($event)">
 
-	<button type="button"
-	        class="btn btn-preview"
-	        ng-model="state.preview.showPreview"
-	        ng-show="state.preview.usePreview"
-	        btn-checkbox
-	        btn-checkbox-true="true"
-	        btn-checkbox-false="false">
-		<span class="glyphicons eye_close" ng-show="state.preview.showPreview"></span>
-		<span class="glyphicons eye_open" ng-hide="state.preview.showPreview"></span>
-	</button>
+	<span ng-show="state.preview.usePreview">
+		<button type="button"
+				class="btn btn-preview"
+				ng-click="state.preview.showPreview = false"
+				ng-show="state.preview.showPreview">
+			<span class="glyphicons eye_close"></span>
+		</button>
+		<button type="button"
+				class="btn btn-preview"
+				ng-click="state.preview.showPreview = true"
+				ng-hide="state.preview.showPreview">
+			<span class="glyphicons eye_open"></span>
+		</button>
+	</span>
 
 	<div ng-class="state.preview.showPreview &amp;&amp; state.preview.usePreview ? 'col-xs-7' : 'col-xs-12'" class="assigned-items">
 		<div class="insight"
